@@ -1,10 +1,11 @@
 import React from 'react';
+import Active from '../active'
 
 function App() {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+      <div style={{ width: '600px' }} >
+        <Active />
+      </div>
   );
 }
 
