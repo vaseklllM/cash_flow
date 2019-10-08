@@ -1,12 +1,24 @@
-import React from 'react';
-import Active from '../active'
+import React from "react"
+import { connect } from "react-redux"
+import { getCashFlow } from "../../action"
+import { hocApp } from "../hoc"
+import Active from "../active"
 
 function App() {
-  return (
-      <div style={{ width: '600px' }} >
-        <Active />
-      </div>
-  );
+    return (
+        <div style={{ maxWidth: "700px" }}>
+            <Active />
+        </div>
+    )
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        getCashFlow: cashFlow => dispatch(getCashFlow(cashFlow))
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(hocApp(App))

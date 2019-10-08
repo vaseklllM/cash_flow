@@ -1,18 +1,15 @@
-import { createStore } from 'redux'
+import { createStore } from "redux"
 
 const cashFlowState = {
-    active: null, // активы 
-    pasive: null, // пасивы
-    income: null, // доходы
-    costs: null, // расходы
+    cashFlow: null
 }
 
 const reducer = (state = cashFlowState, action) => {
     switch (action.type) {
-        case "GET_PORTFOLIO":
+        case "SET_CASH_FLOW":
             return {
                 ...state,
-                active: action.payload
+                cashFlow: action.payload
             }
         default:
             return {
@@ -20,7 +17,6 @@ const reducer = (state = cashFlowState, action) => {
             }
     }
 }
-
 
 const store = createStore(reducer)
 export default store

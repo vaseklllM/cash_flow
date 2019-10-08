@@ -1,12 +1,8 @@
-const getActive = (active) => {
+const getCashFlow = cashFlow => {
     return {
-        type: 'GET_PORTFOLIO',
-        payload: active
+        type: "SET_CASH_FLOW",
+        payload: cashFlow
     }
 }
 
-
-export {
-    getActive
-}
-
+export { getCashFlow }
