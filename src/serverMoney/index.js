@@ -31,28 +31,4 @@ export default class Money {
             resolve(this._cashFlow);
         }, this._time);
     });
-
-    getActive = new Promise(resolve => {
-        setTimeout(() => {
-            resolve(this._cashFlow.filter(item => item.income >= 0));
-        }, this._time);
-    });
-
-    getPasive = new Promise(resolve => {
-        setTimeout(() => {
-            resolve(this._cashFlow.filter(item => item.income < 0));
-        }, this._time);
-    });
-
-    getIncome = new Promise(resolve => {
-        setTimeout(() => {
-            resolve(this._cashFlow.filter(item => item.income > 0));
-        }, this._time);
-    });
-
-    getCosts = new Promise(resolve => {
-        setTimeout(() => {
-            resolve(this._cashFlow.filter(item => item.income < 0));
-        }, this._time);
-    });
 }
