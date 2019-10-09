@@ -6,16 +6,26 @@ import { Title, Body } from "../Table"
 import "./style.scss"
 
 function Active({ rows, activeFullPrice }) {
+    const bodyText = {
+        name: "Назва",
+        col1: "Кількість/шт.",
+        col2: "Ціна за шт.",
+        col3: "Ціна загалом"
+    }
     return (
         <>
             <Title title='Активи' activeFullPrice={activeFullPrice} />
-            <Body rows={rows} />
+            <Body rows={rows} text={bodyText} />
         </>
     )
 }
 
 Active.propTypes = {
-    rows: propTypes.arrayOf(propTypes.object),
+    rows: propTypes.oneOfType([
+        propTypes.symbol,
+        propTypes.array,
+        propTypes.arrayOf(propTypes.object)
+    ]),
     activeFullPrice: propTypes.oneOfType([propTypes.number, propTypes.string])
 }
 
