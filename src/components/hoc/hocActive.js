@@ -8,6 +8,13 @@ const upadtePrice = rows => {
     return `${price}$`
 }
 
+const bodyText = {
+    name: "Назва",
+    col1: "Кількість/шт.",
+    col2: "Ціна за шт.",
+    col3: "Ціна загалом"
+}
+
 const hocTable = Wraper => ({ cashFlow }) => {
     let rows = null
     if (cashFlow) rows = cashFlow.filter(item => item.income >= 0)
@@ -15,7 +22,13 @@ const hocTable = Wraper => ({ cashFlow }) => {
     if (rows !== null) {
         activeFullPrice = upadtePrice(rows)
     }
-    return <Wraper rows={rows} activeFullPrice={activeFullPrice} />
+    return (
+        <Wraper
+            rows={rows}
+            activeFullPrice={activeFullPrice}
+            bodyText={bodyText}
+        />
+    )
 }
 
 export default hocTable

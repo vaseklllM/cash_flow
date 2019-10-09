@@ -5,13 +5,8 @@ import propTypes from "prop-types"
 import CreateTable from "../CreateTable"
 import "./style.scss"
 
-function Active({ rows, activeFullPrice }) {
-    const bodyText = {
-        name: "Назва",
-        col1: "Кількість/шт.",
-        col2: "Ціна за шт.",
-        col3: "Ціна загалом"
-    }
+function Active({ rows, activeFullPrice, bodyText }) {
+   
     return (
         <CreateTable
             title='Активи'
