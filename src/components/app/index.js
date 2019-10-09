@@ -2,12 +2,12 @@ import React from "react"
 import { connect } from "react-redux"
 import { getCashFlow } from "../../action"
 import { hocApp } from "../hoc"
-import Active from "../active"
+import ActivePage from "../Active"
 
 function App() {
     return (
         <div style={{ maxWidth: "700px" }}>
-            <Active />
+            <ActivePage />
         </div>
     )
 }
