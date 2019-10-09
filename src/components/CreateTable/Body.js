@@ -6,7 +6,7 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import StyledTableCell from "./StyledTableCell"
 import propTypes from "prop-types"
-import { rowList } from "."
+import rowList from './rowList';
 
 const Body = ({ rows, text }) => {
     const { name, col1, col2, col3 } = text

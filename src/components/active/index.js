@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { hocActive } from "../hoc"
 import propTypes from "prop-types"
-import { Title, Body } from "../Table"
+import CreateTable from "../CreateTable"
 import "./style.scss"
 
 function Active({ rows, activeFullPrice }) {
@@ -13,10 +13,12 @@ function Active({ rows, activeFullPrice }) {
         col3: "Ціна загалом"
     }
     return (
-        <>
-            <Title title='Активи' activeFullPrice={activeFullPrice} />
-            <Body rows={rows} text={bodyText} />
-        </>
+        <CreateTable
+            title='Активи'
+            activeFullPrice={activeFullPrice}
+            rows={rows}
+            bodyText={bodyText}
+        />
     )
 }
 

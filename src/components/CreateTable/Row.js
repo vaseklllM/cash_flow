@@ -1,20 +1,20 @@
 import React from "react"
 import StyledTableCell from "./StyledTableCell"
-import StyledTableRow from './StyledTableRow';
-
+import StyledTableRow from "./StyledTableRow"
 
 const Row = ({ row }) => {
+    const { name, pcs, price, currency } = row
     return (
         <StyledTableRow>
             <StyledTableCell component='th' scope='row'>
-                {row.name}
+                {name}
             </StyledTableCell>
-            <StyledTableCell align='right'>{row.pcs} шт.</StyledTableCell>
+            <StyledTableCell align='right'>{pcs} шт.</StyledTableCell>
             <StyledTableCell align='right'>
-                {row.price} {row.currency}
+                {price} {currency}
             </StyledTableCell>
             <StyledTableCell align='right'>
-                {row.price * row.pcs} {row.currency}
+                {price * pcs} {currency}
             </StyledTableCell>
         </StyledTableRow>
     )
