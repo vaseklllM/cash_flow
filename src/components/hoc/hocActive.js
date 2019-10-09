@@ -9,10 +9,11 @@ const upadtePrice = rows => {
 }
 
 const bodyText = {
-    name: "Назва",
-    col1: "Кількість/шт.",
-    col2: "Ціна за шт.",
-    col3: "Ціна загалом"
+    title: "Активи",
+    col1: "Назва",
+    col2: "Кількість/шт.",
+    col3: "Ціна за шт.",
+    col4: "Ціна загалом"
 }
 
 const hocTable = Wraper => ({ cashFlow }) => {

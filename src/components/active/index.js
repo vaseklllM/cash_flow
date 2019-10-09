@@ -6,10 +6,8 @@ import CreateTable from "../CreateTable"
 import "./style.scss"
 
 function Active({ rows, activeFullPrice, bodyText }) {
-   
     return (
         <CreateTable
-            title='Активи'
             activeFullPrice={activeFullPrice}
             rows={rows}
             bodyText={bodyText}

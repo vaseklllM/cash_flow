@@ -9,16 +9,16 @@ import propTypes from "prop-types"
 import rowList from './rowList';
 
 const Body = ({ rows, text }) => {
-    const { name, col1, col2, col3 } = text
+    const { col1, col2, col3, col4 } = text
     return (
         <Paper className='activeTable'>
             <Table className='activeTable_table'>
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell>{name}</StyledTableCell>
-                        <StyledTableCell align='right'>{col1}</StyledTableCell>
+                        <StyledTableCell>{col1}</StyledTableCell>
                         <StyledTableCell align='right'>{col2}</StyledTableCell>
                         <StyledTableCell align='right'>{col3}</StyledTableCell>
+                        <StyledTableCell align='right'>{col4}</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>{rowList(rows)}</TableBody>
