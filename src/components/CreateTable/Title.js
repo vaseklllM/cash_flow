@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography"
 import FunctionsRoundedIcon from "@material-ui/icons/FunctionsRounded"
 import Box from "@material-ui/core/Box"
 
-const TableTitle = ({title, activeFullPrice}) => {
+const Title = ({title, activeFullPrice}) => {
     return (
         <Box display='flex' justifyContent='space-between' p={1} pb={0}>
             <Box p={0}>
@@ -25,4 +25,4 @@ const TableTitle = ({title, activeFullPrice}) => {
     )
 }
 
-export default TableTitle
+export default Title
