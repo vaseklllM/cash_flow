@@ -5,10 +5,10 @@ import propTypes from "prop-types"
 
 const CreateTable = ({ rows, bodyText, fullPrice }) => {
     return (
-        <div>
+        <>
             <Title title={bodyText.title} fullPrice={fullPrice} />
             <Body rows={rows} text={bodyText} />
-        </div>
+        </>
     )
 }
 

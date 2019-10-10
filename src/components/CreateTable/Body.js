@@ -9,13 +9,14 @@ import rowList from "./rowList"
 import "./style.scss"
 
 const Body = ({ rows, text }) => {
-    const { emptyArray } = text
+    const { emptyArray, collumn } = text
+    const colSpan = collumn.length
     return (
         <Paper className='activeTable'>
             <Table className='activeTable_table'>
                 <TableHead>
                     <TableRow>
-                        {text.collumn.map((item, index) => {
+                        {collumn.map((item, index) => {
                             if (index === 0)
                                 return (
                                     <StyledTableCell key={index}>
@@ -30,7 +31,7 @@ const Body = ({ rows, text }) => {
                         })}
                     </TableRow>
                 </TableHead>
-                <TableBody>{rowList(rows, emptyArray)}</TableBody>
+                <TableBody>{rowList(rows, emptyArray, colSpan)}</TableBody>
             </Table>
         </Paper>
     )

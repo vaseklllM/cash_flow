@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { getCashFlow } from "../../action"
 import { hocApp } from "../hoc"
 import ActiveTable from "../ActiveTable"
-import PasiveTable from '../PasiveTable';
+import PasiveTable from "../PasiveTable"
 
 function App() {
     return (

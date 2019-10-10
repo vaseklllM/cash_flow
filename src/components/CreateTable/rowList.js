@@ -4,11 +4,11 @@ import Row from "./Row"
 import StyledTableCell from "./StyledTableCell"
 import StyledTableRow from "./StyledTableRow"
 
-const rowList = (rows, emptyArray) => {
+const rowList = (rows, emptyArray, colSpan) => {
     if (rows === null) {
         return (
             <StyledTableRow>
-                <StyledTableCell component='th' scope='row' colSpan='4'>
+                <StyledTableCell component='th' scope='row' colSpan={colSpan}>
                     <Loader />
                 </StyledTableCell>
             </StyledTableRow>
@@ -16,7 +16,7 @@ const rowList = (rows, emptyArray) => {
     } else if (Array.isArray(rows) && rows.length === 0) {
         return (
             <StyledTableRow>
-                <StyledTableCell component='th' scope='row' colSpan='4'>
+                <StyledTableCell component='th' scope='row' colSpan={colSpan}>
                     {emptyArray}
                 </StyledTableCell>
             </StyledTableRow>
