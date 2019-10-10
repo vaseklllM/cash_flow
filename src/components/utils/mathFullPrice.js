@@ -1,9 +1,28 @@
 const mathFullPrice = rows => {
-    let fullPrice = 0
+    let valletArr = {}
     rows.forEach(element => {
-        const num = parseInt(element[element.length - 1])
-        fullPrice += num
+        const price = element[element.length - 1]
+        const numPrice = parseFloat(price)
+        const numValet = price.replace(/.+ /, "")
+        valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
     })
-    return `${fullPrice}$`
+    return createLine(valletArr)
 }
+
+const arrPushToValletArr = (arr, numValet, numPrice) => {
+    return {
+        ...arr,
+        [numValet]: arr[numValet] + numPrice || numPrice
+    }
+}
+const createLine = arr => {
+    if (Object.keys(arr).length > 0) {
+        let line = ""
+        for (let key in arr) {
+            line += `${arr[key]}${key} `
+        }
+        return line
+    }
+}
+
 export default mathFullPrice
