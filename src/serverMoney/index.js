@@ -5,7 +5,7 @@ export default class Money {
         this._createActive("Ice cream sandwich", 237, 9.0, 30, "day", "$"),
         this._createActive("Eclair", 262, 16.0, -50, "month", "$"),
         this._createActive("Cupcake", 305, 3.7, 0, "-", "Ƀ"),
-        this._createActive("Gingerbread", 356, 16.0, -14, "month", "$")
+        this._createActive("Gingerbread", 356, 5.0, -14, "month", "$")
     ]
 
     _createActive(

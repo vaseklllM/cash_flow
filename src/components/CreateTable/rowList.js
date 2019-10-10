@@ -1,10 +1,10 @@
 import React from "react"
 import Loader from "../loader"
-import Row from './Row';
-import StyledTableCell from './StyledTableCell';
-import StyledTableRow from './StyledTableRow';
+import Row from "./Row"
+import StyledTableCell from "./StyledTableCell"
+import StyledTableRow from "./StyledTableRow"
 
-const rowList = rows => {
+const rowList = (rows, emptyArray) => {
     if (rows === null) {
         return (
             <StyledTableRow>
@@ -17,12 +17,12 @@ const rowList = rows => {
         return (
             <StyledTableRow>
                 <StyledTableCell component='th' scope='row' colSpan='4'>
-                    Нет активов
+                    {emptyArray}
                 </StyledTableCell>
             </StyledTableRow>
         )
     } else if (Array.isArray(rows) && rows.length !== 0) {
-        return rows.map(row => <Row row={row} key={row.name} />)
+        return rows.map((row, index) => <Row row={row} key={index} />)
     }
 }
 

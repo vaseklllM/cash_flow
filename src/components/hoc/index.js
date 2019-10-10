@@ -1,4 +1,3 @@
-import hocActive from "./hocActive";
-import hocApp from "./hocApp";
+import hocApp from "./hocApp"
 
-export { hocActive, hocApp };
+export { hocApp }

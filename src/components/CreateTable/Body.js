@@ -5,44 +5,35 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import StyledTableCell from "./StyledTableCell"
-import propTypes from "prop-types"
-import rowList from './rowList';
+import rowList from "./rowList"
+import "./style.scss"
 
 const Body = ({ rows, text }) => {
-    const { col1, col2, col3, col4 } = text
+    const { emptyArray } = text
     return (
         <Paper className='activeTable'>
             <Table className='activeTable_table'>
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell>{col1}</StyledTableCell>
-                        <StyledTableCell align='right'>{col2}</StyledTableCell>
-                        <StyledTableCell align='right'>{col3}</StyledTableCell>
-                        <StyledTableCell align='right'>{col4}</StyledTableCell>
+                        {text.collumn.map((item, index) => {
+                            if (index === 0)
+                                return (
+                                    <StyledTableCell key={index}>
+                                        {item}
+                                    </StyledTableCell>
+                                )
+                            return (
+                                <StyledTableCell key={index} align='right'>
+                                    {item}
+                                </StyledTableCell>
+                            )
+                        })}
                     </TableRow>
                 </TableHead>
-                <TableBody>{rowList(rows)}</TableBody>
+                <TableBody>{rowList(rows, emptyArray)}</TableBody>
             </Table>
         </Paper>
     )
-}
-
-Body.propTypes = {
-    rows: propTypes.oneOfType([
-        propTypes.arrayOf(
-            propTypes.shape({
-                name: propTypes.string,
-                pcs: propTypes.number,
-                price: propTypes.number,
-                currency: propTypes.string,
-                paymentTime: propTypes.string,
-                income: propTypes.number
-            })
-        ),
-        propTypes.array,
-        propTypes.symbol
-    ]),
-    text: propTypes.objectOf(propTypes.string).isRequired
 }
 
 export default Body

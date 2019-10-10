@@ -3,19 +3,21 @@ import StyledTableCell from "./StyledTableCell"
 import StyledTableRow from "./StyledTableRow"
 
 const Row = ({ row }) => {
-    const { name, pcs, price, currency } = row
     return (
         <StyledTableRow>
-            <StyledTableCell component='th' scope='row'>
-                {name}
-            </StyledTableCell>
-            <StyledTableCell align='right'>{pcs} шт.</StyledTableCell>
-            <StyledTableCell align='right'>
-                {price} {currency}
-            </StyledTableCell>
-            <StyledTableCell align='right'>
-                {price * pcs} {currency}
-            </StyledTableCell>
+            {row.map((item, index) => {
+                if (index === 0)
+                    return (
+                        <StyledTableCell key={index} component='th' scope='row'>
+                            {item}
+                        </StyledTableCell>
+                    )
+                return (
+                    <StyledTableCell key={index} align='right'>
+                        {item}
+                    </StyledTableCell>
+                )
+            })}
         </StyledTableRow>
     )
 }
