@@ -8,33 +8,29 @@ import StyledTableCell from "./StyledTableCell"
 import rowList from "./rowList"
 import "./style.scss"
 
-const Body = ({ rows, text }) => {
-    const { emptyArray, collumn } = text
-    const colSpan = collumn.length
-    return (
-        <Paper className='activeTable'>
-            <Table className='activeTable_table'>
-                <TableHead>
-                    <TableRow>
-                        {collumn.map((item, index) => {
-                            if (index === 0)
-                                return (
-                                    <StyledTableCell key={index}>
-                                        {item}
-                                    </StyledTableCell>
-                                )
+const Body = ({ rows, text: { emptyArray, collumn } }) => (
+    <Paper className='activeTable'>
+        <Table>
+            <TableHead className='vasekTest'>
+                <TableRow>
+                    {collumn.map((item, index) => {
+                        if (index === 0)
                             return (
-                                <StyledTableCell key={index} align='right'>
+                                <StyledTableCell key={index}>
                                     {item}
                                 </StyledTableCell>
                             )
-                        })}
-                    </TableRow>
-                </TableHead>
-                <TableBody>{rowList(rows, emptyArray, colSpan)}</TableBody>
-            </Table>
-        </Paper>
-    )
-}
+                        return (
+                            <StyledTableCell key={index} align='right'>
+                                {item}
+                            </StyledTableCell>
+                        )
+                    })}
+                </TableRow>
+            </TableHead>
+            <TableBody>{rowList(rows, emptyArray, collumn.length)}</TableBody>
+        </Table>
+    </Paper>
+)
 
 export default Body

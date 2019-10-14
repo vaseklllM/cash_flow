@@ -3,14 +3,12 @@ import Title from "./Title"
 import Body from "./Body"
 import propTypes from "prop-types"
 
-const CreateTable = ({ rows, bodyText, fullPrice }) => {
-    return (
-        <>
-            <Title title={bodyText.title} fullPrice={fullPrice} />
-            <Body rows={rows} text={bodyText} />
-        </>
-    )
-}
+const CreateTable = ({ rows, bodyText, fullPrice }) => (
+    <>
+        <Title title={bodyText.title} fullPrice={fullPrice} />
+        <Body rows={rows} text={bodyText} />
+    </>
+)
 
 CreateTable.propTypes = {
     rows: propTypes.oneOfType([

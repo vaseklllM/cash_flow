@@ -1,8 +1,8 @@
-const mathFullPrice = rows => {
+const mathFullPrice = (rows, col) => {
     let valletArr = {}
     rows.forEach(element => {
-        const price = element[element.length - 1]
-        const numPrice = parseFloat(price)
+        const price = element[col]
+        const numPrice = parseFloat(price.replace(/[,]/g, ""))
         const numValet = price.replace(/.+ /, "")
         valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
     })
@@ -19,7 +19,7 @@ const createLine = arr => {
     if (Object.keys(arr).length > 0) {
         let line = ""
         for (let key in arr) {
-            line += `${arr[key]}${key} `
+            line += `${arr[key].toLocaleString("en-IN")} ${key} `
         }
         return line
     }

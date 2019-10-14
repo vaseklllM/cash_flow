@@ -4,5 +4,11 @@ const getCashFlow = cashFlow => {
         payload: cashFlow
     }
 }
+const getValletCourse = valletCourse => {
+    return {
+        type: "SET_VALLET_COURSE",
+        payload: valletCourse
+    }
+}
 
-export { getCashFlow }
+export { getCashFlow, getValletCourse }

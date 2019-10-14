@@ -3,6 +3,12 @@ import { connect } from "react-redux"
 import CreateTable from "../CreateTable"
 import { mathFullPrice } from "../utils"
 
+function PasiveTable({ cashFlow }) {
+    let rows = cashFlow ? createTableContent(cashFlow) : null
+    let fullPrice = rows ? mathFullPrice(rows, 3) : 0
+    return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
+}
+
 const bodyText = {
     title: "Пасиви",
     emptyArray: "Немає пасивів",
@@ -15,23 +21,13 @@ const createTableContent = cashFlow => {
         const { name, pcs, price, currency } = item
         return [
             name,
-            `${pcs} шт.`,
-            `${price} ${currency}`,
-            `${pcs * price} ${currency}`
+            `${pcs.toLocaleString("en-IN")} шт.`,
+            `${price.toLocaleString("en-IN")} ${currency}`,
+            `${(pcs * price).toLocaleString("en-IN")} ${currency}`
         ]
     })
 }
 
-function ActiveTable({ cashFlow }) {
-    let rows = null
-    let fullPrice = null
-    if (cashFlow) {
-        rows = createTableContent(cashFlow)
-        fullPrice = mathFullPrice(rows)
-    }
-    return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
-}
-
 const mapStateToProps = cashFlow => cashFlow
 
-export default connect(mapStateToProps)(ActiveTable)
+export default connect(mapStateToProps)(PasiveTable)

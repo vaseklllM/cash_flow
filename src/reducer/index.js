@@ -1,7 +1,8 @@
 import { createStore } from "redux"
 
 const cashFlowState = {
-    cashFlow: null
+    cashFlow: null,
+    valletCourse: null
 }
 
 const reducer = (state = cashFlowState, action) => {
@@ -10,6 +11,11 @@ const reducer = (state = cashFlowState, action) => {
             return {
                 ...state,
                 cashFlow: action.payload
+            }
+        case "SET_VALLET_COURSE":
+            return {
+                ...state,
+                valletCourse: action.payload
             }
         default:
             return {
