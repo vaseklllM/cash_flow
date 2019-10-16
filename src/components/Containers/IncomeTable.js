@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import CreateTable from "../CreateTable"
+import CreateTable from "../Creators/Table"
 import { mathFullPrice } from "../utils"
 
 function ActiveTable({ cashFlow }) {
@@ -10,19 +10,21 @@ function ActiveTable({ cashFlow }) {
 }
 
 const bodyText = {
-    title: "Витрати",
-    emptyArray: "Немає витрат",
-    collumn: ["Назва", "Витрати/міс."]
+    title: "Доходи",
+    emptyArray: "Немає Доходів",
+    collumn: ["Назва", "Доход/міс."]
 }
 
 const createTableContent = cashFlow => {
-    const obj = cashFlow.filter(item => item.income < 0)
+    const obj = cashFlow.filter(item => item.income > 0)
     return obj.map(item => {
         const { name, income, currency } = item
         return [name, `${income.toLocaleString("en-IN")} ${currency}`]
     })
 }
 
-const mapStateToProps = cashFlow => cashFlow
+const mapStateToProps = ({ serverMoney }) => ({
+    cashFlow: serverMoney.cashFlow
+})
 
 export default connect(mapStateToProps)(ActiveTable)

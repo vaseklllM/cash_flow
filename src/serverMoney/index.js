@@ -23,7 +23,7 @@ export default class Money {
         }
     }
 
-    getCashFlow = new Promise(resolve => {
+    getCashFlow = new Promise(resolve => { 
         setTimeout(() => {
             resolve(this._cashFlow)
         }, this._time)
@@ -38,12 +38,11 @@ export default class Money {
                     if (item.cc === "USD") {
                         this._valletCourse = {
                             ...this._valletCourse,
-                            usd_uah: item.rate
+                            usd_uah: parseFloat(item.rate.toFixed(2))
                         }
                     }
                 })
-                console.log(this._valletCourse)
-                resolve(result)
+                resolve(this._valletCourse)
             })
     })
 }

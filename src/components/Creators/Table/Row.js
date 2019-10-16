@@ -1,6 +1,5 @@
 import React from "react"
-import StyledTableCell from "./StyledTableCell"
-import StyledTableRow from "./StyledTableRow"
+import { StyledTableCell, StyledTableRow } from "./utils"
 
 const Row = ({ row }) => (
     <StyledTableRow>

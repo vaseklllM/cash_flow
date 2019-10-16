@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import CreateTable from "../CreateTable"
+import CreateTable from "../Creators/Table"
 import { mathFullPrice } from "../utils"
 
 function ActiveTable({ cashFlow }) {
@@ -28,6 +28,8 @@ const createTableContent = cashFlow => {
     })
 }
 
-const mapStateToProps = cashFlow => cashFlow
+const mapStateToProps = ({ serverMoney }) => ({
+    cashFlow: serverMoney.cashFlow
+})
 
 export default connect(mapStateToProps)(ActiveTable)

@@ -1,10 +1,6 @@
 import React from "react"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-import StyledTableCell from "./StyledTableCell"
+import { Table, TableBody, TableHead, TableRow, Paper } from "@material-ui/core"
+import { StyledTableCell } from "./utils"
 import rowList from "./rowList"
 import "./style.scss"
 

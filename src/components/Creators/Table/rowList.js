@@ -1,8 +1,7 @@
 import React from "react"
-import Loader from "../loader"
+import { Loader } from "../../pages"
 import Row from "./Row"
-import StyledTableCell from "./StyledTableCell"
-import StyledTableRow from "./StyledTableRow"
+import { StyledTableCell, StyledTableRow } from "./utils"
 
 const rowList = (rows, emptyArray, colSpan) => {
     if (rows === null) {

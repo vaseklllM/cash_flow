@@ -1,18 +1,18 @@
-import { createStore } from "redux"
+import { SET_CASH_FLOW, SET_VALLET_COURSE } from "./action"
 
 const cashFlowState = {
     cashFlow: null,
     valletCourse: null
 }
 
-const reducer = (state = cashFlowState, action) => {
+const serverMoneyReducer = (state = cashFlowState, action) => {
     switch (action.type) {
-        case "SET_CASH_FLOW":
+        case SET_CASH_FLOW:
             return {
                 ...state,
                 cashFlow: action.payload
             }
-        case "SET_VALLET_COURSE":
+        case SET_VALLET_COURSE:
             return {
                 ...state,
                 valletCourse: action.payload
@@ -24,5 +24,4 @@ const reducer = (state = cashFlowState, action) => {
     }
 }
 
-const store = createStore(reducer)
-export default store
+export default serverMoneyReducer
