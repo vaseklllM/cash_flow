@@ -2,7 +2,6 @@ import React from "react"
 import { Table, TableBody, TableHead, TableRow, Paper } from "@material-ui/core"
 import { StyledTableCell } from "./utils"
 import rowList from "./rowList"
-import "./style.scss"
 
 const Body = ({ rows, text: { emptyArray, collumn } }) => (
     <Paper className='activeTable'>
