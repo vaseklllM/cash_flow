@@ -15,7 +15,8 @@ const NavBarContainer = ({ valletCourse, btc_uah }) => {
 }
 
 NavBar.propTypes = {
-    valletCourse: propTypes.oneOfType([propTypes.symbol, propTypes.object])
+    valletCourse: propTypes.oneOfType([propTypes.symbol, propTypes.object]),
+    btc_uah: propTypes.oneOfType([propTypes.symbol, propTypes.number])
 }
 
 const useStyles = makeStyles(theme => ({

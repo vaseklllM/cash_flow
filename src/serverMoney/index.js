@@ -65,7 +65,7 @@ export default class Money {
             fetch(this._btc_uah_url)
                 .then(res => res.json())
                 .then(res => {
-                    resolve(res.ticker.low)
+                    resolve(parseFloat(res.ticker.low))
                 })
         })
     }

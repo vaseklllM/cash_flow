@@ -5,6 +5,7 @@ import { Box, Grid, Container } from "@material-ui/core"
 import "./App.scss"
 
 const App = () => {
+    console.log(window);
     return (
         <>
             <NavBar />
