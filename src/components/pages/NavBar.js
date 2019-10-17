@@ -3,12 +3,10 @@ import { AppBar, Toolbar, InputBase, Typography } from "@material-ui/core"
 import SearchIcon from "@material-ui/icons/Search"
 
 function NavBar({ valletCourse, useStyles, btc_uah }) {
-    let blockValute = () => (
-        <Typography className={classes.title} variant='h6' noWrap></Typography>
-    )
+    let blockValute = () => <></>
     if (valletCourse) {
         blockValute = () => (
-            <Typography className={classes.title} variant='h6' noWrap>
+            <>
                 <span>
                     {(() => {
                         if (valletCourse.USD) return `$ ${valletCourse.USD}`
@@ -32,7 +30,7 @@ function NavBar({ valletCourse, useStyles, btc_uah }) {
                         if (btc_uah) return `₿ ${btc_uah}`
                     })()}
                 </span>
-            </Typography>
+            </>
         )
     }
     const classes = useStyles()
@@ -41,7 +39,10 @@ function NavBar({ valletCourse, useStyles, btc_uah }) {
             <AppBar position='static'>
                 <div className={classes.root} />
                 <Toolbar>
-                    {blockValute()}
+                    <Typography className={classes.title} variant='h6' noWrap>
+                        {blockValute()}
+                    </Typography>
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />

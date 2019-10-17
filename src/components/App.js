@@ -1,14 +1,20 @@
 import React from "react"
-import { ActiveTable, PasiveTable, CostsTable, IncomeTable } from "./Containers"
+import {
+    ActiveTable,
+    PasiveTable,
+    CostsTable,
+    IncomeTable,
+    ValletCourse
+} from "./Containers"
 import { NavBar } from "./Containers"
-import { Box, Grid, Container, Hidden } from "@material-ui/core"
+import { Box, Grid, Container } from "@material-ui/core"
 import "./App.scss"
 
 const App = () => {
-    console.log(window)
     return (
         <>
             <NavBar />
+            <ValletCourse />
             <Container maxWidth='xl'>
                 <Box mt={2}>
                     <Grid container spacing={3}>
