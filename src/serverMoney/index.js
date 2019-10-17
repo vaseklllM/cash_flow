@@ -1,6 +1,7 @@
 export default class Money {
     _valletUrl = (valletCode, date) =>
         `https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${valletCode}&date=${date}&json`
+    _btc_uah_url = "https://kuna.io/api/v2/tickers/btcuah"
     _time = 700
     _cashFlow = [
         this._createActive("Акции Гугл", 159, 6.0, 10, "$", "USD"),
@@ -30,27 +31,42 @@ export default class Money {
         }
     }
 
-    getCashFlow = new Promise(resolve => {
-        setTimeout(() => {
-            resolve(this._cashFlow)
-        }, this._time)
-    })
-    getValletCourse = new Promise(resolve => {
-        const vallutCC = ["EUR", "USD", "RUB"]
-        const date = new Date()
-        const todaysDate = `${date.getFullYear()}${date.getMonth() +
-            1}${date.getDate()}`
-        let vallets = {}
-        vallutCC.forEach((item, index) => {
-            fetch(this._valletUrl(item, todaysDate))
-                .then(result => result.json())
-                .then(result => {
-                    vallets = {
-                        ...vallets,
-                        [result[0].cc]: parseFloat(result[0].rate.toFixed(2))
-                    }
-                    if (index === vallutCC.length - 1) resolve(vallets)
+    getCashFlow = () => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(this._cashFlow)
+            }, this._time)
+        })
+    }
+    getValletCourse = () => {
+        return new Promise(resolve => {
+            const vallutCC = ["EUR", "USD", "RUB"]
+            const date = new Date()
+            const todaysDate = `${date.getFullYear()}${date.getMonth() +
+                1}${date.getDate()}`
+            let vallets = {}
+            vallutCC.forEach((item, index) => {
+                fetch(this._valletUrl(item, todaysDate))
+                    .then(result => result.json())
+                    .then(result => {
+                        vallets = {
+                            ...vallets,
+                            [result[0].cc]: parseFloat(
+                                result[0].rate.toFixed(2)
+                            )
+                        }
+                        if (index === vallutCC.length - 1) resolve(vallets)
+                    })
+            })
+        })
+    }
+    getBtcVallet = () => {
+        return new Promise(resolve => {
+            fetch(this._btc_uah_url)
+                .then(res => res.json())
+                .then(res => {
+                    resolve(res.ticker.low)
                 })
         })
-    })
+    }
 }

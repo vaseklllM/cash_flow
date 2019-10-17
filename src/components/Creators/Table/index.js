@@ -21,7 +21,7 @@ CreateTable.propTypes = {
         collumn: propTypes.array,
         emptyArray: propTypes.string
     }).isRequired,
-    fullPrice: propTypes.oneOfType([propTypes.number, propTypes.string])
+    fullPrice: propTypes.array
 }
 
 export default CreateTable

@@ -5,7 +5,7 @@ import { mathFullPrice } from "../utils"
 
 function ActiveTable({ cashFlow }) {
     let rows = cashFlow ? createTableContent(cashFlow) : null
-    let fullPrice = rows ? mathFullPrice(rows, 1) : 0
+    let fullPrice = rows ? mathFullPrice(rows, 1) : []
     return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
 }
 

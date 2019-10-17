@@ -6,7 +6,8 @@ const mathFullPrice = (rows, col) => {
         const numValet = price.replace(/.+ /, "")
         valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
     })
-    return createLine(valletArr)
+    valletArr = createArray(valletArr)
+    return valletArr
 }
 
 const arrPushToValletArr = (arr, numValet, numPrice) => {
@@ -15,14 +16,12 @@ const arrPushToValletArr = (arr, numValet, numPrice) => {
         [numValet]: arr[numValet] + numPrice || numPrice
     }
 }
-const createLine = arr => {
-    if (Object.keys(arr).length > 0) {
-        let line = ""
-        for (let key in arr) {
-            line += `${arr[key].toLocaleString("en-IN")} ${key} `
-        }
-        return line
+const createArray = valletArr => {
+    let arr = []
+    for (let key in valletArr) {
+        arr.push({ summ: valletArr[key], rate: key })
     }
+    return arr
 }
 
 export default mathFullPrice

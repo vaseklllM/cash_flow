@@ -2,7 +2,7 @@ import React from "react"
 import { AppBar, Toolbar, InputBase, Typography } from "@material-ui/core"
 import SearchIcon from "@material-ui/icons/Search"
 
-function NavBar({ valletCourse, useStyles }) {
+function NavBar({ valletCourse, useStyles, btc_uah }) {
     const classes = useStyles()
     return (
         <div className={classes.root}>
@@ -25,6 +25,12 @@ function NavBar({ valletCourse, useStyles }) {
                         <span>
                             {(() => {
                                 if (valletCourse) return `₽ ${valletCourse.RUB}`
+                            })()}
+                        </span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>
+                            {(() => {
+                                if (valletCourse) return `₿ ${btc_uah}`
                             })()}
                         </span>
                     </Typography>

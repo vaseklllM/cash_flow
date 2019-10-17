@@ -4,8 +4,14 @@ import { connect } from "react-redux"
 import { NavBar } from "../pages"
 import propTypes from "prop-types"
 
-const NavBarContainer = props => {
-    return <NavBar valletCourse={props.valletCourse} useStyles={useStyles} />
+const NavBarContainer = ({ valletCourse, btc_uah }) => {
+    return (
+        <NavBar
+            valletCourse={valletCourse}
+            useStyles={useStyles}
+            btc_uah={btc_uah}
+        />
+    )
 }
 
 NavBar.propTypes = {
@@ -63,7 +69,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const mapStateToProps = ({ serverMoney }) => ({
-    valletCourse: serverMoney.valletCourse
+    valletCourse: serverMoney.valletCourse,
+    btc_uah: serverMoney.btc_uah
 })
 
 export default connect(mapStateToProps)(NavBarContainer)

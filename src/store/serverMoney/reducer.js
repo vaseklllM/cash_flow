@@ -1,8 +1,9 @@
-import { SET_CASH_FLOW, SET_VALLET_COURSE } from "./action"
+import { SET_CASH_FLOW, SET_VALLET_COURSE, SET_BTC_COURSE } from "./action"
 
 const cashFlowState = {
     cashFlow: null,
-    valletCourse: null
+    valletCourse: null,
+    btc_uah: null
 }
 
 const serverMoneyReducer = (state = cashFlowState, action) => {
@@ -16,6 +17,11 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             return {
                 ...state,
                 valletCourse: action.payload
+            }
+        case SET_BTC_COURSE:
+            return {
+                ...state,
+                btc_uah: action.payload
             }
         default:
             return {
