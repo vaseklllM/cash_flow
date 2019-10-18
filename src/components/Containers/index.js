@@ -4,9 +4,8 @@ import PasiveTable from "./PasiveTable"
 import CostsTable from "./CostsTable"
 import IncomeTable from "./IncomeTable"
 import NavBar from "./NavBar"
-import ValletCourse from "./ValletCourse"
-import FullTable from './FullTable';
-
+import FullTable from "./FullTable"
+import Search from "./Search"
 
 export {
     App,
@@ -15,6 +14,6 @@ export {
     CostsTable,
     IncomeTable,
     NavBar,
-    ValletCourse,
-    FullTable
+    FullTable,
+    Search
 }

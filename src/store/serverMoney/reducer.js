@@ -2,7 +2,7 @@ import { SET_CASH_FLOW, SET_VALLET_COURSE } from "./action"
 
 const cashFlowState = {
     cashFlow: null,
-    vallets: {}
+    vallets: []
 }
 
 const serverMoneyReducer = (state = cashFlowState, action) => {

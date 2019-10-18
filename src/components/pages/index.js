@@ -1,7 +1,7 @@
 import App from "../App"
 import Loader from "./Loader"
 import NavBar from "./NavBar"
-import ValletCourse from "./ValletCourse"
 import LoaderCircle from "./loaderCircle"
+import Search from "./Search"
 
-export { App, Loader, NavBar, ValletCourse, LoaderCircle }
+export { App, Loader, NavBar, LoaderCircle, Search }

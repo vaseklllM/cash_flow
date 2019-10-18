@@ -1,10 +1,10 @@
 import React from "react"
-import { AppBar, Toolbar, InputBase, Typography } from "@material-ui/core"
-import SearchIcon from "@material-ui/icons/Search"
+import { AppBar, Toolbar, Typography, Hidden } from "@material-ui/core"
 import LoaderCircle from "./loaderCircle"
 import "./NavBar.scss"
+import { Search } from "../Containers"
 
-function NavBar({ vallets, useStyles }) {
+function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
     if (Object.keys(vallets).length !== 0) {
         blockValute = () =>
@@ -17,29 +17,17 @@ function NavBar({ vallets, useStyles }) {
                 )
             })
     }
-    const classes = useStyles()
     return (
-        <div className={classes.root}>
+        <div>
             <AppBar position='static'>
-                <div className={classes.root} />
+                <div />
                 <Toolbar>
-                    <Typography className={classes.title} variant='h6' noWrap>
-                        {blockValute()}
+                    <Typography className='title' variant='h6' noWrap>
+                        <div>{blockValute()}</div>
                     </Typography>
-
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder='Search…'
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput
-                            }}
-                            inputProps={{ "aria-label": "search" }}
-                        />
-                    </div>
+                    <Hidden lgDown>
+                        <Search />
+                    </Hidden>
                 </Toolbar>
             </AppBar>
         </div>

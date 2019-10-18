@@ -4,7 +4,6 @@ import {
     PasiveTable,
     CostsTable,
     IncomeTable,
-    ValletCourse,
     NavBar,
     FullTable
 } from "./Containers"
@@ -15,7 +14,6 @@ const App = () => {
     return (
         <>
             <NavBar />
-            <ValletCourse />
             <Container maxWidth='xl'>
                 <Grid container justify='space-between'>
                     <Grid item container spacing={3} xl={8}>
