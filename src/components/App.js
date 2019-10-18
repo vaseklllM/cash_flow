@@ -4,9 +4,10 @@ import {
     PasiveTable,
     CostsTable,
     IncomeTable,
-    ValletCourse
+    ValletCourse,
+    NavBar,
+    FullTable
 } from "./Containers"
-import { NavBar } from "./Containers"
 import { Grid, Container, Hidden } from "@material-ui/core"
 import "./App.scss"
 
@@ -36,7 +37,7 @@ const App = () => {
                     </Hidden>
                     <Grid item xs={12} xl={4}>
                         <Grid>
-                            <ActiveTable /> {/* вся таблиця */}
+                            <FullTable />
                         </Grid>
                     </Grid>
                 </Grid>

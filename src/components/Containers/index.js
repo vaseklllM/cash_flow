@@ -5,6 +5,8 @@ import CostsTable from "./CostsTable"
 import IncomeTable from "./IncomeTable"
 import NavBar from "./NavBar"
 import ValletCourse from "./ValletCourse"
+import FullTable from './FullTable';
+
 
 export {
     App,
@@ -13,5 +15,6 @@ export {
     CostsTable,
     IncomeTable,
     NavBar,
-    ValletCourse
+    ValletCourse,
+    FullTable
 }

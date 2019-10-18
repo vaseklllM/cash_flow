@@ -1,37 +1,21 @@
 import React from "react"
 import { AppBar, Toolbar, InputBase, Typography } from "@material-ui/core"
 import SearchIcon from "@material-ui/icons/Search"
+import LoaderCircle from "./loaderCircle"
+import "./NavBar.scss"
 
-function NavBar({ valletCourse, useStyles, btc_uah }) {
-    let blockValute = () => <></>
-    if (valletCourse) {
-        blockValute = () => (
-            <>
-                <span>
-                    {(() => {
-                        if (valletCourse.USD) return `$ ${valletCourse.USD}`
-                    })()}
-                </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>
-                    {(() => {
-                        if (valletCourse.EUR) return `€ ${valletCourse.EUR}`
-                    })()}
-                </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>
-                    {(() => {
-                        if (valletCourse.RUB) return `₽ ${valletCourse.RUB}`
-                    })()}
-                </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>
-                    {(() => {
-                        if (btc_uah) return `₿ ${btc_uah}`
-                    })()}
-                </span>
-            </>
-        )
+function NavBar({ vallets, useStyles }) {
+    let blockValute = () => <LoaderCircle />
+    if (Object.keys(vallets).length !== 0) {
+        blockValute = () =>
+            vallets.map((item, index) => {
+                return (
+                    <span key={index} className='circle'>
+                        {`${item.sumbol} ${item.rate}`}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                )
+            })
     }
     const classes = useStyles()
     return (

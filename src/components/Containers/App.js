@@ -1,41 +1,28 @@
 import React, { Component } from "react"
 import serverMoney from "../../serverMoney"
 import { connect } from "react-redux"
-import { getCashFlow, getValletCourse, getBtcCourse } from "../../store/serverMoney/action"
+import { getCashFlow, getVallet } from "../../store/serverMoney/action"
 import { App } from "../pages"
 
 class AppContainer extends Component {
     componentDidMount() {
         const server = new serverMoney()
         server.getCashFlow().then(result => this.props.getCashFlow(result))
-        server.getValletCourse().then(result =>
-            this.props.getValletCourse(result)
-        )
-        server.getBtcVallet().then(res=>{
-            this.props.getBtcCourse(res);
-        })
+        server.getVallet().then(result => this.props.getVallet(result))
     }
     render() {
         return <App />
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        valletCourse: state.serverMoney.valletCourse
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         getCashFlow: cashFlow => dispatch(getCashFlow(cashFlow)),
-        getValletCourse: valletCourse =>
-            dispatch(getValletCourse(valletCourse)),
-        getBtcCourse: btcCourse => dispatch(getBtcCourse(btcCourse))
+        getVallet: valletCourse => dispatch(getVallet(valletCourse))
     }
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(AppContainer)

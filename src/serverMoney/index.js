@@ -38,35 +38,52 @@ export default class Money {
             }, this._time)
         })
     }
-    getValletCourse = () => {
+    _getValletCourse = () => {
         return new Promise(resolve => {
+            const sumbol = { EUR: "€", USD: "$", RUB: "₽" }
             const vallutCC = ["EUR", "USD", "RUB"]
             const date = new Date()
             const todaysDate = `${date.getFullYear()}${date.getMonth() +
                 1}${date.getDate()}`
-            let vallets = {}
+            let vallets = []
             vallutCC.forEach((item, index) => {
                 fetch(this._valletUrl(item, todaysDate))
                     .then(result => result.json())
                     .then(result => {
-                        vallets = {
-                            ...vallets,
-                            [result[0].cc]: parseFloat(
-                                result[0].rate.toFixed(2)
-                            )
+                        const arr = {
+                            sumbol: sumbol[result[0].cc],
+                            cc: result[0].cc,
+                            rate: parseFloat(result[0].rate.toFixed(2))
                         }
+                        vallets.push(arr)
                         if (index === vallutCC.length - 1) resolve(vallets)
                     })
             })
         })
     }
-    getBtcVallet = () => {
+    _getBtcVallet = () => {
         return new Promise(resolve => {
             fetch(this._btc_uah_url)
                 .then(res => res.json())
                 .then(res => {
-                    resolve(parseFloat(res.ticker.low))
+                    const arr = {
+                        sumbol: "₿",
+                        cc: "BTC",
+                        rate: parseFloat(res.ticker.low)
+                    }
+                    resolve(arr)
                 })
+        })
+    }
+    getVallet() {
+        return new Promise((resolve, regect)=>{
+            Promise.all([this._getValletCourse(), this._getBtcVallet()]).then(
+                res => {
+                    let arr = res[0]
+                    arr.push(res[1])
+                    resolve(arr)
+                }
+            )
         })
     }
 }

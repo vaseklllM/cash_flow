@@ -3,8 +3,8 @@ import { Table, TableBody, TableHead, TableRow, Paper } from "@material-ui/core"
 import { StyledTableCell } from "./utils"
 import rowList from "./rowList"
 
-const Body = ({ rows, text: { emptyArray, collumn } }) => (
-    <Paper className='activeTable'>
+const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt }) => (
+    <Paper className='activeTable' style={{ maxHeight: maxHeignt || "400px" }}>
         <Table>
             <TableHead className='vasekTest'>
                 <TableRow>

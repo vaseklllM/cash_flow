@@ -1,0 +1,14 @@
+.circle {
+    display: -webkit-inline-box;
+
+    div {
+        width: 20px;
+        height: 20px;
+
+        div {
+            width: 20px !important;
+            height: 20px !important;
+            margin: 0;
+        }
+    }
+}

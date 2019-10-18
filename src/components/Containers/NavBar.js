@@ -2,22 +2,16 @@ import React from "react"
 import { fade, makeStyles } from "@material-ui/core/styles"
 import { connect } from "react-redux"
 import { NavBar } from "../pages"
-import propTypes from "prop-types"
+// import propTypes from "prop-types"
 
-const NavBarContainer = ({ valletCourse, btc_uah }) => {
-    return (
-        <NavBar
-            valletCourse={valletCourse}
-            useStyles={useStyles}
-            btc_uah={btc_uah}
-        />
-    )
+const NavBarContainer = ({ vallets, btc_uah }) => {
+    return <NavBar vallets={vallets} useStyles={useStyles} btc_uah={btc_uah} />
 }
 
-NavBar.propTypes = {
-    valletCourse: propTypes.oneOfType([propTypes.symbol, propTypes.object]),
-    btc_uah: propTypes.oneOfType([propTypes.symbol, propTypes.number])
-}
+// NavBar.propTypes = {
+//     valletCourse: propTypes.oneOfType([propTypes.symbol, propTypes.object]),
+//     btc_uah: propTypes.oneOfType([propTypes.symbol, propTypes.number])
+// }
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -70,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const mapStateToProps = ({ serverMoney }) => ({
-    valletCourse: serverMoney.valletCourse,
+    vallets: serverMoney.vallets,
     btc_uah: serverMoney.btc_uah
 })
 
