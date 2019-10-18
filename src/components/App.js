@@ -7,7 +7,7 @@ import {
     ValletCourse
 } from "./Containers"
 import { NavBar } from "./Containers"
-import { Box, Grid, Container } from "@material-ui/core"
+import { Grid, Container, Hidden } from "@material-ui/core"
 import "./App.scss"
 
 const App = () => {
@@ -16,29 +16,33 @@ const App = () => {
             <NavBar />
             <ValletCourse />
             <Container maxWidth='xl'>
-                <Box mt={2}>
-                    <Grid container spacing={3}>
-                        <Grid item container spacing={3} xl={8}>
-                            <Grid item xs={12} md={6}>
-                                <IncomeTable />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <CostsTable />
-                            </Grid>
-                            <Grid item xs={12} md={12} lg={6}>
-                                <ActiveTable />
-                            </Grid>
-                            <Grid item xs={12} md={12} lg={6}>
-                                <PasiveTable />
-                            </Grid>
+                <Grid container justify='space-between'>
+                    <Grid item container spacing={3} xl={8}>
+                        <Grid item xs={12} md={6}>
+                            <IncomeTable />
                         </Grid>
-                        <Grid item xs={12} xl={4}>
-                            <Grid>
-                                <ActiveTable /> {/* вся таблиця */}
-                            </Grid>
+                        <Grid item xs={12} md={6}>
+                            <CostsTable />
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={6}>
+                            <ActiveTable />
+                        </Grid>
+                        <Grid item xs={12} md={12} lg={6}>
+                            <PasiveTable />
                         </Grid>
                     </Grid>
-                </Box>
+                    <Hidden lgDown>
+                        <div className='separator-vertical'></div>
+                    </Hidden>
+                    <Grid item xs={12} xl={4}>
+                        <Grid>
+                            <ActiveTable /> {/* вся таблиця */}
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Hidden lgDown>
+                    <div className='separator-horizontal'></div>
+                </Hidden>
             </Container>
         </>
     )

@@ -1,5 +1,20 @@
-@import url('./Creators/Table/table.scss'); 
+@import url('./Creators/Table/table.scss');
 
 body {
     margin: 0px;
+}
+.separator {
+    &-vertical {
+        width: 1px;
+        box-sizing: border-box;
+        margin-top: 20px;
+        background-color: rgba(0, 0, 0, 0.30);
+    }
+
+    &-horizontal {
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.30);
+        margin-top: 20px;
+        box-sizing: border-box;
+    }
 }
