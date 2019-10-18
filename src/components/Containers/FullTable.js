@@ -12,7 +12,6 @@ function FullTable({ cashFlow }) {
             bodyText={bodyText}
             fullPrice={fullPrice}
             maxHeignt='900px'
-            fullTable={true}
         />
     )
 }

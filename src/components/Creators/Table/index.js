@@ -3,7 +3,7 @@ import Title from "./Title"
 import Body from "./Body"
 import propTypes from "prop-types"
 
-const CreateTable = ({ rows, bodyText, fullPrice, maxHeignt, fullTable }) => (
+const CreateTable = ({ rows, bodyText, fullPrice, maxHeignt }) => (
     <>
         <Title title={bodyText.title} fullPrice={fullPrice} />
         <Body rows={rows} text={bodyText} maxHeignt={maxHeignt} />
