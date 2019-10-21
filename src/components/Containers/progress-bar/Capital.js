@@ -11,7 +11,9 @@ const ProgressBarCapital = () => {
             "en-IN"
         )} грн.`
     }
-    return <ProgressBar width={14} title={title} />
+    return (
+        <ProgressBar width={((num1 / num2) * 100).toFixed(1)} title={title} />
+    )
 }
 
 export default ProgressBarCapital

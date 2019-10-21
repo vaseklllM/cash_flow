@@ -1,16 +1,30 @@
 import React from "react"
 import { ProgressBar } from "../../pages"
+import { connect } from "react-redux"
+import { getIncome } from "../../utils"
 
-const incomeToCosts = () => {
-    const num1 = 640
+const incomeToCosts = ({ cashFlow, vallets }) => {
+    const fullIncome = getIncome(cashFlow, vallets)
     const num2 = 6000
     const title = {
         left: "Відношення витрат до доходів в грн.",
-        right: `${num1.toLocaleString("en-IN")} грн. / ${num2.toLocaleString(
+        right: `${fullIncome.toLocaleString(
             "en-IN"
-        )} грн.`
+        )} грн. / ${num2.toLocaleString("en-IN")} грн.`
     }
-    return <ProgressBar width={30} title={title} />
+    return (
+        <ProgressBar
+            width={((fullIncome / num2) * 100).toFixed(1)}
+            title={title}
+        />
+    )
 }
 
-export default incomeToCosts
+const mapStateToProps = ({ serverMoney }) => {
+    return {
+        cashFlow: serverMoney.cashFlow,
+        vallets: serverMoney.vallets
+    }
+}
+
+export default connect(mapStateToProps)(incomeToCosts)

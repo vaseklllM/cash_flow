@@ -1,2 +1,3 @@
 import mathFullPrice from "./mathFullPrice"
-export { mathFullPrice }
+import getIncome from './getIncome';
+export { mathFullPrice, getIncome }
