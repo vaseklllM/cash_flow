@@ -1,16 +1,17 @@
 import React from "react"
 import { ProgressBar } from "../../pages"
 import { connect } from "react-redux"
-import { getIncome } from "../../utils"
+import { getIncome, getCosts } from "../../utils"
 
 const incomeToCosts = ({ cashFlow, vallets }) => {
     const fullIncome = getIncome(cashFlow, vallets)
-    const num2 = 6000
+    const fullCosts = getCosts(cashFlow, vallets) < 0 ? getCosts(cashFlow, vallets) * -1 : getCosts(cashFlow, vallets)
+    const num2 = fullCosts === 0 ? 1 : fullCosts
     const title = {
         left: "Відношення витрат до доходів в грн.",
         right: `${fullIncome.toLocaleString(
             "en-IN"
-        )} грн. / ${num2.toLocaleString("en-IN")} грн.`
+        )} грн. / ${num2.toLocaleString("ru-RU")} грн.`
     }
     return (
         <ProgressBar

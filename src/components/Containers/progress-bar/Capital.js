@@ -7,7 +7,7 @@ const ProgressBarCapital = () => {
 
     const title = {
         left: "Капитал в грн.",
-        right: `${num1.toLocaleString("en-IN")} грн. / ${num2.toLocaleString(
+        right: `${num1.toLocaleString("ru-RU")} грн. / ${num2.toLocaleString(
             "en-IN"
         )} грн.`
     }

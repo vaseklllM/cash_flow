@@ -42,6 +42,7 @@
         &-makered {
             background-color: rgb(63, 81, 181);
             mix-blend-mode: screen;
+            transition: width 0.5s ease-in-out;
             width: 100%;
             z-index: 4;
         }

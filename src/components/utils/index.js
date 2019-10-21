@@ -1,3 +1,4 @@
 import mathFullPrice from "./mathFullPrice"
-import getIncome from './getIncome';
-export { mathFullPrice, getIncome }
+import getIncome from "./getIncome"
+import getCosts from "./getCosts"
+export { mathFullPrice, getIncome, getCosts }

@@ -22,7 +22,10 @@ const ProgressBar = ({ width, title }) => {
                     className='ProgressBar-body-blackbg'
                     style={{ width: width ? `${width}%` : "0%" }}
                 ></div>
-                <div className='ProgressBar-body-makered'></div>
+                <div
+                    className='ProgressBar-body-makered'
+                    style={{ width: width ? `${width}%` : "0%" }}
+                ></div>
                 <span>{width ? `${width}%` : "0%"}</span>
             </div>
         </div>

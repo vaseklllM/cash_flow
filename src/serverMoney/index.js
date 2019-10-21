@@ -7,8 +7,8 @@ export default class Money {
         this._createActive("Акции Гугл", 159, 6.0, 10, "$", "USD"),
         this._createActive("Облигации", 237, 9.0, 70, "грн.", "UAH"),
         this._createActive("Загальні витрати", 1, 0, -4000, "грн.", "UAH"),
-        this._createActive("ICO DEEX", 2, 0.3, 0, "Ƀ", "BTC"),
-        this._createActive("EXXA+", 1, 0.987, 0, "Ƀ", "BTC"),
+        this._createActive("ICO DEEX", 2, 0.3, 0, "₿", "BTC"),
+        this._createActive("EXXA+", 1, 0.987, 0, "₿", "BTC"),
         this._createActive("live stars", 1700, 0.12, 5, "$", "USD"),
         this._createActive("Учоба", 1, 60000, -1667, "грн.", "UAH")
     ]
