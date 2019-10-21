@@ -31,6 +31,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow-x: hidden; // причина бага при загрузки
         div {
             position: absolute;
             left: 0;
@@ -38,13 +39,19 @@
             height: 25px;
             border-radius: 30px;
         }
+        &-makered {
+            background-color: rgb(63, 81, 181);
+            mix-blend-mode: screen;
+            width: 100%;
+            z-index: 4;
+        }
         &-whitebg {
             background: #fff;
             width: 100%;
             z-index: 1;
         }
         &-blackbg {
-            transition: width 0.2s ease-in-out;
+            transition: width 0.5s ease-in-out;
             background: black;
             width: 0%;
             z-index: 2;
@@ -58,12 +65,6 @@
             mix-blend-mode: difference;
             color: white;
             z-index: 3;
-        }
-        &-makered {
-            background-color: rgb(63, 81, 181);
-            mix-blend-mode: screen;
-            width: 100%;
-            z-index: 4;
         }
     }
 }
