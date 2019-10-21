@@ -4,6 +4,7 @@ import { StyledTableCell, StyledTableRow } from "./utils"
 const Row = ({ row }) => (
     <StyledTableRow>
         {row.map((item, index) => {
+            
             if (index === 0)
                 return (
                     <StyledTableCell key={index} component='th' scope='row'>

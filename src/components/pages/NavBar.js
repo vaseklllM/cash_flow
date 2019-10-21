@@ -1,7 +1,6 @@
 import React from "react"
 import { AppBar, Toolbar, Typography, Hidden } from "@material-ui/core"
 import LoaderCircle from "./loaderCircle"
-import "./NavBar.scss"
 import { Search } from "../Containers"
 
 function NavBar({ vallets }) {

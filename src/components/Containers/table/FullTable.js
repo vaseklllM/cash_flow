@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import CreateTable from "../Creators/Table"
-import { mathFullPrice } from "../utils"
+import CreateTable from "../../Creators/Table"
+import { mathFullPrice } from "../../utils"
 
 function FullTable({ cashFlow }) {
     let rows = cashFlow ? createTableContent(cashFlow) : null
@@ -30,7 +30,7 @@ const createTableContent = cashFlow => {
             `${pcs} шт.`,
             `${price} ${currency}`,
             `${income.toLocaleString("en-IN")} ${currency}`,
-            `${price * pcs} ${currency}`
+            `${(price * pcs).toLocaleString("en-IN")} ${currency}`
         ]
     })
 }

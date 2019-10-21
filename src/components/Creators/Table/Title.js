@@ -6,11 +6,11 @@ import Box from "@material-ui/core/Box"
 const Title = ({ title, fullPrice }) => {
     const fullPriceSpan = fullPrice.map((item, id) => {
         if (id === 0) {
-            return <span key={id}>{`${item.summ}${item.rate}`}</span>
+            return <span key={id}>{`${item.summ.toLocaleString("en-IN")}${item.rate}`}</span>
         } else {
             return (
                 <span key={id}>
-                    &nbsp;&nbsp;&nbsp;{`${item.summ}${item.rate}`}
+                    &nbsp;&nbsp;&nbsp;{`${item.summ.toLocaleString("en-IN")}${item.rate}`}
                 </span>
             )
         }

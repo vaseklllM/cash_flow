@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import CreateTable from "../Creators/Table"
-import { mathFullPrice } from "../utils"
+import CreateTable from "../../Creators/Table"
+import { mathFullPrice } from "../../utils"
 
 function PasiveTable({ cashFlow }) {
     let rows = cashFlow ? createTableContent(cashFlow) : null

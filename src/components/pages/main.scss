@@ -1,0 +1,77 @@
+.circle {
+    display: -webkit-inline-box;
+
+    div {
+        width: 20px;
+        height: 20px;
+
+        div {
+            width: 20px !important;
+            height: 20px !important;
+            margin: 0;
+        }
+    }
+}
+
+.title {
+    flex-grow: 1;
+    justify-content: start;
+    overflow-x: auto;
+}
+
+.ProgressBar {
+    &-body {
+        height: 25px;
+        position: relative;
+        border-radius: 30px;
+        box-shadow: 0px 2px 4px -1px rgba(63, 81, 181, 0.2),
+            0px 4px 5px 0px rgba(63, 81, 181, 0.14),
+            0px 1px 10px 0px rgba(63, 81, 181, 0.12);
+        border: 1px solid rgba(63, 81, 181, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 25px;
+            border-radius: 30px;
+        }
+        &-whitebg {
+            background: #fff;
+            width: 100%;
+            z-index: 1;
+        }
+        &-blackbg {
+            transition: width 0.2s ease-in-out;
+            background: black;
+            width: 0%;
+            z-index: 2;
+        }
+        span {
+            position: absolute;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.0075em;
+            font-size: 16px;
+            mix-blend-mode: difference;
+            color: white;
+            z-index: 3;
+        }
+        &-makered {
+            background-color: rgb(63, 81, 181);
+            mix-blend-mode: screen;
+            width: 100%;
+            z-index: 4;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .title {
+        display: flex;
+        justify-content: space-between;
+        overflow-x: scroll !important;
+    }
+}

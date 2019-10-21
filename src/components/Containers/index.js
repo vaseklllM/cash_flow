@@ -1,11 +1,13 @@
 import App from "./App"
-import ActiveTable from "./ActiveTable"
-import PasiveTable from "./PasiveTable"
-import CostsTable from "./CostsTable"
-import IncomeTable from "./IncomeTable"
+import ActiveTable from "./table/ActiveTable"
+import PasiveTable from "./table/PasiveTable"
+import CostsTable from "./table/CostsTable"
+import IncomeTable from "./table/IncomeTable"
 import NavBar from "./NavBar"
-import FullTable from "./FullTable"
+import FullTable from "./table/FullTable"
 import Search from "./Search"
+import ProgressBarCapital from "./progress-bar/Capital"
+import IncomeToCosts from "./progress-bar/incomeToCosts"
 
 export {
     App,
@@ -15,5 +17,7 @@ export {
     IncomeTable,
     NavBar,
     FullTable,
-    Search
+    Search,
+    ProgressBarCapital,
+    IncomeToCosts
 }
