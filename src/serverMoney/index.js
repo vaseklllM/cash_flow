@@ -1,28 +1,9 @@
+import cashFlow from "./cashFlow"
+
 export default class Money {
     _valletUrl = (valletCode, date) =>
         `https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${valletCode}&date=${date}&json`
     _btc_uah_url = "https://kuna.io/api/v2/tickers/btcuah"
-    _cashFlow = [
-        this._createActive("Акции Гугл", 159, 6.0, 10, "$", "USD"),
-        this._createActive("Облигации", 237, 9.0, 70, "грн.", "UAH"),
-        this._createActive("Загальні витрати", 1, 0, -4000, "грн.", "UAH"),
-        this._createActive("ICO DEEX", 2, 0.3, 0, "₿", "BTC"),
-        this._createActive("EXXA+", 1, 0.987, 0, "₿", "BTC"),
-        this._createActive("live stars", 1700, 0.12, -5, "$", "USD"),
-        this._createActive("live stars", 1700, 0.12, 5, "$", "USD"),
-        this._createActive("Учоба", 1, 60000, -1667, "грн.", "UAH")
-    ]
-
-    _createActive(name, pcs, price, income, currency, rate) {
-        return {
-            name,
-            pcs,
-            price,
-            income,
-            currency,
-            rate
-        }
-    }
 
     _getVallet = async url => {
         const response = await fetch(url)
@@ -33,12 +14,34 @@ export default class Money {
     getCashFlow = () => {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve(this._cashFlow)
+                resolve(cashFlow)
             }, 700)
         })
     }
+    
+    calcDate(date1, date2) {
+        let diff = Math.floor(date1.getTime() - date2.getTime())
+        let day = 1000 * 60 * 60 * 24
+
+        let days = Math.floor(diff / day)
+        let months = Math.floor(days / 31)
+        let years = Math.floor(months / 12)
+
+        let date = {
+            days,
+            months,
+            years
+        }
+
+        return date
+    }
 
     async GetVallets() {
+        let today = new Date()
+        let past = new Date("8-22-2016")
+        let q = this.calcDate(today, past)
+        console.log(q)
+
         const date = new Date()
         const todaysDate = `${date.getFullYear()}${date.getMonth() +
             1}${date.getDate()}`
