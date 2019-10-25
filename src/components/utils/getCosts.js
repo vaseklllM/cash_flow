@@ -18,7 +18,7 @@ export default function(arr, vallets) {
             for (let i = 0; i < vallets.length; i++) {
                 if (item.currency === vallets[i].sumbol) {
                     return {
-                        income: vallets[i].rate * item.income,
+                        income: vallets[i].value * item.income,
                         currency: item.name
                     }
                 }

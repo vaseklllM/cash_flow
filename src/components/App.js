@@ -26,7 +26,7 @@ const App = () => {
                             <IncomeToCosts />
                         </Grid>
                         {/* <Grid item xs={12} md={6} xl={4}>
-                            <ProgressBar title='Капитал'/>
+                            <IncomeToCosts />
                         </Grid> */}
                     </Grid>
                 </Box>

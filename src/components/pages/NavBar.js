@@ -10,7 +10,7 @@ function NavBar({ vallets }) {
             vallets.map((item, index) => {
                 return (
                     <span key={index} className='circle'>
-                        {`${item.sumbol} ${item.rate}`}
+                        {`${item.sumbol} ${item.value}`}
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                 )

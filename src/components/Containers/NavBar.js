@@ -3,8 +3,8 @@ import { connect } from "react-redux"
 import { NavBar } from "../pages"
 import propTypes from "prop-types"
 
-const NavBarContainer = ({ vallets, btc_uah }) => {
-    return <NavBar vallets={vallets} btc_uah={btc_uah} />
+const NavBarContainer = ({ vallets }) => {
+    return <NavBar vallets={vallets} />
 }
 
 NavBar.propTypes = {

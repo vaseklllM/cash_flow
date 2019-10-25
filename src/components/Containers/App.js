@@ -8,8 +8,23 @@ class AppContainer extends Component {
     componentDidMount() {
         const server = new serverMoney()
         server.getCashFlow().then(result => this.props.getCashFlow(result))
-        server.getVallet().then(result => this.props.getVallet(result))
+        this.getVallet(server)
     }
+
+    getVallet(server) {
+        server.GetVallets().then(res => {
+            res.forEach(item => {
+                if (!item.value) {
+                    setTimeout(() => {
+                        this.getVallet(server)
+                        return 
+                    }, 2000)
+                }
+            })
+            this.props.getVallet(res)
+        })
+    }
+
     render() {
         return <App />
     }
