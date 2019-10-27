@@ -6,7 +6,8 @@ const cashFlow = [
         income: 10,
         currency: "$",
         rate: "USD",
-        dateBuy: "9-10-2019"
+        dateBuy: "9-10-2019",
+        checked: false
     },
     {
         name: "Облигации",
@@ -15,7 +16,8 @@ const cashFlow = [
         income: 70,
         currency: "грн.",
         rate: "UAH",
-        dateBuy: "8-21-2019"
+        dateBuy: "8-21-2019",
+        checked: false
     },
     {
         name: "Загальні витрати",
@@ -24,7 +26,8 @@ const cashFlow = [
         income: -4000,
         currency: "грн.",
         rate: "UAH",
-        dateBuy: "4-13-2018"
+        dateBuy: "4-13-2018",
+        checked: false
     },
     {
         name: "ICO DEEX",
@@ -33,7 +36,8 @@ const cashFlow = [
         income: 0,
         currency: "₿",
         rate: "BTC",
-        dateBuy: "5-18-2013"
+        dateBuy: "5-18-2013",
+        checked: false
     },
     {
         name: "EXXA+",
@@ -42,7 +46,8 @@ const cashFlow = [
         income: 0,
         currency: "₿",
         rate: "BTC",
-        dateBuy: "2-11-2014"
+        dateBuy: "2-11-2014",
+        checked: false
     },
     {
         name: "live stars",
@@ -51,7 +56,8 @@ const cashFlow = [
         income: -5,
         currency: "$",
         rate: "USD",
-        dateBuy: "11-20-2018"
+        dateBuy: "11-20-2018",
+        checked: false
     },
     {
         name: "live stars",
@@ -60,7 +66,8 @@ const cashFlow = [
         income: 5,
         currency: "$",
         rate: "USD",
-        dateBuy: "7-10-2018"
+        dateBuy: "7-10-2018",
+        checked: false
     },
     {
         name: "Учоба",
@@ -69,7 +76,8 @@ const cashFlow = [
         income: -1667,
         currency: "грн.",
         rate: "UAH",
-        dateBuy: "12-27-2017"
+        dateBuy: "12-27-2017",
+        checked: false
     }
 ]
 

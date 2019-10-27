@@ -1,7 +1,6 @@
 import React from "react"
-import { AppBar, Toolbar, Typography, Hidden } from "@material-ui/core"
+import { AppBar, Toolbar, Typography } from "@material-ui/core"
 import LoaderCircle from "./loaderCircle"
-import { Search } from "../Containers"
 
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
@@ -24,9 +23,6 @@ function NavBar({ vallets }) {
                     <Typography className='title' variant='h6' noWrap>
                         <div>{blockValute()}</div>
                     </Typography>
-                    <Hidden lgDown>
-                        <Search />
-                    </Hidden>
                 </Toolbar>
             </AppBar>
         </div>

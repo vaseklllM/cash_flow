@@ -4,8 +4,11 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice, showDate, retentionTime, maths } from "../../utils"
 
 function ActiveTable({ cashFlow }) {
-    let rows = cashFlow ? createTableContent(cashFlow) : null
+    let obj
+    if (cashFlow) obj = cashFlow.filter(item => item.income >= 0)
+    let rows = obj ? createTableContent(obj) : null
     let fullPrice = rows ? mathFullPrice(rows, 5) : []
+    console.log(rows)
     return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
 }
 
@@ -23,8 +26,7 @@ const bodyText = {
     ]
 }
 
-const createTableContent = cashFlow => {
-    const obj = cashFlow.filter(item => item.income >= 0)
+const createTableContent = obj => {
     return obj.map(item => {
         const { name, pcs, price, currency, dateBuy, income } = item
         return [
