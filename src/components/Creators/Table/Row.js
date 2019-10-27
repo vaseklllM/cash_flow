@@ -2,7 +2,7 @@ import React from "react"
 import { StyledTableCell, StyledTableRow } from "./utils"
 
 const Row = ({ row }) => (
-    <StyledTableRow>
+    <StyledTableRow hover>
         {row.map((item, index) => {
             
             if (index === 0)

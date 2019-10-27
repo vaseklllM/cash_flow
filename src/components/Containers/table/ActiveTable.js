@@ -8,7 +8,6 @@ function ActiveTable({ cashFlow }) {
     if (cashFlow) obj = cashFlow.filter(item => item.income >= 0)
     let rows = obj ? createTableContent(obj) : null
     let fullPrice = rows ? mathFullPrice(rows, 5) : []
-    console.log(rows)
     return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
 }
 
@@ -31,21 +30,19 @@ const createTableContent = obj => {
         const { name, pcs, price, currency, dateBuy, income } = item
         return [
             name,
-            `${showDate(dateBuy)}`,
-            `${retentionTime(dateBuy)}`,
+            showDate(dateBuy),
+            retentionTime(dateBuy),
             `${pcs.toLocaleString("en-IN")} шт.`,
-            `${price ? `${price.toLocaleString("en-IN")} ${currency}` : "-"}`,
-            `${
-                pcs * price
-                    ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
-                    : "-"
-            }`,
-            `${
-                maths.roi(income, price * pcs) !== 0 &&
-                maths.roi(income, price * pcs) !== -Infinity
-                    ? `${maths.roi(income, price * pcs)} %`
-                    : "-"
-            }`
+            price ? `${price.toLocaleString("en-IN")} ${currency}` : "-",
+
+            pcs * price
+                ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
+                : "-",
+
+            maths.roi(income, price * pcs) !== 0 &&
+            maths.roi(income, price * pcs) !== -Infinity
+                ? `${maths.roi(income, price * pcs)} %`
+                : "-"
         ]
     })
 }
