@@ -3,7 +3,7 @@ import { Table, TableBody, TableHead, TableRow, Paper } from "@material-ui/core"
 import { StyledTableCell } from "./utils"
 import rowList from "./rowList"
 
-const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt }) => (
+const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt, checked, setCheckBox }) => (
     <Paper className='activeTable' style={{ maxHeight: maxHeignt || "400px" }}>
         <Table>
             <TableHead className='vasekTest'>
@@ -23,7 +23,9 @@ const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt }) => (
                     })}
                 </TableRow>
             </TableHead>
-            <TableBody>{rowList(rows, emptyArray, collumn.length)}</TableBody>
+            <TableBody>
+                {rowList(rows, emptyArray, collumn.length, checked, setCheckBox)}
+            </TableBody>
         </Table>
     </Paper>
 )

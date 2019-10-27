@@ -1,23 +1,29 @@
 import React from "react"
 import { StyledTableCell, StyledTableRow } from "./utils"
 
-const Row = ({ row }) => (
-    <StyledTableRow hover>
-        {row.map((item, index) => {
-            
-            if (index === 0)
+const Row = ({ row, checked, setCheckBox, id }) => {
+    // console.log(setCheckBox);
+    return (
+        <StyledTableRow
+            hover
+            style={checked ? { backgroundColor: "rgba(0, 0, 0, 0.15)" } : null}
+            onClick={()=>{setCheckBox(id)}}
+        >
+            {row.map((item, index) => {
+                if (index === 0)
+                    return (
+                        <StyledTableCell key={index} component='th' scope='row'>
+                            {item}
+                        </StyledTableCell>
+                    )
                 return (
-                    <StyledTableCell key={index} component='th' scope='row'>
+                    <StyledTableCell key={index} align='right'>
                         {item}
                     </StyledTableCell>
                 )
-            return (
-                <StyledTableCell key={index} align='right'>
-                    {item}
-                </StyledTableCell>
-            )
-        })}
-    </StyledTableRow>
-)
+            })}
+        </StyledTableRow>
+    )
+}
 
 export default Row

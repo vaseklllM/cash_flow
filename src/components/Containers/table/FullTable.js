@@ -14,6 +14,7 @@ import {
 import { StyledTableCell, StyledTableRow } from "../../Creators/Table/utils"
 import { Loader } from "../../pages"
 import { maths, showDate, retentionTime } from "../../utils"
+import { setCheckBox } from "../../../store/serverMoney/action"
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -41,7 +42,7 @@ const bodyText = {
     ]
 }
 
-function FullTable({ cashFlow }) {
+function FullTable({ cashFlow, setCheckBox }) {
     const classes = useStyles()
     const row = bodyText.collumn.map((item, index) => {
         if (!index || index === 1) {
@@ -53,21 +54,43 @@ function FullTable({ cashFlow }) {
             </StyledTableCell>
         )
     })
-    console.log(cashFlow)
     let bodyTable
     if (cashFlow) {
         bodyTable = cashFlow.map((item, index) => {
-            const { name, price, currency, income, pcs,dateBuy  } = item
+            const {
+                name,
+                price,
+                currency,
+                income,
+                pcs,
+                dateBuy,
+                checked
+            } = item
             return (
-                <StyledTableRow hover key={index}>
+                <StyledTableRow
+                    hover
+                    key={item.id}
+                    onClick={() => {
+                        setCheckBox(item.id)
+                    }}
+                    style={
+                        checked
+                            ? { backgroundColor: "rgba(0, 0, 0, 0.15)" }
+                            : null
+                    }
+                >
                     <StyledTableCell padding='checkbox'>
-                        <Checkbox checked={false} />
+                        <Checkbox checked={checked} />
                     </StyledTableCell>
                     <StyledTableCell component='th' scope='row'>
                         {name}
                     </StyledTableCell>
-                    <StyledTableCell align='right'>{showDate(dateBuy)}</StyledTableCell>
-                    <StyledTableCell align='right'>{retentionTime(dateBuy)}</StyledTableCell>
+                    <StyledTableCell align='right'>
+                        {showDate(dateBuy)}
+                    </StyledTableCell>
+                    <StyledTableCell align='right'>
+                        {retentionTime(dateBuy)}
+                    </StyledTableCell>
                     <StyledTableCell align='right'>
                         {price ? `${price} ${currency}` : "-"}
                     </StyledTableCell>
@@ -120,44 +143,18 @@ function FullTable({ cashFlow }) {
     )
 }
 
-// import React from "react"
-// import CreateTable from "../../Creators/Table"
-// import { mathFullPrice } from "../../utils"
-
-// function FullTable({ cashFlow }) {
-//     let rows = cashFlow ? createTableContent(cashFlow) : null
-//     let fullPrice = rows ? mathFullPrice(rows, 4) : []
-//     return (
-//         <CreateTable
-//             rows={rows}
-//             bodyText={bodyText}
-//             fullPrice={fullPrice}
-//             maxHeignt='900px'
-//         />
-//     )
-// }
-
-// const bodyText = {
-//     title: "Вся таблиця",
-//     emptyArray: "Таблиця пуста",
-//     collumn: ["Назва", "Кількість", "Ціна за шт.", "Доход/міс.", "Ціна загалом"]
-// }
-
-// const createTableContent = cashFlow => {
-//     return cashFlow.map(item => {
-//         const { name, income, currency, pcs, price } = item
-//         return [
-//             name,
-//             `${pcs} шт.`,
-//             `${price} ${currency}`,
-//             `${income.toLocaleString("en-IN")} ${currency}`,
-//             `${(price * pcs).toLocaleString("en-IN")} ${currency}`
-//         ]
-//     })
-// }
-
 const mapStateToProps = ({ serverMoney }) => ({
     cashFlow: serverMoney.cashFlow
 })
+const mapDispatchToProps = dispatch => {
+    return {
+        setCheckBox: index => {
+            dispatch(setCheckBox(index))
+        }
+    }
+}
 
-export default connect(mapStateToProps)(FullTable)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FullTable)

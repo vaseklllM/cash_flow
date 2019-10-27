@@ -1,4 +1,8 @@
-import { SET_CASH_FLOW, SET_VALLET_COURSE } from "./action"
+import {
+    SET_CASH_FLOW,
+    SET_VALLET_COURSE,
+    SET_CASH_FLOW_CHACKBOX
+} from "./action"
 
 const cashFlowState = {
     cashFlow: null,
@@ -16,6 +20,19 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             return {
                 ...state,
                 vallets: action.payload
+            }
+        case SET_CASH_FLOW_CHACKBOX:
+            const newCashFlow = state.cashFlow.map(item => {
+                if (item.id === action.payload) {
+                    item.checked = !item.checked
+                    return item
+                }
+                item.checked = false
+                return item
+            })
+            return {
+                ...state,
+                cashFlow: newCashFlow
             }
         default:
             return {
