@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
-import { mathFullPrice } from "../../utils"
+import { mathFullPrice, showDate, retentionTime, maths } from "../../utils"
 
 function PasiveTable({ cashFlow }) {
     let rows = cashFlow ? createTableContent(cashFlow) : null
@@ -12,18 +12,38 @@ function PasiveTable({ cashFlow }) {
 const bodyText = {
     title: "Пасиви",
     emptyArray: "Немає пасивів",
-    collumn: ["Назва", "Кількість/шт.", "Ціна за шт.", "Ціна загалом"]
+    collumn: [
+        "Назва",
+        "Дата покупки",
+        "Час утримання",
+        "Кількість/шт.",
+        "Ціна за шт.",
+        "Ціна загалом",
+        "ROI"
+    ]
 }
 
 const createTableContent = cashFlow => {
     const obj = cashFlow.filter(item => item.income < 0)
     return obj.map(item => {
-        const { name, pcs, price, currency } = item
+        const { name, pcs, price, currency, dateBuy, income } = item
         return [
             name,
+            `${showDate(dateBuy)}`,
+            `${retentionTime(dateBuy)}`,
             `${pcs.toLocaleString("en-IN")} шт.`,
-            `${price.toLocaleString("en-IN")} ${currency}`,
-            `${(pcs * price).toLocaleString("en-IN")} ${currency}`
+            `${price ? `${price.toLocaleString("en-IN")} ${currency}` : "-"}`,
+            `${
+                pcs * price
+                    ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
+                    : "-"
+            }`,
+            `${
+                maths.roi(income, price * pcs) !== 0 &&
+                maths.roi(income, price * pcs) !== -Infinity
+                    ? `${maths.roi(income, price * pcs)} %`
+                    : "-"
+            }`
         ]
     })
 }

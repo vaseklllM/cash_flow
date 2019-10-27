@@ -9,7 +9,7 @@ import {
     ProgressBarCapital,
     IncomeToCosts
 } from "./Containers"
-import { Grid, Container, Hidden, Box } from "@material-ui/core"
+import { Grid, Container, Box } from "@material-ui/core"
 import "./App.scss"
 
 const App = () => {
@@ -25,41 +25,29 @@ const App = () => {
                         <Grid item xs={12} md={6} xl={4}>
                             <IncomeToCosts />
                         </Grid>
-                        {/* <Grid item xs={12} md={6} xl={4}>
-                            <IncomeToCosts />
-                        </Grid> */}
                     </Grid>
                 </Box>
-                <Hidden lgDown>
-                    <div className='separator-horizontal'></div>
-                </Hidden>
+                <div className='separator-horizontal' />
                 <Grid container justify='space-between'>
-                    <Grid item container spacing={3} xl={8}>
+                    <Grid item container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <IncomeTable />
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <CostsTable />
                         </Grid>
-                        <Grid item xs={12} md={12} lg={6}>
+                        <Grid item xs={12} lg={12} xl={6}>
                             <ActiveTable />
                         </Grid>
-                        <Grid item xs={12} md={12} lg={6}>
+                        <Grid item xs={12} lg={12} xl={6}>
                             <PasiveTable />
                         </Grid>
-                    </Grid>
-                    <Hidden lgDown>
-                        <div className='separator-vertical'></div>
-                    </Hidden>
-                    <Grid item xs={12} xl={4}>
-                        <Grid>
+                        <Grid item xs={12} lg={12} xl={12}>
                             <FullTable />
                         </Grid>
                     </Grid>
                 </Grid>
-                <Hidden lgDown>
-                    <div className='separator-horizontal'></div>
-                </Hidden>
+                <div className='separator-horizontal' />
             </Container>
         </>
     )

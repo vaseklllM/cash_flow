@@ -18,30 +18,8 @@ export default class Money {
             }, 700)
         })
     }
-    
-    calcDate(date1, date2) {
-        let diff = Math.floor(date1.getTime() - date2.getTime())
-        let day = 1000 * 60 * 60 * 24
-
-        let days = Math.floor(diff / day)
-        let months = Math.floor(days / 31)
-        let years = Math.floor(months / 12)
-
-        let date = {
-            days,
-            months,
-            years
-        }
-
-        return date
-    }
 
     async GetVallets() {
-        let today = new Date()
-        let past = new Date("8-22-2016")
-        let q = this.calcDate(today, past)
-        console.log(q)
-
         const date = new Date()
         const todaysDate = `${date.getFullYear()}${date.getMonth() +
             1}${date.getDate()}`
