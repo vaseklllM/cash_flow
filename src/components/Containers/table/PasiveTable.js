@@ -2,11 +2,35 @@ import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
 import { mathFullPrice, showDate, retentionTime, maths } from "../../utils"
+import { setCheckBox } from "../../../store/serverMoney/action"
 
-function PasiveTable({ cashFlow }) {
-    let rows = cashFlow ? createTableContent(cashFlow) : null
+function PasiveTable({ cashFlow, setCheckBox }) {
+    let obj
+    let checked
+    if (cashFlow) {
+        obj = cashFlow.filter(item => item.income < 0)
+        obj.forEach((item, index) => {
+            if (item.checked) checked = index
+        })
+    }
+    const setId = id => {
+        obj.forEach((item, index) => {
+            if (index === id) {
+                setCheckBox(item.id)
+            }
+        })
+    }
+    let rows = obj ? createTableContent(obj) : null
     let fullPrice = rows ? mathFullPrice(rows, 3) : []
-    return <CreateTable rows={rows} bodyText={bodyText} fullPrice={fullPrice} />
+    return (
+        <CreateTable
+            rows={rows}
+            bodyText={bodyText}
+            fullPrice={fullPrice}
+            checked={checked}
+            setCheckBox={setId}
+        />
+    )
 }
 
 const bodyText = {
@@ -23,27 +47,23 @@ const bodyText = {
     ]
 }
 
-const createTableContent = cashFlow => {
-    const obj = cashFlow.filter(item => item.income < 0)
+const createTableContent = obj => {
     return obj.map(item => {
         const { name, pcs, price, currency, dateBuy, income } = item
         return [
             name,
-            `${showDate(dateBuy)}`,
-            `${retentionTime(dateBuy)}`,
+            showDate(dateBuy),
+            retentionTime(dateBuy),
             `${pcs.toLocaleString("en-IN")} шт.`,
-            `${price ? `${price.toLocaleString("en-IN")} ${currency}` : "-"}`,
-            `${
-                pcs * price
-                    ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
-                    : "-"
-            }`,
-            `${
-                maths.roi(income, price * pcs) !== 0 &&
-                maths.roi(income, price * pcs) !== -Infinity
-                    ? `${maths.roi(income, price * pcs)} %`
-                    : "-"
-            }`
+            price ? `${price.toLocaleString("en-IN")} ${currency}` : "-",
+
+            pcs * price
+                ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
+                : "-",
+            maths.roi(income, price * pcs) !== 0 &&
+            maths.roi(income, price * pcs) !== -Infinity
+                ? `${maths.roi(income, price * pcs)} %`
+                : "-"
         ]
     })
 }
@@ -51,5 +71,13 @@ const createTableContent = cashFlow => {
 const mapStateToProps = ({ serverMoney }) => ({
     cashFlow: serverMoney.cashFlow
 })
+const mapDispatchToProps = dispatch => {
+    return {
+        setCheckBox: index => dispatch(setCheckBox(index))
+    }
+}
 
-export default connect(mapStateToProps)(PasiveTable)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PasiveTable)

@@ -22,7 +22,15 @@ const rowList = (rows, emptyArray, colSpan, checked, setCheckBox) => {
         )
     } else if (Array.isArray(rows) && rows.length !== 0) {
         return rows.map((row, index) => {
-            return <Row row={row} key={index} checked={index === checked} setCheckBox={setCheckBox} id={index} />
+            return (
+                <Row
+                    row={row}
+                    key={index}
+                    checked={index === checked}
+                    setCheckBox={setCheckBox}
+                    id={index}
+                />
+            )
         })
     }
 }

@@ -2,7 +2,6 @@ import React from "react"
 import { StyledTableCell, StyledTableRow } from "./utils"
 
 const Row = ({ row, checked, setCheckBox, id }) => {
-    // console.log(setCheckBox);
     return (
         <StyledTableRow
             hover
