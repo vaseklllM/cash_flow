@@ -29,6 +29,7 @@ function PasiveTable({ cashFlow, setCheckBox }) {
             fullPrice={fullPrice}
             checked={checked}
             setCheckBox={setId}
+            minWidth='900px'
         />
     )
 }
@@ -39,7 +40,7 @@ const bodyText = {
     collumn: [
         "Назва",
         "Дата покупки",
-        "Час утримання",
+        "Пройшло від покупки",
         "Кількість/шт.",
         "Ціна за шт.",
         "Ціна загалом",

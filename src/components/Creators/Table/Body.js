@@ -3,9 +3,16 @@ import { Table, TableBody, TableHead, TableRow, Paper } from "@material-ui/core"
 import { StyledTableCell } from "./utils"
 import rowList from "./rowList"
 
-const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt, checked, setCheckBox }) => (
+const Body = ({
+    rows,
+    text: { emptyArray, collumn },
+    maxHeignt,
+    checked,
+    setCheckBox,
+    minWidth
+}) => (
     <Paper className='activeTable' style={{ maxHeight: maxHeignt || "400px" }}>
-        <Table>
+        <Table style={{ minWidth: minWidth }}>
             <TableHead className='vasekTest'>
                 <TableRow>
                     {collumn.map((item, index) => {
@@ -24,7 +31,13 @@ const Body = ({ rows, text: { emptyArray, collumn }, maxHeignt, checked, setChec
                 </TableRow>
             </TableHead>
             <TableBody>
-                {rowList(rows, emptyArray, collumn.length, checked, setCheckBox)}
+                {rowList(
+                    rows,
+                    emptyArray,
+                    collumn.length,
+                    checked,
+                    setCheckBox
+                )}
             </TableBody>
         </Table>
     </Paper>

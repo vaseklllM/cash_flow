@@ -29,6 +29,7 @@ function ActiveTable({ cashFlow, setCheckBox }) {
             fullPrice={fullPrice}
             checked={checked}
             setCheckBox={setId}
+            minWidth='300px'
         />
     )
 }

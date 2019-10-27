@@ -80,7 +80,7 @@ function FullTable({ cashFlow, setCheckBox }) {
                     }
                 >
                     <StyledTableCell padding='checkbox'>
-                        <Checkbox checked={checked} />
+                        <Checkbox checked={false} />
                     </StyledTableCell>
                     <StyledTableCell component='th' scope='row'>
                         {name}
@@ -132,6 +132,7 @@ function FullTable({ cashFlow, setCheckBox }) {
                     className={classes.table}
                     size='small'
                     aria-label='a dense table'
+                    style={{ minWidth: "1250px" }}
                 >
                     <TableHead>
                         <TableRow>{row}</TableRow>
