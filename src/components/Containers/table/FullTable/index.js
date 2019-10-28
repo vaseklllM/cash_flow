@@ -72,7 +72,6 @@ class FullTable extends Component {
     }
 
     render() {
-        console.log(this.state.editElementId)
         const { cashFlow, setCheckBox } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
