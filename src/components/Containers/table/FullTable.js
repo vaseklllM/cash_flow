@@ -33,10 +33,27 @@ const bodyText = {
 
 class FullTable extends Component {
     state = {
-        onCheck: [1]
+        onCheck: []
     }
+
+    onClickCheckBox = (e, item) => {
+        e.stopPropagation()
+        if (this.state.onCheck.indexOf(item.id) !== -1) {
+            this.setState(({ onCheck }) => {
+                let newArr = onCheck
+                newArr.splice(newArr.indexOf(item.id), 1)
+                return {
+                    onCheck: newArr
+                }
+            })
+        } else {
+            this.setState({
+                onCheck: [...this.state.onCheck, item.id]
+            })
+        }
+    }
+
     render() {
-        console.log(this.state.onCheck)
         const { cashFlow, setCheckBox } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
@@ -75,15 +92,11 @@ class FullTable extends Component {
                     >
                         <StyledTableCell padding='checkbox'>
                             <Checkbox
-                                checked={false}
+                                checked={
+                                    this.state.onCheck.indexOf(item.id) !== -1
+                                }
                                 onClick={e => {
-                                    e.stopPropagation()
-                                    this.setState({
-                                        onCheck: [
-                                            ...this.state.onCheck,
-                                            item.id
-                                        ]
-                                    })
+                                    this.onClickCheckBox(e, item)
                                 }}
                             />
                         </StyledTableCell>
