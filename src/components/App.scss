@@ -1,4 +1,4 @@
-@import url('./Creators/Table/table.scss');
+@import url("./Creators/Table/table.scss");
 
 body {
     margin: 0px;
@@ -16,5 +16,18 @@ body {
         background-color: rgba(0, 0, 0, 0.1);
         margin-top: 20px;
         box-sizing: border-box;
+    }
+}
+.fullTable {
+    padding: 0px 0px 0px 10px !important;
+    &-Buttons {
+        display: flex;
+        align-items: center;
+        span {
+            padding: 3px;
+        }
+        button {
+            height: max-content;
+        }
     }
 }

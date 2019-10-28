@@ -8,12 +8,14 @@ import {
     TableHead,
     TableBody,
     Table,
-    Checkbox
+    Checkbox,
+    IconButton
 } from "@material-ui/core"
 import { StyledTableCell, StyledTableRow } from "../../Creators/Table/utils"
 import { Loader } from "../../pages"
 import { maths, showDate, retentionTime } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
+import EditIcon from "@material-ui/icons/Edit"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -90,16 +92,54 @@ class FullTable extends Component {
                                 : null
                         }
                     >
-                        <StyledTableCell padding='checkbox'>
-                            <Checkbox
-                                checked={
-                                    this.state.onCheck.indexOf(item.id) !== -1
-                                }
-                                onClick={e => {
-                                    this.onClickCheckBox(e, item)
-                                }}
-                            />
+                        <StyledTableCell
+                            className='fullTable'
+                            padding='checkbox'
+                        >
+                            <div className='fullTable-Buttons'>
+                                <Checkbox
+                                    checked={
+                                        this.state.onCheck.indexOf(item.id) !==
+                                        -1
+                                    }
+                                    onClick={e => {
+                                        this.onClickCheckBox(e, item)
+                                    }}
+                                />
+                                <IconButton
+                                    style={{ padding: "5px" }}
+                                    onClick={e => {
+                                        e.stopPropagation()
+                                    }}
+                                >
+                                    <EditIcon fontSize='small' />
+                                </IconButton>
+                            </div>
                         </StyledTableCell>
+                        {/* <StyledTableCell
+                            className='fullTable'
+                            padding='checkbox'
+                        >
+                            <div className='fullTable-Buttons'>
+                                <Checkbox
+                                    checked={
+                                        this.state.onCheck.indexOf(item.id) !==
+                                        -1
+                                    }
+                                    onClick={e => {
+                                        this.onClickCheckBox(e, item)
+                                    }}
+                                />
+                                <IconButton
+                                    style={{ padding: "5px" }}
+                                    onClick={e => {
+                                        e.stopPropagation()
+                                    }}
+                                >
+                                    <EditIcon fontSize='small' />
+                                </IconButton>
+                            </div>
+                        </StyledTableCell> */}
                         <StyledTableCell component='th' scope='row'>
                             {name}
                         </StyledTableCell>
