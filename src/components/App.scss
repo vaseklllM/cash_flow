@@ -32,3 +32,14 @@ body {
         }
     }
 }
+.FullTableInput {
+    margin-right: 24px;
+    margin-left: 16px;
+    input {
+        text-align: right;
+    }
+}
+.activeTd{
+    padding: 0 !important;
+    // width: 126px;
+}

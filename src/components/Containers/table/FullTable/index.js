@@ -18,6 +18,8 @@ import { setCheckBox } from "../../../../store/serverMoney/action"
 import EditIcon from "@material-ui/icons/Edit"
 import CheckIcon from "@material-ui/icons/Check"
 import CloseIcon from "@material-ui/icons/Close"
+import IncomeLine from "./IncomeLine"
+import PcsLine from "./PcsLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -177,10 +179,14 @@ class FullTable extends Component {
                         <StyledTableCell align='right'>
                             {price ? `${price} ${currency}` : "-"}
                         </StyledTableCell>
-                        <StyledTableCell align='right'>{`${pcs} шт.`}</StyledTableCell>
-                        <StyledTableCell align='right'>
-                            {income ? `${income} ${currency}` : "-"}
-                        </StyledTableCell>
+                        <PcsLine
+                            item={item}
+                            onShow={id === this.state.editElementId}
+                        />
+                        <IncomeLine
+                            item={item}
+                            onShow={id === this.state.editElementId}
+                        />
                         <StyledTableCell align='right'>
                             {price * pcs ? `${price * pcs} ${currency}` : "-"}
                         </StyledTableCell>
