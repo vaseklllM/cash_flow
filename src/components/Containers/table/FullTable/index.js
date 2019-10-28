@@ -11,11 +11,13 @@ import {
     Checkbox,
     IconButton
 } from "@material-ui/core"
-import { StyledTableCell, StyledTableRow } from "../../Creators/Table/utils"
-import { Loader } from "../../pages"
-import { maths, showDate, retentionTime } from "../../utils"
-import { setCheckBox } from "../../../store/serverMoney/action"
+import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
+import { Loader } from "../../../pages"
+import { maths, showDate, retentionTime } from "../../../utils"
+import { setCheckBox } from "../../../../store/serverMoney/action"
 import EditIcon from "@material-ui/icons/Edit"
+import CheckIcon from "@material-ui/icons/Check"
+import CloseIcon from "@material-ui/icons/Close"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -35,7 +37,8 @@ const bodyText = {
 
 class FullTable extends Component {
     state = {
-        onCheck: []
+        onCheck: [],
+        editElementId: null
     }
 
     onClickCheckBox = (e, item) => {
@@ -55,7 +58,19 @@ class FullTable extends Component {
         }
     }
 
+    onClickEditelementId = (e, id) => {
+        e.stopPropagation()
+        this.setState(({ editElementId }) => {
+            if (!editElementId) {
+                return { editElementId: id }
+            } else if (editElementId === id) {
+                return { editElementId: null }
+            }
+        })
+    }
+
     render() {
+        console.log(this.state.editElementId)
         const { cashFlow, setCheckBox } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
@@ -67,6 +82,55 @@ class FullTable extends Component {
                 </StyledTableCell>
             )
         })
+
+        const view = item => {
+            return (
+                <>
+                    <Checkbox
+                        checked={this.state.onCheck.indexOf(item.id) !== -1}
+                        onClick={event => {
+                            this.onClickCheckBox(event, item)
+                        }}
+                    />
+                    <IconButton
+                        style={{ padding: "5px" }}
+                        onClick={event => {
+                            this.onClickEditelementId(event, item.id)
+                        }}
+                    >
+                        <EditIcon fontSize='small' />
+                    </IconButton>
+                </>
+            )
+        }
+        const edit = item => {
+            return (
+                <>
+                    <IconButton style={{ padding: "5px" }}>
+                        <CheckIcon fontSize='small' />
+                    </IconButton>
+                    <IconButton
+                        style={{ padding: "5px" }}
+                        onClick={event => {
+                            this.onClickEditelementId(event, item.id)
+                        }}
+                    >
+                        <CloseIcon fontSize='small' />
+                    </IconButton>
+                </>
+            )
+        }
+
+        const leftControlBtn = (view, edit, item) => {
+            if (this.state.editElementId === item.id) {
+                return edit(item)
+            } else if (this.state.editElementId === null) {
+                return view(item)
+            } else {
+                return
+            }
+        }
+
         let bodyTable
         if (cashFlow) {
             bodyTable = cashFlow.map(item => {
@@ -77,14 +141,15 @@ class FullTable extends Component {
                     income,
                     pcs,
                     dateBuy,
-                    checked
+                    checked,
+                    id
                 } = item
                 return (
                     <StyledTableRow
                         hover
-                        key={item.id}
+                        key={id}
                         onClick={() => {
-                            setCheckBox(item.id)
+                            setCheckBox(id)
                         }}
                         style={
                             checked
@@ -97,49 +162,9 @@ class FullTable extends Component {
                             padding='checkbox'
                         >
                             <div className='fullTable-Buttons'>
-                                <Checkbox
-                                    checked={
-                                        this.state.onCheck.indexOf(item.id) !==
-                                        -1
-                                    }
-                                    onClick={e => {
-                                        this.onClickCheckBox(e, item)
-                                    }}
-                                />
-                                <IconButton
-                                    style={{ padding: "5px" }}
-                                    onClick={e => {
-                                        e.stopPropagation()
-                                    }}
-                                >
-                                    <EditIcon fontSize='small' />
-                                </IconButton>
+                                {leftControlBtn(view, edit, item)}
                             </div>
                         </StyledTableCell>
-                        {/* <StyledTableCell
-                            className='fullTable'
-                            padding='checkbox'
-                        >
-                            <div className='fullTable-Buttons'>
-                                <Checkbox
-                                    checked={
-                                        this.state.onCheck.indexOf(item.id) !==
-                                        -1
-                                    }
-                                    onClick={e => {
-                                        this.onClickCheckBox(e, item)
-                                    }}
-                                />
-                                <IconButton
-                                    style={{ padding: "5px" }}
-                                    onClick={e => {
-                                        e.stopPropagation()
-                                    }}
-                                >
-                                    <EditIcon fontSize='small' />
-                                </IconButton>
-                            </div>
-                        </StyledTableCell> */}
                         <StyledTableCell component='th' scope='row'>
                             {name}
                         </StyledTableCell>
