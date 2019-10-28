@@ -9,7 +9,7 @@ const PcsLine = ({ item, onShow }) => {
             <StyledTableCell
                 className={onShow ? "activeTd" : ""}
                 align='right'
-                style={{ width: "10%" }}
+                style={{ maxWidth: "130px" }}
             >
                 <Input
                     className='FullTableInput'
