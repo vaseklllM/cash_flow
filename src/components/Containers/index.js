@@ -8,6 +8,7 @@ import FullTable from "./table/FullTable/index"
 import Search from "./Search"
 import ProgressBarCapital from "./progress-bar/Capital"
 import IncomeToCosts from "./progress-bar/incomeToCosts"
+import Capital from "./table/Capital"
 
 export {
     App,
@@ -19,5 +20,6 @@ export {
     FullTable,
     Search,
     ProgressBarCapital,
-    IncomeToCosts
+    IncomeToCosts,
+    Capital
 }

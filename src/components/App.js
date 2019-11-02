@@ -7,7 +7,8 @@ import {
     NavBar,
     FullTable,
     ProgressBarCapital,
-    IncomeToCosts
+    IncomeToCosts,
+    Capital
 } from "./Containers"
 import { Grid, Container, Box, Typography } from "@material-ui/core"
 import "./App.scss"
@@ -30,47 +31,14 @@ const App = () => {
                 <div className='separator-horizontal' />
                 <Grid container justify='space-between'>
                     <Grid item container spacing={3}>
-                        <Grid item xs={12} lg={6} xl={3}>
+                        <Grid item xs={12} lg={6} xl={4}>
                             <IncomeTable />
                         </Grid>
-                        <Grid item xs={12} lg={6} xl={3}>
+                        <Grid item xs={12} lg={6} xl={4}>
                             <CostsTable />
                         </Grid>
-                        <Grid
-                            item
-                            xs={12}
-                            lg={6}
-                            xl={3}
-                            direction='row'
-                            justify='center'
-                            alignItems='center'
-                            container
-                        >
-                            <Typography
-                                variant='h4'
-                                style={{ margin: 0 }}
-                                gutterBottom
-                            >
-                                графік капиталу
-                            </Typography>
-                        </Grid>
-                        <Grid
-                            item
-                            xs={12}
-                            lg={6}
-                            xl={3}
-                            direction='row'
-                            justify='center'
-                            alignItems='center'
-                            container
-                        >
-                            <Typography
-                                variant='h4'
-                                style={{ margin: 0 }}
-                                gutterBottom
-                            >
-                                графік доходу
-                            </Typography>
+                        <Grid item xs={12} lg={6} xl={4}>
+                            <Capital />
                         </Grid>
                         <Grid item xs={12} lg={12} xl={6}>
                             <ActiveTable />
@@ -84,6 +52,45 @@ const App = () => {
                     </Grid>
                 </Grid>
                 <div className='separator-horizontal' />
+
+                <Grid container justify='space-between'>
+                    <Grid
+                        item
+                        xs={12}
+                        lg={6}
+                        xl={6}
+                        direction='row'
+                        justify='center'
+                        alignItems='center'
+                        container
+                    >
+                        <Typography
+                            variant='h4'
+                            style={{ margin: 0 }}
+                            gutterBottom
+                        >
+                            графік капиталу
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        lg={6}
+                        xl={6}
+                        direction='row'
+                        justify='center'
+                        alignItems='center'
+                        container
+                    >
+                        <Typography
+                            variant='h4'
+                            style={{ margin: 0 }}
+                            gutterBottom
+                        >
+                            графік доходу
+                        </Typography>
+                    </Grid>
+                </Grid>
             </Container>
         </>
     )

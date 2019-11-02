@@ -10,7 +10,7 @@ class ProgressBarCapital extends React.Component {
     render() {
         let capital = 0
         const { cashFlow, vallets } = this.props
-        if (cashFlow) {
+        if (cashFlow && vallets.length !== 0) {
             cashFlow.forEach(item => {
                 if (item.income === 0) {
                     const valet = vallets.filter(i => i.cc === item.rate)
