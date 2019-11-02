@@ -2,9 +2,11 @@ const mathFullPrice = (rows, col) => {
     let valletArr = {}
     rows.forEach(element => {
         const price = element[col]
-        const numPrice = parseFloat(price.replace(/[,]/g, ""))
-        const numValet = price.replace(/.+ /, "")
-        valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
+        if (price !== "-") {
+            const numPrice = parseFloat(price.replace(/[,]/g, ""))
+            const numValet = price.replace(/.+ /, "")
+            valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
+        }
     })
     valletArr = createArray(valletArr)
     return valletArr

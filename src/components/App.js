@@ -20,10 +20,10 @@ const App = () => {
             <Container maxWidth='xl'>
                 <Box mt={2}>
                     <Grid item container spacing={3} xl={12}>
-                        <Grid item xs={12} md={6} xl={4}>
+                        <Grid item xs={12} md={6} xl={6}>
                             <ProgressBarCapital />
                         </Grid>
-                        <Grid item xs={12} md={6} xl={4}>
+                        <Grid item xs={12} md={6} xl={6}>
                             <IncomeToCosts />
                         </Grid>
                     </Grid>

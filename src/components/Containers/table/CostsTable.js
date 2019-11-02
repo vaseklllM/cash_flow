@@ -43,7 +43,7 @@ const bodyText = {
 const createTableContent = obj => {
     return obj.map(item => {
         const { name, income, currency } = item
-        return [name, `${income.toLocaleString("en-IN")} ${currency}`]
+        return [name, `${Math.abs(income).toLocaleString("en-IN")} ${currency}`]
     })
 }
 

@@ -1,20 +1,33 @@
 import React from "react"
-import Typography from "@material-ui/core/Typography"
+import { Typography, Box } from "@material-ui/core"
 import FunctionsRoundedIcon from "@material-ui/icons/FunctionsRounded"
-import Box from "@material-ui/core/Box"
+import { connect } from "react-redux"
 
-const Title = ({ title, fullPrice }) => {
+const Title = ({ title, fullPrice, vallets }) => {
+    let fullPriceUAH = 0
+    if (vallets.length !== 0 && fullPrice.length !== 0) {
+        fullPrice.forEach(item => {
+            if (item.rate === "грн.") {
+                fullPriceUAH += item.summ
+            } else {
+                const vallet = vallets.filter(i => i.sumbol === item.rate)
+                fullPriceUAH += vallet[0].value * item.summ
+            }
+        })
+    }
     const fullPriceSpan = fullPrice.map((item, id) => {
-        if (id === 0) {
-            return <span key={id}>{`${item.summ.toLocaleString("en-IN")}${item.rate}`}</span>
-        } else {
-            return (
-                <span key={id}>
-                    &nbsp;&nbsp;&nbsp;{`${item.summ.toLocaleString("en-IN")}${item.rate}`}
-                </span>
-            )
-        }
+        return (
+            <span key={id}>
+                {`${Math.abs(item.summ).toLocaleString("en-IN")}${item.rate}`}
+                &nbsp;&nbsp;
+            </span>
+        )
     })
+    fullPriceSpan.push(
+        `( ${parseFloat(Math.abs(fullPriceUAH).toFixed(0)).toLocaleString(
+            "ru-RU"
+        )} грн. )`
+    )
     return (
         <Box display='flex' justifyContent='space-between' p={1} pb={0}>
             <Box p={0}>
@@ -36,4 +49,10 @@ const Title = ({ title, fullPrice }) => {
     )
 }
 
-export default Title
+const mapStateToProps = ({ serverMoney }) => {
+    return {
+        vallets: serverMoney.vallets
+    }
+}
+
+export default connect(mapStateToProps)(Title)

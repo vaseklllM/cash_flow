@@ -21,7 +21,7 @@ function PasiveTable({ cashFlow, setCheckBox }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    let fullPrice = rows ? mathFullPrice(rows, 3) : []
+    let fullPrice = rows ? mathFullPrice(rows, 5) : []
     return (
         <CreateTable
             rows={rows}
