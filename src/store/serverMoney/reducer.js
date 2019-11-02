@@ -1,26 +1,24 @@
 import {
     SET_CASH_FLOW,
     SET_VALLET_COURSE,
-    SET_CASH_FLOW_CHACKBOX
+    SET_CASH_FLOW_CHACKBOX,
+    SET_NEW_CASH_FLOW_ITEM
 } from "./action"
 
 const cashFlowState = {
     cashFlow: null,
-    vallets: []
+    vallets: [],
+    newCashFlowItem: {}
 }
 
 const serverMoneyReducer = (state = cashFlowState, action) => {
     switch (action.type) {
         case SET_CASH_FLOW:
-            return {
-                ...state,
-                cashFlow: action.payload
-            }
+            return { ...state, cashFlow: action.payload }
+
         case SET_VALLET_COURSE:
-            return {
-                ...state,
-                vallets: action.payload
-            }
+            return { ...state, vallets: action.payload }
+
         case SET_CASH_FLOW_CHACKBOX:
             const newCashFlow = state.cashFlow.map(item => {
                 if (item.id === action.payload) {
@@ -30,10 +28,14 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 item.checked = false
                 return item
             })
+            return { ...state, cashFlow: newCashFlow }
+
+        case SET_NEW_CASH_FLOW_ITEM:
             return {
                 ...state,
-                cashFlow: newCashFlow
+                newCashFlowItem: { ...state.newCashFlowItem, ...action.payload }
             }
+
         default:
             return {
                 ...state

@@ -107,7 +107,12 @@ class FullTable extends Component {
         const edit = item => {
             return (
                 <>
-                    <IconButton style={{ padding: "5px" }}>
+                    <IconButton
+                        style={{ padding: "5px" }}
+                        onClick={event => {
+                            event.stopPropagation()
+                        }}
+                    >
                         <CheckIcon fontSize='small' />
                     </IconButton>
                     <IconButton

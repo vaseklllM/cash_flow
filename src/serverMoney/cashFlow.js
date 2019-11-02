@@ -33,17 +33,6 @@ const cashFlow = [
         id: 3
     },
     {
-        name: "test",
-        pcs: 250,
-        price: 1,
-        income: 0,
-        currency: "$",
-        rate: "USD",
-        dateBuy: "4-13-2018",
-        checked: false,
-        id: 9
-    },
-    {
         name: "ICO DEEX",
         pcs: 2,
         price: 0.03,
