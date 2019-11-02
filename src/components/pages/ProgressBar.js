@@ -1,5 +1,6 @@
 import React from "react"
 import { Box, Typography } from "@material-ui/core"
+import propTypes from "prop-types"
 
 const ProgressBar = ({ width, title }) => {
     return (
@@ -30,6 +31,14 @@ const ProgressBar = ({ width, title }) => {
             </div>
         </div>
     )
+}
+
+ProgressBar.propTypes = {
+    width: propTypes.number,
+    title: propTypes.shape({
+        left: propTypes.string,
+        right: propTypes.string
+    })
 }
 
 export default ProgressBar

@@ -29,7 +29,7 @@ class ProgressBarCapital extends React.Component {
         }
         return (
             <ProgressBar
-                width={((num1 / num2) * 100).toFixed(1)}
+                width={parseFloat(((num1 / num2) * 100).toFixed(1))}
                 title={title}
             />
         )

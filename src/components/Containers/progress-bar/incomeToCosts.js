@@ -5,7 +5,10 @@ import { getIncome, getCosts } from "../../utils"
 
 const incomeToCosts = ({ cashFlow, vallets }) => {
     const fullIncome = getIncome(cashFlow, vallets)
-    const fullCosts = getCosts(cashFlow, vallets) < 0 ? getCosts(cashFlow, vallets) * -1 : getCosts(cashFlow, vallets)
+    const fullCosts =
+        getCosts(cashFlow, vallets) < 0
+            ? getCosts(cashFlow, vallets) * -1
+            : getCosts(cashFlow, vallets)
     const num2 = fullCosts === 0 ? 1 : fullCosts
     const title = {
         left: "Відношення витрат до доходів в грн.",
@@ -15,7 +18,7 @@ const incomeToCosts = ({ cashFlow, vallets }) => {
     }
     return (
         <ProgressBar
-            width={((fullIncome / num2) * 100).toFixed(1)}
+            width={parseFloat(((fullIncome / num2) * 100).toFixed(1))}
             title={title}
         />
     )
