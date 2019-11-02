@@ -27,9 +27,13 @@ class IncomeLine extends Component {
                         placeholder='Доход'
                         onClick={event => event.stopPropagation()}
                         onChange={e => {
+                            console.log(e.target.value)
                             this.setState({
-                                value: e.target.value.replace(/[^\d\.]/g, "")
+                                value: e.target.value
                             })
+                            // this.setState({
+                            //     value: e.target.value.replace(/[^\d\.]/g, "")
+                            // })
                         }}
                         value={this.state.value}
                         inputProps={{
