@@ -4,6 +4,7 @@ import localeRu from "date-fns/locale/ru"
 const retentionTime = date => {
     const today = new Date()
     const past = new Date(date)
+
     const retentionTime = calcDate(today, past)
     return `${formatDistanceToNow(past, {
         locale: localeRu
@@ -27,6 +28,7 @@ const calcDate = (date1, date2) => {
         months,
         years
     }
+    // console.log(date);
 
     return date
 }

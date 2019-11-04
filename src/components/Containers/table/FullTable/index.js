@@ -20,6 +20,7 @@ import CheckIcon from "@material-ui/icons/Check"
 import CloseIcon from "@material-ui/icons/Close"
 import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
+import PriceToPcsLine from "./PriceToPcsLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -28,7 +29,7 @@ const bodyText = {
         "",
         "Назва",
         "Дата покупки",
-        "Час утримання",
+        "Пройшло від покупки",
         "Ціна за шт.",
         "Кількість/шт.",
         "Доход/міс.",
@@ -72,7 +73,7 @@ class FullTable extends Component {
     }
 
     render() {
-        const { cashFlow, setCheckBox } = this.props
+        const { cashFlow, setCheckBox, newCashFlowItem } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -111,6 +112,7 @@ class FullTable extends Component {
                         style={{ padding: "5px" }}
                         onClick={event => {
                             event.stopPropagation()
+                            console.log(newCashFlowItem);
                         }}
                     >
                         <CheckIcon fontSize='small' />
@@ -150,6 +152,8 @@ class FullTable extends Component {
                     checked,
                     id
                 } = item
+
+                const onShow = id === this.state.editElementId
                 return (
                     <StyledTableRow
                         hover
@@ -180,17 +184,9 @@ class FullTable extends Component {
                         <StyledTableCell align='right'>
                             {retentionTime(dateBuy)}
                         </StyledTableCell>
-                        <StyledTableCell align='right'>
-                            {price ? `${price} ${currency}` : "-"}
-                        </StyledTableCell>
-                        <PcsLine
-                            item={item}
-                            onShow={id === this.state.editElementId}
-                        />
-                        <IncomeLine
-                            item={item}
-                            onShow={id === this.state.editElementId}
-                        />
+                        <PriceToPcsLine item={item} onShow={onShow} />
+                        <PcsLine item={item} onShow={onShow} />
+                        <IncomeLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
                             {price * pcs ? `${price * pcs} ${currency}` : "-"}
                         </StyledTableCell>
@@ -243,7 +239,8 @@ class FullTable extends Component {
 }
 
 const mapStateToProps = ({ serverMoney }) => ({
-    cashFlow: serverMoney.cashFlow
+    cashFlow: serverMoney.cashFlow,
+    newCashFlowItem: serverMoney.newCashFlowItem
 })
 const mapDispatchToProps = dispatch => {
     return {

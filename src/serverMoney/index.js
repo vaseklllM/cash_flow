@@ -21,8 +21,7 @@ export default class Money {
 
     async GetVallets() {
         const date = new Date()
-        const todaysDate = `${date.getFullYear()}${date.getMonth() +
-            1}${date.getDate()}`
+        const todaysDate = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`
 
         const vallut = [
             createValut("USD", "$", null),
@@ -42,17 +41,13 @@ export default class Money {
         // add btc course
         await this._getVallet(this._btc_uah_url).then(res => {
             vallut.forEach(item =>
-                item.cc === "BTC"
-                    ? (item.value = parseFloat(res.ticker.low))
-                    : null
+                item.cc === "BTC" ? (item.value = parseFloat(res.ticker.low)) : null
             )
         })
 
         // add usd, eur, rub course
         for (let i = 0; i < vallut.length; i++) {
-            await this._getVallet(
-                this._valletUrl(vallut[i].cc, todaysDate)
-            ).then(res => {
+            await this._getVallet(this._valletUrl(vallut[i].cc, todaysDate)).then(res => {
                 if (res.length) {
                     vallut[i].value = parseFloat(res[0].rate.toFixed(2))
                 }
