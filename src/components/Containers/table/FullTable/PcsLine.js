@@ -11,7 +11,7 @@ const PcsLine = ({ item, onShow }) => {
                 value={pcs}
                 keyName='pcs'
                 width='11%'
-                place='Доход'
+                place='Кількість'
             />
         )
     } else

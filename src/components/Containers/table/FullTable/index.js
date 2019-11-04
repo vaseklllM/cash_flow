@@ -112,7 +112,7 @@ class FullTable extends Component {
                         style={{ padding: "5px" }}
                         onClick={event => {
                             event.stopPropagation()
-                            console.log(newCashFlowItem);
+                            // console.log(newCashFlowItem);
                         }}
                     >
                         <CheckIcon fontSize='small' />
