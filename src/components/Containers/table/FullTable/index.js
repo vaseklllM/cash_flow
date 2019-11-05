@@ -14,7 +14,10 @@ import {
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
 import { Loader } from "../../../pages"
 import { maths, showDate, retentionTime } from "../../../utils"
-import { setCheckBox } from "../../../../store/serverMoney/action"
+import {
+    setCheckBox,
+    changeParametersCashFlow
+} from "../../../../store/serverMoney/action"
 import EditIcon from "@material-ui/icons/Edit"
 import CheckIcon from "@material-ui/icons/Check"
 import CloseIcon from "@material-ui/icons/Close"
@@ -73,7 +76,12 @@ class FullTable extends Component {
     }
 
     render() {
-        const { cashFlow, setCheckBox, newCashFlowItem } = this.props
+        const {
+            cashFlow,
+            setCheckBox,
+            newCashFlowItem,
+            changeParametersCashFlow
+        } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -112,7 +120,8 @@ class FullTable extends Component {
                         style={{ padding: "5px" }}
                         onClick={event => {
                             event.stopPropagation()
-                            // console.log(newCashFlowItem);
+                            changeParametersCashFlow(item.id)
+                            this.onClickEditelementId(event, item.id)
                         }}
                     >
                         <CheckIcon fontSize='small' />
@@ -246,7 +255,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setCheckBox: index => {
             dispatch(setCheckBox(index))
-        }
+        },
+        changeParametersCashFlow: itemId =>
+            dispatch(changeParametersCashFlow(itemId))
     }
 }
 

@@ -2,7 +2,8 @@ import {
     SET_CASH_FLOW,
     SET_VALLET_COURSE,
     SET_CASH_FLOW_CHACKBOX,
-    SET_NEW_CASH_FLOW_ITEM
+    SET_NEW_CASH_FLOW_ITEM,
+    CHANGE_PARAMETRS_CASH_FLOW
 } from "./action"
 
 const cashFlowState = {
@@ -34,6 +35,34 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             return {
                 ...state,
                 newCashFlowItem: { ...state.newCashFlowItem, ...action.payload }
+            }
+
+        case CHANGE_PARAMETRS_CASH_FLOW:
+            // console.log(state.newCashFlowItem)
+            const { income, pcs, price } = state.newCashFlowItem
+
+            const checkType = txt => {
+                if (typeof txt === "string") {
+                    return parseFloat(txt.replace(/[^\d\.\-]/g, ""))
+                } else if (typeof txt === "number") {
+                    return parseFloat(txt)
+                }
+            }
+
+            const newCeshflow = state.cashFlow.map(item => {
+                if (item.id === action.payload) {
+                    return {
+                        ...item,
+                        pcs: checkType(pcs),
+                        price: checkType(price),
+                        income: checkType(income)
+                    }
+                } else return item
+            })
+            // console.log(newCeshflow)
+            return {
+                ...state,
+                cashFlow: newCeshflow
             }
 
         default:
