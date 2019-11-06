@@ -1,5 +1,6 @@
 import React from "react"
 import { StyledTableCell, StyledTableRow } from "./utils"
+import "./table.scss"
 
 const Row = ({ row, checked, setCheckBox, id }) => {
     return (

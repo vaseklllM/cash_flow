@@ -2,3 +2,9 @@
     width: 100%;
     overflow-x: auto;
 }
+.tableTitle {
+    overflow-x: scroll;
+    &-content {
+        min-width: max-content;
+    }
+}

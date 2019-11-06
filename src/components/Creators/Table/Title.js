@@ -29,13 +29,13 @@ const Title = ({ title, fullPrice, vallets }) => {
         )} грн. )`
     )
     return (
-        <Box display='flex' justifyContent='space-between' p={1} pb={0}>
+        <Box display='flex' justifyContent='space-between' className='tableTitle' p={1} pb={0}>
             <Box p={0}>
                 <Typography variant='h5' gutterBottom>
                     {title}
                 </Typography>
             </Box>
-            <Box p={0}>
+            <Box p={0} className='tableTitle-content'>
                 <Typography
                     style={{ display: "flex", alignItems: "center" }}
                     variant='h5'

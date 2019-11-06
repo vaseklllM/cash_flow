@@ -1,22 +1,5 @@
-@import url("./Creators/Table/table.scss");
-
 body {
     margin: 0px;
-}
-.separator {
-    &-vertical {
-        width: 1px;
-        box-sizing: border-box;
-        margin-top: 20px;
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    &-horizontal {
-        height: 1px;
-        background-color: rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
-        box-sizing: border-box;
-    }
 }
 .fullTable {
     padding: 0px 0px 0px 10px !important;
@@ -39,7 +22,6 @@ body {
         text-align: right;
     }
 }
-.activeTd{
+.activeTd {
     padding: 0 !important;
-    // width: 126px;
 }

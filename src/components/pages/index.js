@@ -4,6 +4,6 @@ import NavBar from "./NavBar"
 import LoaderCircle from "./loaderCircle"
 import Search from "./Search"
 import ProgressBar from "./ProgressBar"
-import "./main.scss"
+import Main from "./Main"
 
-export { App, Loader, NavBar, LoaderCircle, Search, ProgressBar }
+export { App, Loader, NavBar, LoaderCircle, Search, ProgressBar, Main }

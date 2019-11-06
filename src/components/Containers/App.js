@@ -17,7 +17,7 @@ class AppContainer extends Component {
                 if (!item.value) {
                     setTimeout(() => {
                         this.getVallet(server)
-                        return 
+                        return
                     }, 2000)
                 }
             })
