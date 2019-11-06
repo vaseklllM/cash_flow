@@ -28,7 +28,7 @@ export class InputLine extends Component {
                 <Input
                     className='FullTableInput'
                     placeholder={place}
-                    onClick={event => event.stopPropagation()}
+                    onMouseDown={event => event.stopPropagation()}
                     onChange={e => {
                         setNewCashFlowItem({ [keyName]: e.target.value })
                         // this.setState({

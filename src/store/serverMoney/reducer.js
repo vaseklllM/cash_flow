@@ -38,12 +38,10 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             }
 
         case CHANGE_PARAMETRS_CASH_FLOW:
-            // console.log(state.newCashFlowItem)
             const { income, pcs, price } = state.newCashFlowItem
-
             const checkType = txt => {
                 if (typeof txt === "string") {
-                    return parseFloat(txt.replace(/[^\d\.\-]/g, ""))
+                    return parseFloat(txt.replace(/[^\d.-]/g, ""))
                 } else if (typeof txt === "number") {
                     return parseFloat(txt)
                 }

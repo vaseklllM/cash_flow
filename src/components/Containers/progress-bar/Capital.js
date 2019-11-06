@@ -13,8 +13,13 @@ class ProgressBarCapital extends React.Component {
         if (cashFlow && vallets.length !== 0) {
             cashFlow.forEach(item => {
                 if (item.income === 0) {
-                    const valet = vallets.filter(i => i.cc === item.rate)
-                    capital += parseInt(item.price * item.pcs * valet[0].value)
+                    let valet = vallets.filter(i => i.cc === item.rate)
+                    valet = valet[0]
+                    if (valet) {
+                        capital += parseInt(item.price * item.pcs * valet.value)
+                    } else {
+                        capital += parseInt(item.price * item.pcs)
+                    }
                 }
             })
         }

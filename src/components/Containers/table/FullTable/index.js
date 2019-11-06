@@ -47,8 +47,7 @@ class FullTable extends Component {
         editElementId: null
     }
 
-    onClickCheckBox = (e, item) => {
-        e.stopPropagation()
+    onClickCheckBox = item => {
         if (this.state.onCheck.indexOf(item.id) !== -1) {
             this.setState(({ onCheck }) => {
                 let newArr = onCheck
@@ -64,8 +63,7 @@ class FullTable extends Component {
         }
     }
 
-    onClickEditelementId = (e, id) => {
-        e.stopPropagation()
+    onClickEditelementId = id => {
         this.setState(({ editElementId }) => {
             if (!editElementId) {
                 return { editElementId: id }
@@ -76,12 +74,7 @@ class FullTable extends Component {
     }
 
     render() {
-        const {
-            cashFlow,
-            setCheckBox,
-            newCashFlowItem,
-            changeParametersCashFlow
-        } = this.props
+        const { cashFlow, setCheckBox, changeParametersCashFlow } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -98,14 +91,20 @@ class FullTable extends Component {
                 <>
                     <Checkbox
                         checked={this.state.onCheck.indexOf(item.id) !== -1}
-                        onClick={event => {
-                            this.onClickCheckBox(event, item)
+                        onMouseDown={event => {
+                            event.stopPropagation()
+                        }}
+                        onClick={() => {
+                            this.onClickCheckBox(item)
                         }}
                     />
                     <IconButton
                         style={{ padding: "5px" }}
-                        onClick={event => {
-                            this.onClickEditelementId(event, item.id)
+                        onMouseDown={event => {
+                            event.stopPropagation()
+                        }}
+                        onClick={() => {
+                            this.onClickEditelementId(item.id)
                         }}
                     >
                         <EditIcon fontSize='small' />
@@ -118,18 +117,23 @@ class FullTable extends Component {
                 <>
                     <IconButton
                         style={{ padding: "5px" }}
-                        onClick={event => {
+                        onMouseDown={event => {
                             event.stopPropagation()
+                        }}
+                        onClick={() => {
                             changeParametersCashFlow(item.id)
-                            this.onClickEditelementId(event, item.id)
+                            this.onClickEditelementId(item.id)
                         }}
                     >
                         <CheckIcon fontSize='small' />
                     </IconButton>
                     <IconButton
                         style={{ padding: "5px" }}
-                        onClick={event => {
-                            this.onClickEditelementId(event, item.id)
+                        onMouseDown={event => {
+                            event.stopPropagation()
+                        }}
+                        onClick={() => {
+                            this.onClickEditelementId(item.id)
                         }}
                     >
                         <CloseIcon fontSize='small' />
@@ -167,7 +171,7 @@ class FullTable extends Component {
                     <StyledTableRow
                         hover
                         key={id}
-                        onClick={() => {
+                        onMouseDown={() => {
                             setCheckBox(id)
                         }}
                         style={
@@ -197,11 +201,14 @@ class FullTable extends Component {
                         <PcsLine item={item} onShow={onShow} />
                         <IncomeLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
-                            {price * pcs ? `${price * pcs} ${currency}` : "-"}
+                            {price * pcs
+                                ? `${parseFloat(
+                                      (price * pcs).toFixed(2)
+                                  ).toLocaleString("en-IN")} ${currency}`
+                                : "-"}
                         </StyledTableCell>
                         <StyledTableCell align='right'>
-                            {maths.roi(income, price * pcs) !== 0 &&
-                            maths.roi(income, price * pcs) !== -Infinity
+                            {maths.roi(income, price * pcs) !== 0
                                 ? `${maths.roi(income, price * pcs)} %`
                                 : "-"}
                         </StyledTableCell>
