@@ -18,7 +18,7 @@ const Main = () => {
         <>
             <NavBar />
             <Container maxWidth='xl'>
-                <Box mt={2}>
+                <Box mt={10}>
                     <Grid item container spacing={3} xl={12}>
                         <Grid item xs={12} md={6} xl={6}>
                             <ProgressBarCapital />
@@ -53,7 +53,7 @@ const Main = () => {
                 </Grid>
                 <div className='separator-horizontal' />
 
-                <Grid container justify='space-between'>
+                {/* <Grid container justify='space-between'>
                     <Grid
                         item
                         xs={12}
@@ -90,7 +90,7 @@ const Main = () => {
                             графік доходу
                         </Typography>
                     </Grid>
-                </Grid>
+                </Grid> */}
             </Container>
         </>
     )

@@ -17,7 +17,7 @@ function NavBar({ vallets }) {
     }
     return (
         <div>
-            <AppBar position='static'>
+            <AppBar position="fixed">
                 <div />
                 <Toolbar>
                     <Typography className='title' variant='h6' noWrap>
