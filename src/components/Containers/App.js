@@ -11,18 +11,21 @@ class AppContainer extends Component {
         this.getVallet(server)
     }
 
-    getVallet(server) {
-        server.GetVallets().then(res => {
+    async getVallet(server) {
+        try {
+            const res = await server.GetVallets()
             res.forEach(item => {
                 if (!item.value) {
-                    setTimeout(() => {
-                        this.getVallet(server)
-                        return
-                    }, 2000)
+                    throw new Error("error loading vallets")
                 }
             })
             this.props.getVallet(res)
-        })
+        } catch {
+            setTimeout(() => {
+                this.getVallet(server)
+                console.log("reload vallet")
+            }, 2000)
+        }
     }
 
     render() {
