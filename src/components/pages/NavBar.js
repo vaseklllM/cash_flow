@@ -41,7 +41,7 @@ function NavBar({ vallets }) {
                             </Link>
                         </Box>
                         <Box mr={2}>
-                            <Link to='/test' className='NavLinkbtn'>
+                            <Link to='/graphs' className='NavLinkbtn'>
                                 <Button color='inherit'>Графіки</Button>
                             </Link>
                         </Box>
