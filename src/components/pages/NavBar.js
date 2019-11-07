@@ -1,6 +1,17 @@
 import React from "react"
-import { AppBar, Toolbar, Typography } from "@material-ui/core"
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    Button,
+    Box
+} from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
 import LoaderCircle from "./loaderCircle"
+import { Link } from "react-router-dom"
+import { Hidden } from "@material-ui/core"
+import "./NavBar.scss"
 
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
@@ -17,12 +28,33 @@ function NavBar({ vallets }) {
     }
     return (
         <div>
-            <AppBar position="fixed">
+            <AppBar position='fixed'>
                 <div />
                 <Toolbar>
                     <Typography className='title' variant='h6' noWrap>
                         <div>{blockValute()}</div>
                     </Typography>
+                    <Hidden xsDown>
+                        <Box mr={2}>
+                            <Link to='/' className='NavLinkbtn'>
+                                <Button color='inherit'>Головна</Button>
+                            </Link>
+                        </Box>
+                        <Box mr={2}>
+                            <Link to='/test' className='NavLinkbtn'>
+                                <Button color='inherit'>Графіки</Button>
+                            </Link>
+                        </Box>
+                    </Hidden>
+                    <Hidden smUp>
+                        <IconButton
+                            edge='start'
+                            color='inherit'
+                            aria-label='menu'
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Hidden>
                 </Toolbar>
             </AppBar>
         </div>

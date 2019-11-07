@@ -4,7 +4,6 @@ import {
     PasiveTable,
     CostsTable,
     IncomeTable,
-    NavBar,
     FullTable,
     ProgressBarCapital,
     IncomeToCosts,
@@ -16,7 +15,6 @@ import "./main.scss"
 const Main = () => {
     return (
         <>
-            <NavBar />
             <Container maxWidth='xl'>
                 <Box mt={10}>
                     <Grid item container spacing={3} xl={12}>
