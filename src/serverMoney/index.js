@@ -28,7 +28,8 @@ export default class Money {
             createValut("USD", "$", null),
             createValut("EUR", "€", null),
             createValut("RUB", "₽", null),
-            createValut("BTC", "₿", null)
+            createValut("BTC", "₿", null),
+            createValut("UAH", "₴", 1)
         ]
 
         function createValut(cc, sumbol, value) {
