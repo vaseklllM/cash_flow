@@ -7,12 +7,8 @@ const Title = ({ title, fullPrice, vallets }) => {
     let fullPriceUAH = 0
     if (vallets.length !== 0 && fullPrice.length !== 0) {
         fullPrice.forEach(item => {
-            if (item.rate === "грн.") {
-                fullPriceUAH += item.summ
-            } else {
-                const vallet = vallets.filter(i => i.sumbol === item.rate)
-                fullPriceUAH += vallet[0].value * item.summ
-            }
+            const vallet = vallets.filter(i => i.sumbol === item.rate)
+            fullPriceUAH += vallet[0].value * item.summ
         })
     }
     const fullPriceSpan = fullPrice.map((item, id) => {
@@ -26,10 +22,16 @@ const Title = ({ title, fullPrice, vallets }) => {
     fullPriceSpan.push(
         `( ${parseFloat(Math.abs(fullPriceUAH).toFixed(0)).toLocaleString(
             "ru-RU"
-        )} грн. )`
+        )} ₴ )`
     )
     return (
-        <Box display='flex' justifyContent='space-between' className='tableTitle' p={1} pb={0}>
+        <Box
+            display='flex'
+            justifyContent='space-between'
+            className='tableTitle'
+            p={1}
+            pb={0}
+        >
             <Box p={0}>
                 <Typography variant='h5' gutterBottom>
                     {title}

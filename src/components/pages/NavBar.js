@@ -16,8 +16,9 @@ import "./NavBar.scss"
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
     if (Object.keys(vallets).length !== 0) {
+        const newValletst = vallets.filter(i => i.sumbol !== "₴")
         blockValute = () =>
-            vallets.map((item, index) => {
+            newValletst.map((item, index) => {
                 return (
                     <span key={index} className='circle'>
                         {`${item.sumbol} ${item.value}`}
@@ -27,7 +28,7 @@ function NavBar({ vallets }) {
             })
     }
     return (
-        <div>
+        <>
             <AppBar position='fixed'>
                 <div />
                 <Toolbar>
@@ -57,7 +58,7 @@ function NavBar({ vallets }) {
                     </Hidden>
                 </Toolbar>
             </AppBar>
-        </div>
+        </>
     )
 }
 
