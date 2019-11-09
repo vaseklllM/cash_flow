@@ -6,7 +6,7 @@ import { randomColor } from "../../utils"
 
 const ActiveGraph = ({ cashFlow, vallets }) => {
     if (cashFlow && vallets.length !== 0) {
-        const active = cashFlow.filter(i => i.income < 0)
+        const active = cashFlow.filter(i => i.income < 0 && i.price !== 0)
         console.log(active);
         const arrName = active.map(i => i.name)
         const arrValue = active.map(i => {
