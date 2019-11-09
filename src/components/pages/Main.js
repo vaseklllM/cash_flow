@@ -9,7 +9,7 @@ import {
     IncomeToCosts,
     Capital
 } from "../Containers"
-import { Grid, Container, Box, Typography } from "@material-ui/core"
+import { Grid, Container, Box } from "@material-ui/core"
 import "./main.scss"
 
 const Main = () => {
@@ -50,45 +50,6 @@ const Main = () => {
                     </Grid>
                 </Grid>
                 <div className='separator-horizontal' />
-
-                {/* <Grid container justify='space-between'>
-                    <Grid
-                        item
-                        xs={12}
-                        lg={6}
-                        xl={6}
-                        direction='row'
-                        justify='center'
-                        alignItems='center'
-                        container
-                    >
-                        <Typography
-                            variant='h4'
-                            style={{ margin: 0 }}
-                            gutterBottom
-                        >
-                            графік капиталу
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        lg={6}
-                        xl={6}
-                        direction='row'
-                        justify='center'
-                        alignItems='center'
-                        container
-                    >
-                        <Typography
-                            variant='h4'
-                            style={{ margin: 0 }}
-                            gutterBottom
-                        >
-                            графік доходу
-                        </Typography>
-                    </Grid>
-                </Grid> */}
             </Container>
         </>
     )

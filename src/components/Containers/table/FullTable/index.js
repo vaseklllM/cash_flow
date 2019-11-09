@@ -157,7 +157,6 @@ class FullTable extends Component {
         if (cashFlow) {
             bodyTable = cashFlow.map(item => {
                 const {
-                    name,
                     price,
                     currency,
                     income,
@@ -189,10 +188,7 @@ class FullTable extends Component {
                                 {leftControlBtn(view, edit, item)}
                             </div>
                         </StyledTableCell>
-                        <NameLine item={item} onShow={onShow}/>
-                        {/* <StyledTableCell component='th' scope='row'>
-                            {name}
-                        </StyledTableCell> */}
+                        <NameLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
                             {showDate(dateBuy)}
                         </StyledTableCell>

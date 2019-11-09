@@ -12,7 +12,7 @@ const cashFlow = [
     },
     {
         name: "Облигации",
-        pcs: 237,
+        pcs: 73,
         price: 9,
         income: 70,
         currency: "грн.",
