@@ -3,12 +3,12 @@ import Circle from "../../Creators/graph/Circle"
 import { connect } from "react-redux"
 import { Loader } from "../../pages"
 import { randomColor } from "../../utils"
+import propTypes from "prop-types"
 
-const ActiveGraph = ({ cashFlow, vallets }) => {
+const IncomeGraph = ({ cashFlow, vallets, name }) => {
     if (cashFlow && vallets.length !== 0) {
-        const active = cashFlow.filter(i => i.income >= 0)
-        const arrName = active.map(i => i.name)
-        const arrValue = active.map(i => {
+        const arrName = cashFlow.map(i => i.name)
+        const arrValue = cashFlow.map(i => {
             for (let j = 0; j < vallets.length; j++) {
                 if (vallets[j].sumbol === i.currency) {
                     let priceUah = vallets[j].value * i.price * i.pcs
@@ -17,24 +17,30 @@ const ActiveGraph = ({ cashFlow, vallets }) => {
                         : parseInt(priceUah)
                 }
             }
+            return undefined
         })
-        const arrColor = active.map(i => randomColor())
+        const arrColor = cashFlow.map(i => randomColor())
         return (
             <Circle
                 names={arrName}
                 colors={arrColor}
                 value={arrValue}
-                circleName='activeGraph'
+                circleName={name}
             />
         )
     }
     return <Loader />
 }
+
+IncomeGraph.propTypes = {
+    name: propTypes.string.isRequired,
+    cashFlow: propTypes.arrayOf(propTypes.object)
+}
+
 const mapStateToProps = ({ serverMoney }) => {
     return {
-        cashFlow: serverMoney.cashFlow,
         vallets: serverMoney.vallets
     }
 }
 
-export default connect(mapStateToProps)(ActiveGraph)
+export default connect(mapStateToProps)(IncomeGraph)

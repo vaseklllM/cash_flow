@@ -1,6 +1,6 @@
 import React from "react"
-import { Main, Graphs } from "./pages"
-import { NavBar } from "./Containers"
+import { Main } from "./pages"
+import { NavBar, Graphs } from "./Containers"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.scss"
 

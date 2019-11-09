@@ -9,8 +9,7 @@ import Search from "./Search"
 import ProgressBarCapital from "./progress-bar/Capital"
 import IncomeToCosts from "./progress-bar/incomeToCosts"
 import Capital from "./table/Capital"
-import ActiveGraph from "./graphs/ActiveGraph"
-import PasiveGraph from "./graphs/PasiveGraph"
+import Graphs from "./Graphs"
 
 export {
     App,
@@ -24,6 +23,5 @@ export {
     ProgressBarCapital,
     IncomeToCosts,
     Capital,
-    ActiveGraph,
-    PasiveGraph
+    Graphs
 }

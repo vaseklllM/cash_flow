@@ -5,6 +5,5 @@ import LoaderCircle from "./loaderCircle"
 import Search from "./Search"
 import ProgressBar from "./ProgressBar"
 import Main from "./Main"
-import Graphs from './graphs';
 
-export { App, Loader, NavBar, LoaderCircle, Search, ProgressBar, Main, Graphs }
+export { App, Loader, NavBar, LoaderCircle, Search, ProgressBar, Main }
