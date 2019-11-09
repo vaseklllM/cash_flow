@@ -17,7 +17,8 @@ export class InputLine extends Component {
             setNewCashFlowItem,
             width,
             keyName,
-            place
+            place,
+            ClassNameInputStyle
         } = this.props
         return (
             <StyledTableCell
@@ -26,14 +27,12 @@ export class InputLine extends Component {
                 style={{ width }}
             >
                 <Input
-                    className='FullTableInput'
+                style={{textAlign: 'left'}}
+                    className={ClassNameInputStyle}
                     placeholder={place}
                     onMouseDown={event => event.stopPropagation()}
                     onChange={e => {
                         setNewCashFlowItem({ [keyName]: e.target.value })
-                        // this.setState({
-                        //     value: e.target.value.replace(/[^\d\.]/g, "")
-                        // })
                     }}
                     value={newCashFlowItem[keyName] || ""}
                     inputProps={{

@@ -12,6 +12,7 @@ const PcsLine = ({ item, onShow }) => {
                 keyName='pcs'
                 width='11%'
                 place='Кількість'
+                ClassNameInputStyle='FullTableInput'
             />
         )
     } else

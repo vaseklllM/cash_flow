@@ -24,6 +24,7 @@ import CloseIcon from "@material-ui/icons/Close"
 import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
+import NameLine from "./NameLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -188,9 +189,10 @@ class FullTable extends Component {
                                 {leftControlBtn(view, edit, item)}
                             </div>
                         </StyledTableCell>
-                        <StyledTableCell component='th' scope='row'>
+                        <NameLine item={item} onShow={onShow}/>
+                        {/* <StyledTableCell component='th' scope='row'>
                             {name}
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                         <StyledTableCell align='right'>
                             {showDate(dateBuy)}
                         </StyledTableCell>

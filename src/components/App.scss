@@ -15,11 +15,16 @@ body {
         }
     }
 }
-.FullTableInput {
+.FullTableInput, .FullTableNameInput {
     margin-right: 24px;
     margin-left: 16px;
     input {
         text-align: right;
+    }
+}
+.FullTableNameInput{
+    input {
+        text-align: left;
     }
 }
 .activeTd {

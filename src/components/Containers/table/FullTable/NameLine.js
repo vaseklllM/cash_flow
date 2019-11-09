@@ -2,32 +2,32 @@ import React, { Component } from "react"
 import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
 
-class IncomeLine extends Component {
+class NameLine extends Component {
     render() {
         const { item, onShow } = this.props
-        const { income, currency } = item
+        const { name } = item
 
         if (onShow) {
             return (
                 <InputLine
                     onShow={onShow}
-                    value={income}
-                    keyName='income'
-                    width='10%'
-                    place='Доход'
-                    ClassNameInputStyle='FullTableInput'
+                    value={name}
+                    keyName='name'
+                    width='13%'
+                    place='Назва'
+                    ClassNameInputStyle='FullTableNameInput'
                 />
             )
         } else
             return (
                 <StyledTableCell
                     className={onShow ? "activeTd" : ""}
-                    align='right'
+                    align='left'
                 >
-                    {income ? `${income} ${currency}` : "-"}
+                    {name}
                 </StyledTableCell>
             )
     }
 }
 
-export default IncomeLine
+export default NameLine

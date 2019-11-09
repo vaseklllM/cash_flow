@@ -12,6 +12,7 @@ const PriceToPcsLine = ({ item, onShow }) => {
                 keyName='price'
                 width='11%'
                 place='Ціна за шт.'
+                ClassNameInputStyle='FullTableInput'
             />
         )
     } else if (price === 0) {
