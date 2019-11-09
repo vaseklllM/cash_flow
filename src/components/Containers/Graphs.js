@@ -9,9 +9,6 @@ const Graphs = ({ cashFlow }) => {
     const costsGraph = cashFlow
         ? cashFlow.filter(i => i.income < 0 && i.price !== 0)
         : null
-    const pasiveGraph = cashFlow
-        ? cashFlow.filter(i => i.income < 0 && i.price !== 0)
-        : null
     return (
         <Container maxWidth='xl'>
             <Box mt={10}>
@@ -49,21 +46,9 @@ const Graphs = ({ cashFlow }) => {
                             name='activeGraph'
                         />
                     </Grid>
-                    <Grid item xl={4} md={6} xs={12}>
-                        <Typography
-                            variant='h6'
-                            style={{ textAlign: "center" }}
-                            gutterBottom
-                        >
-                            Пасиви
-                        </Typography>
-                        <CreateGraph
-                            cashFlow={pasiveGraph}
-                            name='pasiveGraph'
-                        />
-                    </Grid>
                 </Grid>
             </Box>
+            <div className='separator-horizontal' />
         </Container>
     )
 }

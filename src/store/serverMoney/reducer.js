@@ -38,7 +38,7 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             }
 
         case CHANGE_PARAMETRS_CASH_FLOW:
-            const { income, pcs, price } = state.newCashFlowItem
+            const { income, pcs, price, name } = state.newCashFlowItem
             const checkType = txt => {
                 if (typeof txt === "string") {
                     return parseFloat(txt.replace(/[^\d,.-]/g, ""))
@@ -51,13 +51,13 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 if (item.id === action.payload) {
                     return {
                         ...item,
+                        name: name !== "" ? name : item.name,
                         pcs: checkType(pcs),
                         price: checkType(price),
                         income: checkType(income)
                     }
                 } else return item
             })
-            // console.log(newCeshflow)
             return {
                 ...state,
                 cashFlow: newCeshflow
