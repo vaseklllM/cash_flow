@@ -97,16 +97,6 @@ export default class Money {
                 }
             })
         }
-
-        await vallut.forEach(item => {
-            if (!item.value) {
-                setTimeout(() => {
-                    this.newGetVallets()
-                }, 2000)
-                return vallut
-            }
-        })
-
         return vallut
     }
 }

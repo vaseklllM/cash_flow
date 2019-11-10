@@ -200,7 +200,7 @@ class FullTable extends Component {
                         <PriceToPcsLine item={item} onShow={onShow} />
                         <PcsLine item={item} onShow={onShow} />
                         <IncomeLine item={item} onShow={onShow} />
-                        {/* <ValuteLine item={item} onShow={onShow} /> */}
+                        <ValuteLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
                             {price * pcs
                                 ? `${parseFloat(
