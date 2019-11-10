@@ -19,7 +19,7 @@ const Graphs = ({ cashFlow }) => {
                             style={{ textAlign: "center" }}
                             gutterBottom
                         >
-                            Доход
+                            Доходи
                         </Typography>
                         <CreateGraph cashFlow={incomeData} name='incomeGraph' />
                     </Grid>

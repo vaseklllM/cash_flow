@@ -25,6 +25,7 @@ import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
 import NameLine from "./NameLine"
+import ValuteLine from "./ValuteLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -37,6 +38,7 @@ const bodyText = {
         "Ціна за шт.",
         "Кількість/шт.",
         "Доход/міс.",
+        "Валюта",
         "Ціна загалом",
         "ROI/р."
     ]
@@ -198,6 +200,7 @@ class FullTable extends Component {
                         <PriceToPcsLine item={item} onShow={onShow} />
                         <PcsLine item={item} onShow={onShow} />
                         <IncomeLine item={item} onShow={onShow} />
+                        {/* <ValuteLine item={item} onShow={onShow} /> */}
                         <StyledTableCell align='right'>
                             {price * pcs
                                 ? `${parseFloat(
