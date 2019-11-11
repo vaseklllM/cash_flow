@@ -3,10 +3,12 @@ import {
     SET_VALLET_COURSE,
     SET_CASH_FLOW_CHACKBOX,
     SET_NEW_CASH_FLOW_ITEM,
-    CHANGE_PARAMETRS_CASH_FLOW
+    CHANGE_PARAMETRS_CASH_FLOW,
+    SEARCH_CASH_FLOW
 } from "./action"
 
 const cashFlowState = {
+    searchCashFlow: null,
     cashFlow: null,
     vallets: [],
     newCashFlowItem: {}
@@ -35,6 +37,16 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             return {
                 ...state,
                 newCashFlowItem: { ...state.newCashFlowItem, ...action.payload }
+            }
+
+        case SEARCH_CASH_FLOW:
+            const arr = state.cashFlow.filter(item => {
+                const name = item.name.toLowerCase()
+                return name.indexOf(action.payload.toLowerCase()) > -1
+            })
+            return {
+                ...state,
+                searchCashFlow: arr
             }
 
         case CHANGE_PARAMETRS_CASH_FLOW:

@@ -8,10 +8,11 @@ import {
     Box
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
-import LoaderCircle from "./loaderCircle"
+import LoaderCircle from "../loaderCircle"
 import { Link } from "react-router-dom"
 import { Hidden } from "@material-ui/core"
 import "./NavBar.scss"
+import { Search } from "../../Containers"
 
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
@@ -30,12 +31,16 @@ function NavBar({ vallets }) {
     return (
         <>
             <AppBar position='fixed'>
-                <div />
                 <Toolbar>
                     <Typography className='title' variant='h6' noWrap>
                         <div>{blockValute()}</div>
                     </Typography>
-                    <Hidden xsDown>
+                    <Hidden smDown>
+                        {/* <Typography> */}
+                            <Search />
+                        {/* </Typography> */}
+                    </Hidden>
+                    <Hidden smDown>
                         <Box mr={2}>
                             <Link to='/' className='NavLinkbtn'>
                                 <Button color='inherit'>Головна</Button>
@@ -47,7 +52,7 @@ function NavBar({ vallets }) {
                             </Link>
                         </Box>
                     </Hidden>
-                    <Hidden smUp>
+                    <Hidden mdUp>
                         <IconButton
                             edge='start'
                             color='inherit'
