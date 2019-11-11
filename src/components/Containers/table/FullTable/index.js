@@ -25,7 +25,7 @@ import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
 import NameLine from "./NameLine"
-import ValuteLine from "./ValuteLine"
+import ValuteLine from "./ValuteLine/ValuteLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -157,6 +157,7 @@ class FullTable extends Component {
 
         let bodyTable
         if (cashFlow) {
+            // console.log(cashFlow);
             bodyTable = cashFlow.map(item => {
                 const {
                     price,
