@@ -9,6 +9,7 @@ const Graphs = ({ cashFlow }) => {
     const costsGraph = cashFlow
         ? cashFlow.filter(i => i.income < 0 && i.price !== 0)
         : null
+    const capitalGraph = cashFlow ? cashFlow.filter(i => i.income === 0) : null
     return (
         <Container maxWidth='xl'>
             <Box mt={10}>
@@ -49,6 +50,23 @@ const Graphs = ({ cashFlow }) => {
                 </Grid>
             </Box>
             <div className='separator-horizontal' />
+            <Box mt={1}>
+                <Grid container spacing={3}>
+                    <Grid item xl={4} md={6} xs={12}>
+                        <Typography
+                            variant='h6'
+                            style={{ textAlign: "center" }}
+                            gutterBottom
+                        >
+                            Капитал
+                        </Typography>
+                        <CreateGraph
+                            cashFlow={capitalGraph}
+                            name='capitalGraph'
+                        />
+                    </Grid>
+                </Grid>
+            </Box>
         </Container>
     )
 }
