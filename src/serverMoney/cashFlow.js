@@ -6,7 +6,7 @@ const cashFlow = [
         income: 10,
         currency: "$",
         rate: "USD",
-        dateBuy: "9-10-2019",
+        dateBuy: "11-11-2018",
         checked: false,
         id: 1
     },
