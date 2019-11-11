@@ -40,10 +40,13 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             }
 
         case SEARCH_CASH_FLOW:
-            const arr = state.cashFlow.filter(item => {
-                const name = item.name.toLowerCase()
-                return name.indexOf(action.payload.toLowerCase()) > -1
-            })
+            let arr = null
+            if (action.payload !== "") {
+                arr = state.cashFlow.filter(item => {
+                    const name = item.name.toLowerCase()
+                    return name.indexOf(action.payload.toLowerCase()) > -1
+                })
+            }
             return {
                 ...state,
                 searchCashFlow: arr

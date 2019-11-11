@@ -77,7 +77,7 @@ class FullTable extends Component {
     }
 
     render() {
-        const { cashFlow, setCheckBox, changeParametersCashFlow } = this.props
+        const { cashFlow, setCheckBox, changeParametersCashFlow, searchCashFlow } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -155,10 +155,10 @@ class FullTable extends Component {
             }
         }
 
+        const mainArray = searchCashFlow || cashFlow
         let bodyTable
         if (cashFlow) {
-            // console.log(cashFlow);
-            bodyTable = cashFlow.map(item => {
+            bodyTable = mainArray.map(item => {
                 const {
                     price,
                     currency,
@@ -258,7 +258,8 @@ class FullTable extends Component {
 
 const mapStateToProps = ({ serverMoney }) => ({
     cashFlow: serverMoney.cashFlow,
-    newCashFlowItem: serverMoney.newCashFlowItem
+    newCashFlowItem: serverMoney.newCashFlowItem,
+    searchCashFlow: serverMoney.searchCashFlow
 })
 const mapDispatchToProps = dispatch => {
     return {

@@ -4,11 +4,12 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice, showDate, retentionTime, maths } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
-function PasiveTable({ cashFlow, setCheckBox }) {
+function PasiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
+    const mainArray = searchCashFlow || cashFlow
     let obj
     let checked
     if (cashFlow) {
-        obj = cashFlow.filter(item => item.income < 0)
+        obj = mainArray.filter(item => item.income < 0)
         obj.forEach((item, index) => {
             if (item.checked) checked = index
         })
@@ -70,7 +71,8 @@ const createTableContent = obj => {
 }
 
 const mapStateToProps = ({ serverMoney }) => ({
-    cashFlow: serverMoney.cashFlow
+    cashFlow: serverMoney.cashFlow,
+    searchCashFlow: serverMoney.searchCashFlow
 })
 const mapDispatchToProps = dispatch => {
     return {

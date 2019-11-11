@@ -4,11 +4,13 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
-function ActiveTable({ cashFlow, setCheckBox }) {
+function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
+    const mainArray = searchCashFlow || cashFlow
     let obj
     let checked
+    // виводить або массив з пошуку або повний масив cashFlow
     if (cashFlow) {
-        obj = cashFlow.filter(item => item.income > 0)
+        obj = mainArray.filter(item => item.income > 0)
         obj.forEach((item, index) => {
             if (item.checked) checked = index
         })
@@ -48,7 +50,8 @@ const createTableContent = obj => {
 }
 
 const mapStateToProps = ({ serverMoney }) => ({
-    cashFlow: serverMoney.cashFlow
+    cashFlow: serverMoney.cashFlow,
+    searchCashFlow: serverMoney.searchCashFlow
 })
 const mapDispatchToProps = dispatch => {
     return {
