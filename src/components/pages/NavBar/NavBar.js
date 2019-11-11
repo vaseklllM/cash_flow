@@ -36,9 +36,9 @@ function NavBar({ vallets }) {
                         <div>{blockValute()}</div>
                     </Typography>
                     <Hidden smDown>
-                        {/* <Typography> */}
+                        <Box mr={2}>
                             <Search />
-                        {/* </Typography> */}
+                        </Box>
                     </Hidden>
                     <Hidden smDown>
                         <Box mr={2}>

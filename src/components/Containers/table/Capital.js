@@ -38,7 +38,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
 
 const bodyText = {
     title: "Капітал",
-    emptyArray: "Немає Капіталу",
+    emptyArray: "Немає капіталу",
     collumn: ["Назва", "Кількість"]
 }
 
