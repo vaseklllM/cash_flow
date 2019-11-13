@@ -9,12 +9,12 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
     let obj
     let checked
     // виводить або массив з пошуку або повний масив cashFlow
-    if (cashFlow ) {
+    if (cashFlow) {
         obj = mainArray.filter(item => item.income === 0)
         obj.forEach((item, index) => {
             if (item.checked) checked = index
         })
-    } 
+    }
     const setId = id => {
         obj.forEach((item, index) => {
             if (index === id) {
@@ -23,6 +23,16 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
+    // if (obj) {
+    //     const priceArr = obj.map(item => {
+    //         return {
+    //             price: item.price * item.pcs,
+    //             rate: item.rate,
+    //             currency: item.currency
+    //         }
+    //     })
+    //     console.log(priceArr)
+    // }
     let fullPrice = rows ? mathFullPrice(rows, 1) : []
     return (
         <CreateTable
@@ -59,7 +69,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ActiveTable)
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveTable)

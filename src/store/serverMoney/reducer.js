@@ -53,14 +53,6 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
             }
 
         case CHANGE_PARAMETRS_CASH_FLOW:
-            const {
-                income,
-                pcs,
-                price,
-                name,
-                currency,
-                rate
-            } = state.newCashFlowItem
             const checkType = txt => {
                 if (typeof txt === "string") {
                     return parseFloat(txt.replace(/[^\d,.-]/g, ""))
@@ -69,22 +61,51 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 }
             }
 
+            function CreateObject(newCashFlowItem, item, checkType) {
+                const {
+                    income,
+                    pcs,
+                    price,
+                    name,
+                    currency,
+                    rate
+                } = newCashFlowItem
+
+                return {
+                    ...item,
+                    name: name !== "" ? name : item.name,
+                    pcs: checkType(pcs),
+                    price: checkType(price),
+                    income: checkType(income),
+                    currency,
+                    rate
+                }
+            }
+
             const newCeshflow = state.cashFlow.map(item => {
                 if (item.id === action.payload) {
-                    return {
-                        ...item,
-                        name: name !== "" ? name : item.name,
-                        pcs: checkType(pcs),
-                        price: checkType(price),
-                        income: checkType(income),
-                        currency,
-                        rate
-                    }
+                    return CreateObject(state.newCashFlowItem, item, checkType)
                 } else return item
             })
+
+            let newSearchCashFlow = null
+            if (state.searchCashFlow !== null) {
+                newSearchCashFlow = state.searchCashFlow.map(item => {
+                    if (item.id === action.payload) {
+                        return CreateObject(
+                            state.newCashFlowItem,
+                            item,
+                            checkType
+                        )
+                    } else return item
+                })
+            }
+            // console.log(newSearchCashFlow);
+
             return {
                 ...state,
-                cashFlow: newCeshflow
+                cashFlow: newCeshflow,
+                searchCashFlow: newSearchCashFlow
             }
 
         default:
