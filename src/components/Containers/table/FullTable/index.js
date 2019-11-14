@@ -7,12 +7,17 @@ import {
     TableRow,
     TableHead,
     TableBody,
-    Table
+    Table,
+    IconButton,
+    Grid
 } from "@material-ui/core"
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
 import { Loader } from "../../../pages"
 import { Calc, showDate, retentionTime } from "../../../utils"
-import { setCheckBox } from "../../../../store/serverMoney/action"
+import {
+    setCheckBox,
+    onDeleteCashFlowItem
+} from "../../../../store/serverMoney/action"
 import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
@@ -20,6 +25,7 @@ import NameLine from "./NameLine"
 import ValuteLine from "./ValuteLine/ValuteLine"
 import View from "./leftControlBtn/View"
 import Edit from "./leftControlBtn/Edit"
+import DeleteIcon from "@material-ui/icons/Delete"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -71,7 +77,13 @@ class FullTable extends Component {
     }
 
     render() {
-        const { cashFlow, setCheckBox, searchCashFlow } = this.props
+        const {
+            cashFlow,
+            setCheckBox,
+            searchCashFlow,
+            onDeleteCashFlowItem
+        } = this.props
+        const { onCheck } = this.state
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -82,6 +94,37 @@ class FullTable extends Component {
                 </StyledTableCell>
             )
         })
+
+        const rowDelete = () => {
+            return (
+                <StyledTableCell
+                    align='left'
+                    colSpan={bodyText.collumn.length}
+                    style={{
+                        backgroundColor: "rgb(250, 224, 233)",
+                        color: "rgb(220, 0, 78)"
+                    }}
+                >
+                    <Grid
+                        container
+                        direction='row'
+                        justify='space-between'
+                        alignItems='center'
+                    >
+                        <span>Вибрано: {onCheck.length}</span>
+                        <IconButton
+                            style={{ padding: "5px" }}
+                            onClick={() => {
+                                onDeleteCashFlowItem(onCheck)
+                                this.setState({ onCheck: [] })
+                            }}
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    </Grid>
+                </StyledTableCell>
+            )
+        }
 
         const leftControlBtn = item => {
             if (this.state.editElementId === item.id) {
@@ -95,7 +138,7 @@ class FullTable extends Component {
                 return (
                     <View
                         item={item}
-                        onCheck={this.state.onCheck.indexOf(item.id) !== -1}
+                        onCheck={onCheck.indexOf(item.id) !== -1}
                         onClickEditelementId={this.onClickEditelementId}
                         onClickCheckBox={this.onClickCheckBox}
                     />
@@ -107,7 +150,7 @@ class FullTable extends Component {
 
         const mainArray = searchCashFlow || cashFlow
         let bodyTable
-        if (cashFlow) {
+        if (cashFlow && cashFlow.length) {
             bodyTable = mainArray.map(item => {
                 const { dateBuy, checked, id } = item
 
@@ -153,7 +196,16 @@ class FullTable extends Component {
                     </StyledTableRow>
                 )
             })
-        } else {
+        } else if (cashFlow && !cashFlow.length ){
+            bodyTable = (
+                <StyledTableRow>
+                    <StyledTableCell colSpan={bodyText.collumn.length}>
+                        Таблиця пуста
+                    </StyledTableCell>
+                </StyledTableRow>
+            )
+        }
+         else {
             bodyTable = (
                 <StyledTableRow>
                     <StyledTableCell colSpan={bodyText.collumn.length}>
@@ -182,7 +234,9 @@ class FullTable extends Component {
                         style={{ minWidth: "1250px" }}
                     >
                         <TableHead>
-                            <TableRow>{row}</TableRow>
+                            <TableRow>
+                                {onCheck.length === 0 ? row : rowDelete()}
+                            </TableRow>
                         </TableHead>
                         <TableBody>{bodyTable}</TableBody>
                     </Table>
@@ -201,7 +255,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setCheckBox: index => {
             dispatch(setCheckBox(index))
-        }
+        },
+        onDeleteCashFlowItem: indexArr =>
+            dispatch(onDeleteCashFlowItem(indexArr))
     }
 }
 

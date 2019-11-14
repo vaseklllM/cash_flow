@@ -4,7 +4,8 @@ import {
     SET_CASH_FLOW_CHACKBOX,
     SET_NEW_CASH_FLOW_ITEM,
     CHANGE_PARAMETRS_CASH_FLOW,
-    SEARCH_CASH_FLOW
+    SEARCH_CASH_FLOW,
+    ON_DELETE_CASH_FLOW_ITEM
 } from "./action"
 
 const cashFlowState = {
@@ -16,9 +17,11 @@ const cashFlowState = {
 
 const serverMoneyReducer = (state = cashFlowState, action) => {
     switch (action.type) {
+        // получає cashFlow з сервера
         case SET_CASH_FLOW:
             return { ...state, cashFlow: action.payload }
 
+        // получає курси валют з сервера
         case SET_VALLET_COURSE:
             return { ...state, vallets: action.payload }
 
@@ -39,6 +42,7 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 newCashFlowItem: { ...state.newCashFlowItem, ...action.payload }
             }
 
+        // пошук по всіх таблицях
         case SEARCH_CASH_FLOW:
             let arr = null
             if (action.payload !== "") {
@@ -52,6 +56,7 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 searchCashFlow: arr
             }
 
+        // змінює cashFlow обєкти
         case CHANGE_PARAMETRS_CASH_FLOW:
             const checkType = txt => {
                 if (typeof txt === "string") {
@@ -100,7 +105,6 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                     } else return item
                 })
             }
-            // console.log(newSearchCashFlow);
 
             return {
                 ...state,
@@ -108,11 +112,30 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                 searchCashFlow: newSearchCashFlow
             }
 
+        // видалення з cashFlow приймає массив з id елементами які треба видалити
+        case ON_DELETE_CASH_FLOW_ITEM:
+            // console.log(state.searchCashFlow);
+            return {
+                ...state,
+                cashFlow: deleteId(action.payload, state.cashFlow),
+                searchCashFlow: state.searchCashFlow
+                    ? deleteId(action.payload, state.searchCashFlow)
+                    : null
+            }
+
         default:
             return {
                 ...state
             }
     }
+}
+
+function deleteId(arr, cashFlow) {
+    let delCashFlow = [...cashFlow]
+    arr.forEach(item => {
+        delCashFlow = delCashFlow.filter(i => i.id !== item)
+    })
+    return delCashFlow
 }
 
 export default serverMoneyReducer
