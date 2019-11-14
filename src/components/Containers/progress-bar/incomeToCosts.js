@@ -16,12 +16,21 @@ const incomeToCosts = ({ cashFlow, vallets }) => {
             "en-IN"
         )} грн. / ${parseInt(num2).toLocaleString("ru-RU")} грн.`
     }
-    return (
-        <ProgressBar
-            width={parseFloat(((fullIncome / num2) * 100).toFixed(1))}
-            title={title}
-        />
-    )
+    if (fullIncome < num2) {
+        return (
+            <ProgressBar
+                width={parseFloat(((fullIncome / num2) * 100).toFixed(1))}
+                title={title}
+            />
+        )
+    } else if (fullIncome > num2){
+        return (
+            <ProgressBar
+                width={100}
+                title={{right: 'Кінець гри'}}
+            />
+        )
+    }
 }
 
 const mapStateToProps = ({ serverMoney }) => {

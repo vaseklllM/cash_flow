@@ -1,4 +1,5 @@
 const Calc = {
+    // повертає - або roi актива
     roi: item => {
         const { income, price, pcs } = item
         const lastPrice = price * pcs
@@ -7,6 +8,7 @@ const Calc = {
             return `${ROI} %`
         } else return "-"
     },
+    // повертає - або повну ціну актива
     showFullPrice: item => {
         const { price, pcs, currency } = item
         const lastPrice = price * pcs
@@ -17,6 +19,7 @@ const Calc = {
             return `${parseInt(lastPrice).toLocaleString("ru-RU")} ${currency}`
         }
     },
+    // повертає - або ціну актива
     showPrice: item => {
         const { price, currency } = item
         if (!price) return "-"
@@ -28,6 +31,7 @@ const Calc = {
             return `${price.toLocaleString("ru-RU")} ${currency}`
         }
     },
+    // повертає кількісь активів
     showPcs: item => {
         const { pcs } = item
         return `${pcs.toLocaleString("ru-RU")} шт.`
