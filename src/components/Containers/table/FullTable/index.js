@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core"
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
 import { Loader } from "../../../pages"
-import { Calc, showDate, retentionTime } from "../../../utils"
+import { Calc, retentionTime } from "../../../utils"
 import {
     setCheckBox,
     onDeleteCashFlowItem
@@ -26,6 +26,7 @@ import ValuteLine from "./ValuteLine/ValuteLine"
 import View from "./leftControlBtn/View"
 import Edit from "./leftControlBtn/Edit"
 import DeleteIcon from "@material-ui/icons/Delete"
+import DateLine from "./DateLine"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -177,9 +178,7 @@ class FullTable extends Component {
                             </div>
                         </StyledTableCell>
                         <NameLine item={item} onShow={onShow} />
-                        <StyledTableCell align='right'>
-                            {showDate(dateBuy)}
-                        </StyledTableCell>
+                        <DateLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
                             {retentionTime(dateBuy)}
                         </StyledTableCell>
@@ -196,7 +195,7 @@ class FullTable extends Component {
                     </StyledTableRow>
                 )
             })
-        } else if (cashFlow && !cashFlow.length ){
+        } else if (cashFlow && !cashFlow.length) {
             bodyTable = (
                 <StyledTableRow>
                     <StyledTableCell colSpan={bodyText.collumn.length}>
@@ -204,8 +203,7 @@ class FullTable extends Component {
                     </StyledTableCell>
                 </StyledTableRow>
             )
-        }
-         else {
+        } else {
             bodyTable = (
                 <StyledTableRow>
                     <StyledTableCell colSpan={bodyText.collumn.length}>

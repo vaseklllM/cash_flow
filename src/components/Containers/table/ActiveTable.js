@@ -55,7 +55,7 @@ const createTableContent = obj => {
         const { name, dateBuy } = item
         return [
             name,
-            showDate(dateBuy),
+            Calc.showDate(dateBuy),
             retentionTime(dateBuy),
             Calc.showPcs(item),
             Calc.showPrice(item),

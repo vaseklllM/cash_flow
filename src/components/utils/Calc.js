@@ -1,14 +1,15 @@
 const Calc = {
-    // повертає - або roi актива
+    // повертає roi актива
     roi: item => {
         const { income, price, pcs } = item
         const lastPrice = price * pcs
+        if (!income && !lastPrice) return "-"
         const ROI = parseFloat(((income / lastPrice) * 100 * 12).toFixed(1))
         if (ROI !== 0 && ROI !== -Infinity && ROI !== Infinity) {
             return `${ROI} %`
         } else return "-"
     },
-    // повертає - або повну ціну актива
+    // повертає повну ціну актива
     showFullPrice: item => {
         const { price, pcs, currency } = item
         const lastPrice = price * pcs
@@ -19,7 +20,7 @@ const Calc = {
             return `${parseInt(lastPrice).toLocaleString("ru-RU")} ${currency}`
         }
     },
-    // повертає - або ціну актива
+    // повертає ціну актива
     showPrice: item => {
         const { price, currency } = item
         if (!price) return "-"
@@ -34,7 +35,18 @@ const Calc = {
     // повертає кількісь активів
     showPcs: item => {
         const { pcs } = item
+        if (!pcs) return "-"
         return `${pcs.toLocaleString("ru-RU")} шт.`
+    },
+    // повертає дату строкою
+    showDate: d => {
+        const date = new Date(d)
+        const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`
+        const month =
+            date.getMonth() + 1 >= 10
+                ? date.getMonth() + 1
+                : `0${date.getMonth() + 1}`
+        return `${day}.${month}.${date.getFullYear()}`
     }
 }
 export default Calc
