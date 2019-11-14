@@ -7,25 +7,19 @@ import {
     TableRow,
     TableHead,
     TableBody,
-    Table,
-    Checkbox,
-    IconButton
+    Table
 } from "@material-ui/core"
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
 import { Loader } from "../../../pages"
 import { Calc, showDate, retentionTime } from "../../../utils"
-import {
-    setCheckBox,
-    changeParametersCashFlow
-} from "../../../../store/serverMoney/action"
-import EditIcon from "@material-ui/icons/Edit"
-import CheckIcon from "@material-ui/icons/Check"
-import CloseIcon from "@material-ui/icons/Close"
+import { setCheckBox } from "../../../../store/serverMoney/action"
 import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
 import NameLine from "./NameLine"
 import ValuteLine from "./ValuteLine/ValuteLine"
+import View from "./leftControlBtn/View"
+import Edit from "./leftControlBtn/Edit"
 
 const bodyText = {
     title: "Вся таблиця",
@@ -77,12 +71,7 @@ class FullTable extends Component {
     }
 
     render() {
-        const {
-            cashFlow,
-            setCheckBox,
-            changeParametersCashFlow,
-            searchCashFlow
-        } = this.props
+        const { cashFlow, setCheckBox, searchCashFlow } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -94,67 +83,23 @@ class FullTable extends Component {
             )
         })
 
-        const view = item => {
-            return (
-                <>
-                    <Checkbox
-                        checked={this.state.onCheck.indexOf(item.id) !== -1}
-                        onMouseDown={event => {
-                            event.stopPropagation()
-                        }}
-                        onClick={() => {
-                            this.onClickCheckBox(item)
-                        }}
-                    />
-                    <IconButton
-                        style={{ padding: "5px" }}
-                        onMouseDown={event => {
-                            event.stopPropagation()
-                        }}
-                        onClick={() => {
-                            this.onClickEditelementId(item.id)
-                        }}
-                    >
-                        <EditIcon fontSize='small' />
-                    </IconButton>
-                </>
-            )
-        }
-        const edit = item => {
-            return (
-                <>
-                    <IconButton
-                        style={{ padding: "5px" }}
-                        onMouseDown={event => {
-                            event.stopPropagation()
-                        }}
-                        onClick={() => {
-                            changeParametersCashFlow(item.id)
-                            this.onClickEditelementId(item.id)
-                        }}
-                    >
-                        <CheckIcon fontSize='small' />
-                    </IconButton>
-                    <IconButton
-                        style={{ padding: "5px" }}
-                        onMouseDown={event => {
-                            event.stopPropagation()
-                        }}
-                        onClick={() => {
-                            this.onClickEditelementId(item.id)
-                        }}
-                    >
-                        <CloseIcon fontSize='small' />
-                    </IconButton>
-                </>
-            )
-        }
-
-        const leftControlBtn = (view, edit, item) => {
+        const leftControlBtn = item => {
             if (this.state.editElementId === item.id) {
-                return edit(item)
+                return (
+                    <Edit
+                        item={item}
+                        onClickEditelementId={this.onClickEditelementId}
+                    />
+                )
             } else if (this.state.editElementId === null) {
-                return view(item)
+                return (
+                    <View
+                        item={item}
+                        onCheck={this.state.onCheck.indexOf(item.id) !== -1}
+                        onClickEditelementId={this.onClickEditelementId}
+                        onClickCheckBox={this.onClickCheckBox}
+                    />
+                )
             } else {
                 return
             }
@@ -185,7 +130,7 @@ class FullTable extends Component {
                             padding='checkbox'
                         >
                             <div className='fullTable-Buttons'>
-                                {leftControlBtn(view, edit, item)}
+                                {leftControlBtn(item)}
                             </div>
                         </StyledTableCell>
                         <NameLine item={item} onShow={onShow} />
@@ -256,9 +201,7 @@ const mapDispatchToProps = dispatch => {
     return {
         setCheckBox: index => {
             dispatch(setCheckBox(index))
-        },
-        changeParametersCashFlow: itemId =>
-            dispatch(changeParametersCashFlow(itemId))
+        }
     }
 }
 
