@@ -35,9 +35,9 @@ const Main = () => {
                         <Grid item xs={12} lg={6} xl={4}>
                             <CostsTable />
                         </Grid>
-                        <Grid item xs={12} lg={12} xl={4}>
+                         <Grid item xs={12} lg={12} xl={4}>
                             <Capital />
-                        </Grid>
+                        </Grid> 
                         <Grid item xs={12} lg={12} xl={6}>
                             <ActiveTable />
                         </Grid>
@@ -46,7 +46,7 @@ const Main = () => {
                         </Grid>
                         <Grid item xs={12} lg={12} xl={12}>
                             <FullTable />
-                        </Grid>
+                        </Grid> 
                     </Grid>
                 </Grid>
                 <div className='separator-horizontal' />

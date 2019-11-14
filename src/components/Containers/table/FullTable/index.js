@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core"
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
 import { Loader } from "../../../pages"
-import { maths, showDate, retentionTime } from "../../../utils"
+import { Calc, showDate, retentionTime } from "../../../utils"
 import {
     setCheckBox,
     changeParametersCashFlow
@@ -77,7 +77,12 @@ class FullTable extends Component {
     }
 
     render() {
-        const { cashFlow, setCheckBox, changeParametersCashFlow, searchCashFlow } = this.props
+        const {
+            cashFlow,
+            setCheckBox,
+            changeParametersCashFlow,
+            searchCashFlow
+        } = this.props
         const row = bodyText.collumn.map((item, index) => {
             if (!index || index === 1) {
                 return <StyledTableCell key={index}>{item}</StyledTableCell>
@@ -159,15 +164,7 @@ class FullTable extends Component {
         let bodyTable
         if (cashFlow) {
             bodyTable = mainArray.map(item => {
-                const {
-                    price,
-                    currency,
-                    income,
-                    pcs,
-                    dateBuy,
-                    checked,
-                    id
-                } = item
+                const { dateBuy, checked, id } = item
 
                 const onShow = id === this.state.editElementId
                 return (
@@ -203,16 +200,10 @@ class FullTable extends Component {
                         <IncomeLine item={item} onShow={onShow} />
                         <ValuteLine item={item} onShow={onShow} />
                         <StyledTableCell align='right'>
-                            {price * pcs
-                                ? `${parseFloat(
-                                      (price * pcs).toFixed(2)
-                                  ).toLocaleString("en-IN")} ${currency}`
-                                : "-"}
+                            {Calc.showFullPrice(item)}
                         </StyledTableCell>
                         <StyledTableCell align='right'>
-                            {maths.roi(income, price * pcs) !== 0
-                                ? `${maths.roi(income, price * pcs)} %`
-                                : "-"}
+                            {Calc.roi(item)}
                         </StyledTableCell>
                     </StyledTableRow>
                 )
@@ -271,7 +262,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FullTable)
+export default connect(mapStateToProps, mapDispatchToProps)(FullTable)

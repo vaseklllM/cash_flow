@@ -44,7 +44,7 @@ class Line extends React.Component {
     }
 
     componentDidUpdate() {
-        const { rate, currency } = this.state
+        const { rate } = this.state
         const { setNewCashFlowItem, vallets } = this.props
 
         if (rate !== "") {

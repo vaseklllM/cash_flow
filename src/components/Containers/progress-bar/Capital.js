@@ -22,7 +22,6 @@ class ProgressBarCapital extends React.Component {
             })
         }
         const num1 = Math.floor(capital)
-        // const num2 = 50000
         const num2 = 50000
 
         const title = {

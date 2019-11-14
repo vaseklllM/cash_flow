@@ -1,22 +1,7 @@
-const mathFullPrice = (rows, col) => {
-    // if ()
-    if (!col) {
-        const priceArr = createPriceArr(rows)
-        const smallPriceArr = createSmallPriceArr(priceArr)
-        console.log(smallPriceArr)
-    }
-
-    let valletArr = {}
-    rows.forEach(element => {
-        const price = element[col]
-        if (price !== "-") {
-            const numPrice = parseFloat(price.replace(/[,]/g, ""))
-            const numValet = price.replace(/.+ /, "")
-            valletArr = arrPushToValletArr(valletArr, numValet, numPrice)
-        }
-    })
-    valletArr = createArray(valletArr)
-    return valletArr
+const mathFullPrice = (rows, collumn, collumn2) => {
+    const priceArr = createPriceArr(rows, collumn, collumn2)
+    const smallPriceArr = createSmallPriceArr(priceArr)
+    return smallPriceArr
 }
 
 // оставляет только уникальные обьекты
@@ -38,7 +23,7 @@ function createSmallPriceArr(arr) {
     return newArr
 }
 
-// обєдиняє однакові об'єкти
+// об'єдиняє однакові об'єкти
 function uniqueObject(arr) {
     let newObj = {}
     arr.forEach(i => {
@@ -63,26 +48,12 @@ function unique(arr) {
 }
 
 // возвращает только цену и валюту
-function createPriceArr(arr) {
+function createPriceArr(arr, collumn, collumn2) {
     return arr.map(item => ({
-        price: item.price * item.pcs,
+        price: collumn2 ? item[collumn] * item[collumn2] : item[collumn],
         rate: item.rate,
         currency: item.currency
     }))
-}
-
-const arrPushToValletArr = (arr, numValet, numPrice) => {
-    return {
-        ...arr,
-        [numValet]: arr[numValet] + numPrice || numPrice
-    }
-}
-const createArray = valletArr => {
-    let arr = []
-    for (let key in valletArr) {
-        arr.push({ summ: valletArr[key], rate: key })
-    }
-    return arr
 }
 
 export default mathFullPrice

@@ -23,17 +23,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    // if (obj) {
-    //     const priceArr = obj.map(item => {
-    //         return {
-    //             price: item.price * item.pcs,
-    //             rate: item.rate,
-    //             currency: item.currency
-    //         }
-    //     })
-    //     console.log(priceArr)
-    // }
-    let fullPrice = rows ? mathFullPrice(rows, 1) : []
+    let fullPrice = obj ? mathFullPrice(obj, "price", "pcs") : []
     return (
         <CreateTable
             rows={rows}

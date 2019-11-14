@@ -3,7 +3,7 @@ import getIncome from "./getIncome"
 import getCosts from "./getCosts"
 import retentionTime from "./retentionTime"
 import showDate from "./showDate"
-import maths from "./maths"
+import Calc from "./Calc"
 import randomColor from "./randomColor"
 
 export {
@@ -12,6 +12,6 @@ export {
     getCosts,
     retentionTime,
     showDate,
-    maths,
+    Calc,
     randomColor
 }

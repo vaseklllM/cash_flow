@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
-import { mathFullPrice, showDate, retentionTime, maths } from "../../utils"
+import { mathFullPrice, showDate, retentionTime, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
 function PasiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
@@ -22,7 +22,7 @@ function PasiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    let fullPrice = rows ? mathFullPrice(rows, 5) : []
+    let fullPrice = obj ? mathFullPrice(obj, "price", "pcs") : []
     return (
         <CreateTable
             rows={rows}
@@ -51,21 +51,15 @@ const bodyText = {
 
 const createTableContent = obj => {
     return obj.map(item => {
-        const { name, pcs, price, currency, dateBuy, income } = item
+        const { name, dateBuy } = item
         return [
             name,
             showDate(dateBuy),
             retentionTime(dateBuy),
-            `${pcs.toLocaleString("en-IN")} шт.`,
-            price ? `${price.toLocaleString("en-IN")} ${currency}` : "-",
-
-            pcs * price
-                ? `${(pcs * price).toLocaleString("en-IN")} ${currency}`
-                : "-",
-            maths.roi(income, price * pcs) !== 0 &&
-            maths.roi(income, price * pcs) !== -Infinity
-                ? `${maths.roi(income, price * pcs)} %`
-                : "-"
+            Calc.showPcs(item),
+            Calc.showPrice(item),
+            Calc.showFullPrice(item),
+            Calc.roi(item)
         ]
     })
 }
@@ -80,7 +74,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PasiveTable)
+export default connect(mapStateToProps, mapDispatchToProps)(PasiveTable)

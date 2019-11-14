@@ -3,7 +3,7 @@ const cashFlow = [
         name: "Акции Гугл",
         pcs: 159,
         price: 6,
-        income: 0,
+        income: 10,
         currency: "$",
         rate: "USD",
         dateBuy: "11-11-2018",

@@ -23,7 +23,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    let fullPrice = rows ? mathFullPrice(rows, 1) : []
+    let fullPrice = obj ? mathFullPrice(obj, 'income') : []
     return (
         <CreateTable
             rows={rows}

@@ -12,9 +12,9 @@ const incomeToCosts = ({ cashFlow, vallets }) => {
     const num2 = fullCosts === 0 ? 1 : fullCosts
     const title = {
         left: "Відношення витрат до доходів в грн.",
-        right: `${fullIncome.toLocaleString(
+        right: `${parseInt(fullIncome).toLocaleString(
             "en-IN"
-        )} грн. / ${num2.toLocaleString("ru-RU")} грн.`
+        )} грн. / ${parseInt(num2).toLocaleString("ru-RU")} грн.`
     }
     return (
         <ProgressBar

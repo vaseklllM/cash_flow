@@ -1,6 +1,7 @@
 import React from "react"
 import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
+import { Calc } from "../../../utils"
 
 const PcsLine = ({ item, onShow }) => {
     const { pcs } = item
@@ -18,7 +19,7 @@ const PcsLine = ({ item, onShow }) => {
     } else
         return (
             <StyledTableCell className={onShow ? "activeTd" : ""} align='right'>
-                {`${pcs} шт.`}
+                {Calc.showPcs(item)}
             </StyledTableCell>
         )
 }

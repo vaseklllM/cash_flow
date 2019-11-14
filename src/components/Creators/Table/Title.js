@@ -2,27 +2,27 @@ import React from "react"
 import { Typography, Box } from "@material-ui/core"
 import FunctionsRoundedIcon from "@material-ui/icons/FunctionsRounded"
 import { connect } from "react-redux"
+import { Calc } from "../../utils"
 
 const Title = ({ title, fullPrice, vallets }) => {
-    let fullPriceUAH = 0
-    if (vallets.length !== 0 && fullPrice.length !== 0) {
-        fullPrice.forEach(item => {
-            const vallet = vallets.filter(i => i.sumbol === item.rate)
-            fullPriceUAH += vallet[0].value * item.summ
-        })
-    }
-    const fullPriceSpan = fullPrice.map((item, id) => {
+    const fullPriceSpan = fullPrice.map(item => {
         return (
-            <span key={id}>
-                {`${Math.abs(item.summ).toLocaleString("en-IN")}${item.rate}`}
+            <span key={item.rate}>
+                {Calc.showPrice(item)}
                 &nbsp;&nbsp;
             </span>
         )
     })
+
+    let fullPriceUAH = 0
+    if (vallets.length !== 0 && fullPrice.length !== 0) {
+        fullPrice.forEach(item => {
+            const vallet = vallets.filter(i => i.sumbol === item.currency)
+            fullPriceUAH += vallet[0].value * item.price
+        })
+    }
     fullPriceSpan.push(
-        `( ${parseFloat(Math.abs(fullPriceUAH).toFixed(0)).toLocaleString(
-            "ru-RU"
-        )} ₴ )`
+        `( ${parseInt(Math.abs(fullPriceUAH)).toLocaleString("ru-RU")} ₴ )`
     )
     return (
         <Box
