@@ -21,21 +21,40 @@ class ProgressBarCapital extends React.Component {
                 }
             })
         }
-        const num1 = Math.floor(capital)
-        const num2 = 50000
-
-        const title = {
-            left: "Капитал в грн.",
-            right: `${num1.toLocaleString(
-                "ru-RU"
-            )} грн. / ${num2.toLocaleString("en-IN")} грн.`
+        const num1 = parseInt(capital)
+        const num2 = [
+            5000,
+            10000,
+            20000,
+            50000,
+            100000,
+            200000,
+            500000,
+            1000000
+        ]
+        for (let i = 0; i < num2.length; i++) {
+            if (num1 < num2[i]) {
+                const title = {
+                    left: "Капитал в грн.",
+                    right: `${num1.toLocaleString("ru-RU")} грн. / ${num2[
+                        i
+                    ].toLocaleString("ru-RU")} грн.`
+                }
+                return (
+                    <ProgressBar
+                        width={parseFloat(((num1 / num2[i]) * 100).toFixed(1))}
+                        title={title}
+                    />
+                )
+            } else if (num1 > num2[num2.length - 1]) {
+                return (
+                    <ProgressBar
+                        width={100}
+                        title={{ right: "Астановись))" }}
+                    />
+                )
+            }
         }
-        return (
-            <ProgressBar
-                width={parseFloat(((num1 / num2) * 100).toFixed(1))}
-                title={title}
-            />
-        )
     }
 }
 
