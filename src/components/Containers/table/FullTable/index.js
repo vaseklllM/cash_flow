@@ -75,6 +75,7 @@ class FullTable extends Component {
                 return { editElementId: null }
             }
         })
+        this.setState({ onCheck: [] })
     }
 
     render() {
@@ -229,7 +230,7 @@ class FullTable extends Component {
                     <Table
                         size='small'
                         aria-label='a dense table'
-                        style={{ minWidth: "1250px" }}
+                        style={{ minWidth: "1500px" }}
                     >
                         <TableHead>
                             <TableRow>
