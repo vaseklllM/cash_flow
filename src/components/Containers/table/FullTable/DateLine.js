@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 import "date-fns"
 import { StyledTableCell } from "../../../Creators/Table/utils"
 import { Calc } from "../../../utils"
@@ -7,15 +8,15 @@ import {
     KeyboardDatePicker
 } from "@material-ui/pickers"
 import DateFnsUtils from "@date-io/date-fns"
+import { setNewCashFlowItem } from "../../../../store/serverMoney/action"
 
-const DateLine = ({ item, onShow }) => {
+const DateLine = ({ item, onShow, setNewCashFlowItem }) => {
     const { dateBuy } = item
-    const [selectedDate, setSelectedDate] = React.useState(
-        new Date(dateBuy)
-    )
+    const [selectedDate, setSelectedDate] = React.useState(new Date(dateBuy))
 
     const handleDateChange = date => {
         setSelectedDate(date)
+        setNewCashFlowItem({ dateBuy: Calc.showDate(date, "-", true) })
     }
 
     if (!onShow) {
@@ -51,4 +52,8 @@ const DateLine = ({ item, onShow }) => {
     }
 }
 
-export default DateLine
+const mapDispatchToProps = dispatch => ({
+    setNewCashFlowItem: value => dispatch(setNewCashFlowItem(value))
+})
+
+export default connect(null, mapDispatchToProps)(DateLine)

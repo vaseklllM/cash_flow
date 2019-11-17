@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
-import { mathFullPrice, showDate, retentionTime, Calc } from "../../utils"
+import { mathFullPrice, retentionTime, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
 function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {

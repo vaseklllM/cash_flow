@@ -73,7 +73,8 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                     price,
                     name,
                     currency,
-                    rate
+                    rate,
+                    dateBuy
                 } = newCashFlowItem
 
                 return {
@@ -83,7 +84,8 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                     price: checkType(price),
                     income: checkType(income),
                     currency,
-                    rate
+                    rate,
+                    dateBuy
                 }
             }
 
@@ -114,7 +116,6 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
 
         // видалення з cashFlow приймає массив з id елементами які треба видалити
         case ON_DELETE_CASH_FLOW_ITEM:
-            // console.log(state.searchCashFlow);
             return {
                 ...state,
                 cashFlow: deleteId(action.payload, state.cashFlow),

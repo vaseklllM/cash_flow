@@ -39,14 +39,16 @@ const Calc = {
         return `${pcs.toLocaleString("ru-RU")} шт.`
     },
     // повертає дату строкою
-    showDate: d => {
+    showDate: (d, symbul = ".", type = false) => {
         const date = new Date(d)
         const day = date.getDate() >= 10 ? date.getDate() : `0${date.getDate()}`
         const month =
             date.getMonth() + 1 >= 10
                 ? date.getMonth() + 1
                 : `0${date.getMonth() + 1}`
-        return `${day}.${month}.${date.getFullYear()}`
+        if (type) return `${month}${symbul}${day}${symbul}${date.getFullYear()}`
+        if (!type)
+            return `${day}${symbul}${month}${symbul}${date.getFullYear()}`
     }
 }
 export default Calc
