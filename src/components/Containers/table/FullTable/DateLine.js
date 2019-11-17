@@ -14,9 +14,11 @@ const DateLine = ({ item, onShow, setNewCashFlowItem }) => {
     const { dateBuy } = item
     const [selectedDate, setSelectedDate] = React.useState(new Date(dateBuy))
 
+    setNewCashFlowItem({ dateBuy })
     const handleDateChange = date => {
         setSelectedDate(date)
         const newDate = Calc.showDate(date, "-", true) || dateBuy
+        // console.log(newDate);
         setNewCashFlowItem({ dateBuy: newDate })
     }
 
