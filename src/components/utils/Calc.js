@@ -46,9 +46,13 @@ const Calc = {
             date.getMonth() + 1 >= 10
                 ? date.getMonth() + 1
                 : `0${date.getMonth() + 1}`
-        if (type) return `${month}${symbul}${day}${symbul}${date.getFullYear()}`
-        if (!type)
+        if (isNaN(month) || isNaN(day) || isNaN(date.getFullYear())) {
+            return false
+        } else if (type) {
+            return `${month}${symbul}${day}${symbul}${date.getFullYear()}`
+        } else if (!type) {
             return `${day}${symbul}${month}${symbul}${date.getFullYear()}`
+        }
     }
 }
 export default Calc

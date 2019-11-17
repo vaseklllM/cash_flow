@@ -16,7 +16,8 @@ const DateLine = ({ item, onShow, setNewCashFlowItem }) => {
 
     const handleDateChange = date => {
         setSelectedDate(date)
-        setNewCashFlowItem({ dateBuy: Calc.showDate(date, "-", true) })
+        const newDate = Calc.showDate(date, "-", true) || dateBuy
+        setNewCashFlowItem({ dateBuy: newDate })
     }
 
     if (!onShow) {
