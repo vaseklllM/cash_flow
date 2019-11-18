@@ -3,6 +3,7 @@ import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
 import { Calc } from "../../../utils"
 
+// комірка з кількістю шт.
 const PcsLine = ({ item, onShow }) => {
     const { pcs } = item
     if (onShow) {

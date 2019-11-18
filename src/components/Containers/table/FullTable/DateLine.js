@@ -10,6 +10,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns"
 import { setNewCashFlowItem } from "../../../../store/serverMoney/action"
 
+// комірка з датою
 const DateLine = ({ item, onShow, setNewCashFlowItem }) => {
     const { dateBuy } = item
     const [selectedDate, setSelectedDate] = React.useState(new Date(dateBuy))

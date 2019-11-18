@@ -4,6 +4,7 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
+// Таблиця 'Витрати'
 function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
     const mainArray = searchCashFlow || cashFlow
     let obj
@@ -23,7 +24,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    let fullPrice = obj ? mathFullPrice(obj, 'income') : []
+    let fullPrice = obj ? mathFullPrice(obj, "income") : []
     return (
         <CreateTable
             rows={rows}
@@ -59,7 +60,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ActiveTable)
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveTable)

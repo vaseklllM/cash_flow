@@ -4,13 +4,14 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice, retentionTime, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
+// Таблиця активів
 function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
     const mainArray = searchCashFlow || cashFlow
     let obj
     let checked
     // виводить або массив з пошуку або повний масив cashFlow
     if (cashFlow) {
-        obj = mainArray.filter(item => item.income >= 0)
+        obj = mainArray.filter(item => item.income > 0)
         obj.forEach((item, index) => {
             if (item.checked) checked = index
         })

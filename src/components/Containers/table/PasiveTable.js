@@ -4,6 +4,8 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice, retentionTime, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
+
+// Таблиця 'Пасиви'
 function PasiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
     const mainArray = searchCashFlow || cashFlow
     let obj

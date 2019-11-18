@@ -3,6 +3,7 @@ import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
 import { Calc } from "../../../utils"
 
+// комірка "Ціна загалом"
 const PriceToPcsLine = ({ item, onShow }) => {
     if (onShow) {
         return (

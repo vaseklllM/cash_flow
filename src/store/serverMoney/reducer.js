@@ -5,8 +5,10 @@ import {
     SET_NEW_CASH_FLOW_ITEM,
     CHANGE_PARAMETRS_CASH_FLOW,
     SEARCH_CASH_FLOW,
-    ON_DELETE_CASH_FLOW_ITEM
+    ON_DELETE_CASH_FLOW_ITEM,
+    CREATE_NEW_CASH_FLOW_ITEM
 } from "./action"
+import { Calc } from "../../components/utils"
 
 const cashFlowState = {
     searchCashFlow: null,
@@ -123,12 +125,32 @@ const serverMoneyReducer = (state = cashFlowState, action) => {
                     ? deleteId(action.payload, state.searchCashFlow)
                     : null
             }
+        case CREATE_NEW_CASH_FLOW_ITEM:
+            return {
+                ...state,
+                cashFlow: CreateNewItem(state.cashFlow)
+            }
 
         default:
             return {
                 ...state
             }
     }
+}
+
+function CreateNewItem(cashFlow) {
+    const newItem = {
+        checked: false,
+        dateBuy: new Date(),
+        id: Calc.lastIdFromCashFlow(cashFlow),
+        currency: "₴",
+        income: 0,
+        name: "Назва",
+        pcs: 1,
+        price: 0,
+        rate: "UAH"
+    }
+    return [newItem, ...cashFlow]
 }
 
 function deleteId(arr, cashFlow) {

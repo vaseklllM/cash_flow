@@ -4,6 +4,7 @@ import CreateTable from "../../Creators/Table"
 import { mathFullPrice } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
+// Таблиця 'Доходи'
 function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
     const mainArray = searchCashFlow || cashFlow
     let obj

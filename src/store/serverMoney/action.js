@@ -5,6 +5,7 @@ export const SET_NEW_CASH_FLOW_ITEM = "SET_NEW_CASH_FLOW_ITEM"
 export const CHANGE_PARAMETRS_CASH_FLOW = "CHANGE_PARAMETRS_CASH_FLOW"
 export const SEARCH_CASH_FLOW = "SEARCH_CASH_FLOW"
 export const ON_DELETE_CASH_FLOW_ITEM = "ON_DELETE_CASH_FLOW_ITEM"
+export const CREATE_NEW_CASH_FLOW_ITEM = "CREATE_NEW_CASH_FLOW_ITEM"
 
 export const getCashFlow = cashFlow => ({
     type: SET_CASH_FLOW,
@@ -35,4 +36,7 @@ export const searchCashFlowAction = newCashFlow => ({
 export const onDeleteCashFlowItem = itemId => ({
     type: ON_DELETE_CASH_FLOW_ITEM,
     payload: itemId
+})
+export const createNewCashFlowItem = () => ({
+    type: CREATE_NEW_CASH_FLOW_ITEM
 })

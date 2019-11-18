@@ -53,6 +53,14 @@ const Calc = {
         } else if (!type) {
             return `${day}${symbul}${month}${symbul}${date.getFullYear()}`
         }
+    },
+    // повертає новий id для масива cashFlow
+    lastIdFromCashFlow: cashFlow => {
+        let lastId = 0
+        cashFlow.forEach(i => {
+            if (lastId < i.id) lastId = i.id
+        })
+        return ++lastId
     }
 }
 export default Calc

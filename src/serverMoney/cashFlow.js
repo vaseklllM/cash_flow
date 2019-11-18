@@ -86,7 +86,19 @@ const cashFlow = [
         dateBuy: "12-27-2017",
         checked: false,
         id: 8
-    }
+    },
+    {
+        name: "Bitcoin",
+        pcs: 1,
+        price: 0.1,
+        income: 0,
+        currency: "₿",
+        rate: "BTC",
+        dateBuy: "5-18-2018",
+        checked: false,
+        id: 9
+    },
 ]
+
 
 export default cashFlow

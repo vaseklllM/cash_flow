@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+// material
 import {
     Box,
     Typography,
@@ -11,13 +12,24 @@ import {
     IconButton,
     Grid
 } from "@material-ui/core"
+import DeleteIcon from "@material-ui/icons/Delete"
+import AddBoxIcon from "@material-ui/icons/AddBox"
+
+// utils
 import { StyledTableCell, StyledTableRow } from "../../../Creators/Table/utils"
-import { Loader } from "../../../pages"
 import { Calc, retentionTime } from "../../../utils"
+
+// pages
+import { Loader } from "../../../pages"
+
+// actions
 import {
     setCheckBox,
-    onDeleteCashFlowItem
+    onDeleteCashFlowItem,
+    createNewCashFlowItem
 } from "../../../../store/serverMoney/action"
+
+// Внутрішні файли
 import IncomeLine from "./IncomeLine"
 import PcsLine from "./PcsLine"
 import PriceToPcsLine from "./PriceToPcsLine"
@@ -25,7 +37,6 @@ import NameLine from "./NameLine"
 import ValuteLine from "./ValuteLine/ValuteLine"
 import View from "./leftControlBtn/View"
 import Edit from "./leftControlBtn/Edit"
-import DeleteIcon from "@material-ui/icons/Delete"
 import DateLine from "./DateLine"
 
 const bodyText = {
@@ -78,6 +89,13 @@ class FullTable extends Component {
         this.setState({ onCheck: [] })
     }
 
+    // Створює новий елемент cashFlow і запускає редагування цього елемента
+    createNewItem = () => {
+        const { cashFlow, createNewCashFlowItem } = this.props
+        createNewCashFlowItem()
+        this.setState({ editElementId: Calc.lastIdFromCashFlow(cashFlow) })
+    }
+
     render() {
         const {
             cashFlow,
@@ -86,9 +104,26 @@ class FullTable extends Component {
             onDeleteCashFlowItem
         } = this.props
         const { onCheck } = this.state
+
+        // Загоровок таблиці
         const row = bodyText.collumn.map((item, index) => {
-            if (!index || index === 1) {
-                return <StyledTableCell key={index}>{item}</StyledTableCell>
+            if (!index) {
+                return (
+                    <StyledTableCell
+                        key={index}
+                        style={{ paddingLeft: "11px" }}
+                    >
+                        <IconButton
+                            style={{ padding: "5px" }}
+                            onClick={() => this.createNewItem()}
+                        >
+                            <AddBoxIcon htmlColor='white' />
+                        </IconButton>
+                    </StyledTableCell>
+                )
+            }
+            if (index === 1) {
+                return <StyledTableCell key={index}> {item}</StyledTableCell>
             }
             return (
                 <StyledTableCell key={index} align='right'>
@@ -97,6 +132,7 @@ class FullTable extends Component {
             )
         })
 
+        // Загоровок таблиці при видаленні
         const rowDelete = () => {
             return (
                 <StyledTableCell
@@ -256,7 +292,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(setCheckBox(index))
         },
         onDeleteCashFlowItem: indexArr =>
-            dispatch(onDeleteCashFlowItem(indexArr))
+            dispatch(onDeleteCashFlowItem(indexArr)),
+        createNewCashFlowItem: () => dispatch(createNewCashFlowItem())
     }
 }
 
