@@ -47,7 +47,7 @@ const bodyText = {
 
 const createTableContent = obj => {
     return obj.map(item => {
-        return [item.name, Calc.showPrice(item)]
+        return [item.name, Calc.showFullPrice(item)]
     })
 }
 
