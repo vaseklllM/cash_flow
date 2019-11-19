@@ -5,13 +5,16 @@ import { Loader } from "../../pages"
 import { randomColor } from "../../utils"
 import propTypes from "prop-types"
 
-const IncomeGraph = ({ cashFlow, vallets, name }) => {
+const IncomeGraph = ({ cashFlow, vallets, name, type }) => {
     if (cashFlow && vallets.length !== 0) {
         const arrName = cashFlow.map(i => i.name)
         const arrValue = cashFlow.map(i => {
             for (let j = 0; j < vallets.length; j++) {
                 if (vallets[j].sumbol === i.currency) {
-                    let priceUah = vallets[j].value * i.price * i.pcs
+                    let priceUah =
+                        type === "price"
+                            ? vallets[j].value * i[type] * i.pcs
+                            : vallets[j].value * i[type]
                     return priceUah < 20
                         ? parseFloat(priceUah.toFixed(2))
                         : parseInt(priceUah)

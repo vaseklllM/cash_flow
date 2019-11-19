@@ -61,6 +61,17 @@ const Calc = {
             if (lastId < i.id) lastId = i.id
         })
         return ++lastId
+    },
+    
+    // повертає витрати/доходи
+    showIncome: item => {
+        const { income, currency } = item
+        if (!income) return "-"
+        if (income < 1 && income > -1) {
+            return `${parseFloat(income.toFixed(5))} ${currency}`
+        } else {
+            return `${income.toLocaleString("ru-RU")} ${currency}`
+        }
     }
 }
 export default Calc

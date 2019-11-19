@@ -5,7 +5,7 @@ import CreateGraph from "../Creators/graph/CreateGraph"
 
 const Graphs = ({ cashFlow }) => {
     const incomeData = cashFlow ? cashFlow.filter(i => i.income > 0) : null
-    const activeGraph = cashFlow ? cashFlow.filter(i => i.income >= 0) : null
+    const activeGraph = cashFlow ? cashFlow.filter(i => i.income > 0) : null
     const costsGraph = cashFlow
         ? cashFlow.filter(i => i.income < 0 && i.price !== 0)
         : null
@@ -22,7 +22,11 @@ const Graphs = ({ cashFlow }) => {
                         >
                             Доходи
                         </Typography>
-                        <CreateGraph cashFlow={incomeData} name='incomeGraph' />
+                        <CreateGraph
+                            cashFlow={incomeData}
+                            type='income'
+                            name='incomeGraph'
+                        />
                     </Grid>
                     <Grid item xl={4} md={6} xs={12}>
                         <Typography
@@ -32,7 +36,11 @@ const Graphs = ({ cashFlow }) => {
                         >
                             Витрати
                         </Typography>
-                        <CreateGraph cashFlow={costsGraph} name='costsGraph' />
+                        <CreateGraph
+                            cashFlow={costsGraph}
+                            type='income'
+                            name='costsGraph'
+                        />
                     </Grid>
                     <Grid item xl={4} md={6} xs={12}>
                         <Typography
@@ -44,6 +52,7 @@ const Graphs = ({ cashFlow }) => {
                         </Typography>
                         <CreateGraph
                             cashFlow={activeGraph}
+                            type='price'
                             name='activeGraph'
                         />
                     </Grid>
@@ -62,6 +71,7 @@ const Graphs = ({ cashFlow }) => {
                         </Typography>
                         <CreateGraph
                             cashFlow={capitalGraph}
+                            type='price'
                             name='capitalGraph'
                         />
                     </Grid>

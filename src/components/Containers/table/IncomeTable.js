@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
-import { mathFullPrice } from "../../utils"
+import { mathFullPrice, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
 // Таблиця 'Доходи'
@@ -24,7 +24,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
         })
     }
     let rows = obj ? createTableContent(obj) : null
-    let fullPrice = obj ? mathFullPrice(obj, 'income') : []
+    let fullPrice = obj ? mathFullPrice(obj, "income") : []
     return (
         <CreateTable
             rows={rows}
@@ -45,8 +45,8 @@ const bodyText = {
 
 const createTableContent = obj => {
     return obj.map(item => {
-        const { name, income, currency } = item
-        return [name, `${income.toLocaleString("en-IN")} ${currency}`]
+        const { name } = item
+        return [name, Calc.showIncome(item)]
     })
 }
 
@@ -60,7 +60,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ActiveTable)
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveTable)

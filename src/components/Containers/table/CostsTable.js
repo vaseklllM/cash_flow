@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import CreateTable from "../../Creators/Table"
-import { mathFullPrice } from "../../utils"
+import { mathFullPrice, Calc } from "../../utils"
 import { setCheckBox } from "../../../store/serverMoney/action"
 
 // Таблиця 'Витрати'
@@ -45,8 +45,8 @@ const bodyText = {
 
 const createTableContent = obj => {
     return obj.map(item => {
-        const { name, income, currency } = item
-        return [name, `${Math.abs(income).toLocaleString("en-IN")} ${currency}`]
+        const { name } = item
+        return [name, Calc.showIncome(item)]
     })
 }
 

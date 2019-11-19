@@ -1,10 +1,11 @@
 import React from "react"
 import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
+import { Calc } from "../../../utils"
 
 // комірка з Доходом
 function IncomeLine({ item, onShow }) {
-    const { income, currency } = item
+    const { income } = item
 
     if (onShow) {
         return (
@@ -20,7 +21,7 @@ function IncomeLine({ item, onShow }) {
     } else
         return (
             <StyledTableCell className={onShow ? "activeTd" : ""} align='right'>
-                {income ? `${income} ${currency}` : "-"}
+                {Calc.showIncome(item)}
             </StyledTableCell>
         )
 }
