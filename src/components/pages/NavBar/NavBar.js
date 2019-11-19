@@ -3,16 +3,14 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    IconButton,
     Button,
-    Box
+    Box,
+    Hidden
 } from "@material-ui/core"
-import MenuIcon from "@material-ui/icons/Menu"
 import LoaderCircle from "../loaderCircle"
 import { Link } from "react-router-dom"
-import { Hidden } from "@material-ui/core"
 import "./NavBar.scss"
-import { Search } from "../../Containers"
+import { Search, MenuBtn } from "../../Containers"
 
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
@@ -53,13 +51,7 @@ function NavBar({ vallets }) {
                         </Box>
                     </Hidden>
                     <Hidden mdUp>
-                        <IconButton
-                            edge='start'
-                            color='inherit'
-                            aria-label='menu'
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        <MenuBtn />
                     </Hidden>
                 </Toolbar>
             </AppBar>

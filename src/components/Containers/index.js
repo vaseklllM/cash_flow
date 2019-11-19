@@ -10,6 +10,7 @@ import ProgressBarCapital from "./progress-bar/Capital"
 import IncomeToCosts from "./progress-bar/incomeToCosts"
 import Capital from "./table/Capital"
 import Graphs from "./Graphs"
+import MenuBtn from "./MenuBtn"
 
 export {
     App,
@@ -23,5 +24,6 @@ export {
     ProgressBarCapital,
     IncomeToCosts,
     Capital,
-    Graphs
+    Graphs,
+    MenuBtn
 }
