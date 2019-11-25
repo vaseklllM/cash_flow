@@ -16,6 +16,7 @@ function ActiveTable({ cashFlow, setCheckBox, searchCashFlow }) {
             if (item.checked) checked = index
         })
     }
+    
     const setId = id => {
         obj.forEach((item, index) => {
             if (index === id) {

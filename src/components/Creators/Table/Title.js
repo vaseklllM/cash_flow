@@ -1,6 +1,5 @@
 import React from "react"
 import { Typography, Box } from "@material-ui/core"
-import FunctionsRoundedIcon from "@material-ui/icons/FunctionsRounded"
 import { connect } from "react-redux"
 import { Calc } from "../../utils"
 
@@ -40,10 +39,9 @@ const Title = ({ title, fullPrice, vallets }) => {
             <Box p={0} className='tableTitle-content'>
                 <Typography
                     style={{ display: "flex", alignItems: "center" }}
-                    variant='h5'
+                    variant='subtitle1'
                     gutterBottom
                 >
-                    <FunctionsRoundedIcon />
                     {fullPriceSpan}
                 </Typography>
             </Box>

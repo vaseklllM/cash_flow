@@ -11,7 +11,7 @@ const Body = ({
     setCheckBox,
     minWidth
 }) => (
-    <Paper className='activeTable' style={{ maxHeight: maxHeignt || "400px" }}>
+    <Paper className='activeTable' style={{ maxHeight: maxHeignt || "800px" }}>
         <Table style={{ minWidth: minWidth }}>
             <TableHead className='vasekTest'>
                 <TableRow>

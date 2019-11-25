@@ -6,9 +6,7 @@ import CreateGraph from "../Creators/graph/CreateGraph"
 const Graphs = ({ cashFlow }) => {
     const incomeData = cashFlow ? cashFlow.filter(i => i.income > 0) : null
     const activeGraph = cashFlow ? cashFlow.filter(i => i.income > 0) : null
-    const costsGraph = cashFlow
-        ? cashFlow.filter(i => i.income < 0 && i.price !== 0)
-        : null
+    const costsGraph = cashFlow ? cashFlow.filter(i => i.income < 0) : null
     const capitalGraph = cashFlow ? cashFlow.filter(i => i.income === 0) : null
     return (
         <Container maxWidth='xl'>
