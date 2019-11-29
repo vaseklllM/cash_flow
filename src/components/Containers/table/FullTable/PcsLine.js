@@ -4,12 +4,11 @@ import { StyledTableCell } from "../../../Creators/Table/utils"
 import { Calc } from "../../../utils"
 
 // комірка з кількістю шт.
-const PcsLine = ({ item, onShow }) => {
+const PcsLine = React.memo(({ item, onShow }) => {
     const { pcs } = item
     if (onShow) {
         return (
             <InputLine
-                onShow={onShow}
                 value={pcs}
                 keyName='pcs'
                 width='11%'
@@ -23,6 +22,6 @@ const PcsLine = ({ item, onShow }) => {
                 {Calc.showPcs(item)}
             </StyledTableCell>
         )
-}
+})
 
 export default PcsLine

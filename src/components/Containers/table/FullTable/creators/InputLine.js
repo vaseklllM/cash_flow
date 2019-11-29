@@ -12,7 +12,6 @@ export class InputLine extends Component {
     }
     render() {
         const {
-            onShow,
             newCashFlowItem,
             setNewCashFlowItem,
             width,
@@ -20,14 +19,15 @@ export class InputLine extends Component {
             place,
             ClassNameInputStyle
         } = this.props
+
         return (
             <StyledTableCell
-                className={onShow ? "activeTd" : ""}
+                className='activeTd'
                 align='right'
                 style={{ width }}
             >
                 <Input
-                style={{textAlign: 'left'}}
+                    style={{ textAlign: "left" }}
                     className={ClassNameInputStyle}
                     placeholder={place}
                     onMouseDown={event => event.stopPropagation()}
@@ -54,7 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(InputLine)
+export default connect(mapStateToProps, mapDispatchToProps)(InputLine)

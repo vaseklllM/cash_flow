@@ -3,13 +3,12 @@ import InputLine from "./creators/InputLine"
 import { StyledTableCell } from "../../../Creators/Table/utils"
 
 // комірка з назвою елемента
-function NameLine({ item, onShow }) {
+const NameLine = React.memo(({ item, onShow }) => {
     const { name } = item
 
     if (onShow) {
         return (
             <InputLine
-                onShow={onShow}
                 value={name}
                 keyName='name'
                 width='13%'
@@ -23,6 +22,6 @@ function NameLine({ item, onShow }) {
                 {name}
             </StyledTableCell>
         )
-}
+})
 
 export default NameLine

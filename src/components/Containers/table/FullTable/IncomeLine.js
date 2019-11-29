@@ -4,13 +4,12 @@ import { StyledTableCell } from "../../../Creators/Table/utils"
 import { Calc } from "../../../utils"
 
 // комірка з Доходом
-function IncomeLine({ item, onShow }) {
+const IncomeLine = React.memo(({ item, onShow }) => {
     const { income } = item
 
     if (onShow) {
         return (
             <InputLine
-                onShow={onShow}
                 value={income}
                 keyName='income'
                 width='10%'
@@ -24,6 +23,6 @@ function IncomeLine({ item, onShow }) {
                 {Calc.showIncome(item)}
             </StyledTableCell>
         )
-}
+})
 
 export default IncomeLine

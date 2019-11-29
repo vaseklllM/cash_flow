@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { changeParametersCashFlow } from "../../../../../store/serverMoney/action"
 
 const Edit = ({ item, changeParametersCashFlow, onClickEditelementId }) => {
+    
     return (
         <>
             <IconButton
