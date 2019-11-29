@@ -1,30 +1,41 @@
-import React from "react"
+import React, { Component } from "react"
 import Title from "./Title"
 import Body from "./Body"
 import propTypes from "prop-types"
+import { Calc } from "../../utils"
 
-const CreateTable = ({
-    rows,
-    bodyText,
-    fullPrice,
-    maxHeignt,
-    checked,
-    setCheckBox,
-    minWidth
-}) => {
-    return (
-        <>
-            <Title title={bodyText.title} fullPrice={fullPrice} />
-            <Body
-                rows={rows}
-                text={bodyText}
-                maxHeignt={maxHeignt}
-                checked={checked}
-                setCheckBox={setCheckBox}
-                minWidth={minWidth}
-            />
-        </>
-    )
+class CreateTable extends Component {
+    shouldComponentUpdate(nextProps) {
+        if (this.props.checked !== nextProps.checked) return true
+        if (!Calc.deepEqual(this.props.rows, nextProps.rows)) return true
+        return false
+    }
+
+    render() {
+        const {
+            rows,
+            bodyText,
+            fullPrice,
+            maxHeignt,
+            checked,
+            setCheckBox,
+            minWidth
+        } = this.props
+
+        return (
+            <>
+                <Title title={bodyText.title} fullPrice={fullPrice} />
+                <Body
+                    rows={rows}
+                    text={bodyText}
+                    maxHeignt={maxHeignt}
+                    checked={checked}
+                    setCheckBox={setCheckBox}
+                    minWidth={minWidth}
+                />
+            </>
+        )
+    }
 }
 
 CreateTable.propTypes = {
@@ -38,8 +49,8 @@ CreateTable.propTypes = {
         collumn: propTypes.array,
         emptyArray: propTypes.string
     }).isRequired,
-    fullPrice: propTypes.array
-    // checked: propTypes.number
+    fullPrice: propTypes.array,
+    checked: propTypes.number
 }
 
 export default CreateTable

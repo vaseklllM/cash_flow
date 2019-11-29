@@ -62,7 +62,7 @@ const Calc = {
         })
         return ++lastId
     },
-    
+
     // повертає витрати/доходи
     showIncome: item => {
         const { income, currency } = item
@@ -71,6 +71,23 @@ const Calc = {
             return `${parseFloat(income.toFixed(5))} ${currency}`
         } else {
             return `${income.toLocaleString("ru-RU")} ${currency}`
+        }
+    },
+
+    // Зрівнює два об'єкта повертає true якщо рівні
+    deepEqual(obj1, obj2) {
+        return JSON.stringify(obj1) === JSON.stringify(obj2)
+    },
+
+    //приймає любе число, повертає - або число з пробелом між сотнями і тисячами
+    showNawBarPrice(value) {
+        if (!value) return "-"
+        if (value < 1 && value > -1) {
+            return parseFloat(value.toFixed(5))
+        } else if (value < 0) {
+            return Math.abs(value).toLocaleString("ru-RU")
+        } else {
+            return value.toLocaleString("ru-RU")
         }
     }
 }

@@ -11,6 +11,7 @@ import LoaderCircle from "../loaderCircle"
 import { Link } from "react-router-dom"
 import "./NavBar.scss"
 import { Search, MenuBtn } from "../../Containers"
+import { Calc } from "../../utils"
 
 function NavBar({ vallets }) {
     let blockValute = () => <LoaderCircle />
@@ -20,7 +21,7 @@ function NavBar({ vallets }) {
             newValletst.map((item, index) => {
                 return (
                     <span key={index} className='circle'>
-                        {`${item.sumbol} ${item.value}`}
+                        {`${item.sumbol} ${Calc.showNawBarPrice(item.value)}`}
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                 )
