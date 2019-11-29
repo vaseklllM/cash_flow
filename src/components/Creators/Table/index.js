@@ -5,6 +5,7 @@ import propTypes from "prop-types"
 import { Calc } from "../../utils"
 
 class CreateTable extends Component {
+    // Компонент обновляється при зміні checked, rows
     shouldComponentUpdate(nextProps) {
         if (this.props.checked !== nextProps.checked) return true
         if (!Calc.deepEqual(this.props.rows, nextProps.rows)) return true
