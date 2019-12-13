@@ -14,6 +14,7 @@ class Row extends Component {
 
     render() {
         const { row, checked, setCheckBox, id } = this.props
+        
         return (
             <StyledTableRow
                 hover
